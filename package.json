@@ -1,5 +1,5 @@
 {
-  "name": "coinbase",
+  "name": "coinspace",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.5.5",
