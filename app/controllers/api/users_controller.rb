@@ -3,23 +3,34 @@ class Api::UsersController < ApplicationController              # ? :: Api names
         @user = User.new(user_params)
         if @user.save                                           # ? save! or no ! 
             login!(@user)
+            render :show
         else 
-            render json: { @user.errors.full_messages.join(', '), status: 422 }
+            render json: @user.errors.full_messages.join(', '), status: 422     # ? json is method, takes in two args here
         end
     end
 
     private
     def user_params
-        params.require(:user).permit(:password, :email)
+        params.require(:user).permit(
+            :password, 
+            :email,
+            :first_name,
+            :last_name,
+            :state
+        )
     end
 end
 
 
 # To test on the browser/console window: 
 # for signing up a user
-# req = $.ajax({
-#     method: 'POST',
-#     url: 'api/users',   # look at be rails routes to see path
-# 	data: { user:  { username: 'test1', password: '123456' } }
+# $.ajax({
+#   method: 'POST',
+#   url: 'api/users',
+#   data: { user: { email: 'harry@gmail.com', 
+#       password: '12345678',
+#       first_name: 'harry',
+#       last_name: 'hobart',
+#       state: 'New York' } }
 # })
 # => should get a json obj back with promise, and responseJSON keys

@@ -7,9 +7,9 @@ class Api::SessionsController < ApplicationController
 
         if user
             login!(user)
-            render json { id: user.id, email: user.email }
+            render json:  { id: user.id, email: user.email }                    # ? args or hash w/ key/vals?
         else
-            render json: { 'Invalid username and/oor password', status: 401 }   # ? could also be 422
+            render json: 'Invalid username and/oor password', status: 401       # ? could also be 422
         end
     end
 
@@ -19,7 +19,7 @@ class Api::SessionsController < ApplicationController
             logout
             render json: {}
         else
-            render json: { 'There is no user to log out', status 404 }
+            render json: 'There is no user to log out', status: 404
         end
     end
 
@@ -31,10 +31,17 @@ class Api::SessionsController < ApplicationController
 end
 
 
+# To test logging in user on the window:
+# $.ajax({
+#     method: 'POST',
+#     url: 'api/session',
+# 	  data: { user:  { email: 'harry@gmail.com', password: '12345678' } }
+# })
+
 
 # To test logging out user on the window:
-# req = $.ajax({
+# $.ajax({
 #     method: 'DELETE',
 #     url: 'api/session',
-# 	data: { user:  { username: 'test1', password: '123456' } }
+# 	  data: { user:  { email: 'harry@gmail.com', password: '12345678' } }       # ? this line not needed?
 # })

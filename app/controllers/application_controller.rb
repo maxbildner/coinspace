@@ -32,8 +32,8 @@ end
 
 # ?
 # To test logging out user on the window:
-# req = $.ajax({
+# $.ajax({
 #     method: 'DELETE',
 #     url: 'api/session',
-# 	data: { user:  { username: 'test1', password: '123456' } }
+# 	  data: { user:  { email: 'harry@gmail.com', password: '12345678' } }
 # })
