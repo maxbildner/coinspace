@@ -4,7 +4,7 @@ import * as SessionAPIUtil from '../util/session_api_util';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
-export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+// export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 
 // THUNK ACTION CREATORS
@@ -13,6 +13,9 @@ export const login = (user) => {                    // user == { email: 'harry@g
         return SessionAPIUtil.login(user).then(
             (response) => {                         // ? response == user?
                 return dispatch(receiveCurrentUser(response));
+            }, 
+            (error) => {
+                return dispatch(receiveErrors(error.responseJSON))              // ? responseJSON
             }
         );       
     };
@@ -33,6 +36,9 @@ export const signup = (user) => {
         return SessionAPIUtil.signup(user).then(
             (response) => {
                 return dispatch(receiveCurrentUser(response));
+            },
+            (error) => {
+                return dispatch(receiveErrors(error.responseJSON))
             }
         );
     };
@@ -56,7 +62,7 @@ const logoutCurrentUser = () => {
 
 const receiveErrors = (errors) => {     // takes in array
     return ({
-        type: receiveErrors,
+        type: RECEIVE_SESSION_ERRORS,
         errors
     });
 };

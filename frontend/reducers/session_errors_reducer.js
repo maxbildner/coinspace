@@ -2,9 +2,10 @@ import { RECEIVE_CURRENT_USER, RECEIVE_SESSION_ERRORS } from "../actions/session
 
 // listen for 2 action types"
 
-const sessionErrorsReducer = (oldState={}, action) => {
+const sessionErrorsReducer = (oldState=[], action) => {
     Object.freeze(oldState);
     // let newState;
+    debugger
 
     switch (action.type) {
         case RECEIVE_SESSION_ERRORS:        // sets errors to the action's errors

@@ -26,11 +26,29 @@ class SessionForm extends React.Component {
 		};
 	}
 
+	renderErrors() {
+		debugger
+		let errors = this.props.errors.map( (error, idx) => {
+			return (
+				<li key={`error-${idx}`}>
+					{error}
+				</li>
+			)
+		});
+
+		return(
+			<ul>
+				{errors}		
+			</ul>
+		);
+	}
+
 	render() {
 		const { email, password } = this.state;
 
 		return (
 			<form onSubmit={this.handleSubmit}>
+				{this.renderErrors()}
 				Email:
 				<input type="text" value={email} onChange={this.update('email')} />
 				Password:

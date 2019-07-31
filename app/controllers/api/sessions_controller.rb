@@ -7,19 +7,21 @@ class Api::SessionsController < ApplicationController
 
         if user
             login!(user)
-            render json:  { id: user.id, email: user.email }                    # ? args or hash w/ key/vals?
+            render 'api/users/show'
+            # render json:  { id: user.id, email: user.email }                    # ? args or hash w/ key/vals?
         else
-            render json: 'Invalid username and/oor password', status: 401       # ? could also be 422
+            render json: ['Invalid username and/or password'], status: 401       # ? could also be 422
         end
     end
-
-
+    
+    
     def destroy                                                                 # logout
         if logged_in?
             logout
+            # render 'api/users/show'
             render json: {}
         else
-            render json: 'There is no user to log out', status: 404
+            render json: ['There is no user to log out'], status: 404
         end
     end
 

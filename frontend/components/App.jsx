@@ -1,6 +1,6 @@
 import React from 'react';
 import GreetingContainer from './greeting_container';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import SignupFormContainer from './signup_form_container';
 import LoginFormContainer from './login_form_container';
 // import LogoutFormContainer from './signup_form_container';
@@ -11,7 +11,9 @@ const App = () => {
    return (
 		<>
 			<header>
-				<h1>COIN SPACE</h1>
+				<Link to="/">
+					<h1>COIN SPACE</h1>
+				</Link>
 				<GreetingContainer />
 			</header>
 
