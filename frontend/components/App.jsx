@@ -12,8 +12,9 @@ const App = () => {
 			</header>
 
 			{/* <Switch>
+				<Route exact path='/signup' component={SignupFormContainer} />
 				<Route exact path='/login' component={LoginFormContainer} />
-				<Route exact path='/login' component={SignupFormContainer} />
+				<Route exact path='/logout' component={LogoutFormContainer} />
 			</Switch> */}
 		</>
    );
