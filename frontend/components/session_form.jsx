@@ -5,11 +5,18 @@ class SessionForm extends React.Component {
 		super(props);
 		this.state = {										// ? ! come back and fix later to add other values for sign up
 			email: "",
-			password: ""
+			password: "",
+			first_name: "",
+			last_name: "",
+			state: "",
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.update = this.update.bind(this);
+		this.demoLogin = this.demoLogin.bind(this);
+	}
+
+	componentWillUnmount() {							// ? last lifecycle method?
+		this.props.clearErrors();
 	}
 
 	handleSubmit(e) {
@@ -26,8 +33,20 @@ class SessionForm extends React.Component {
 		};
 	}
 
+	demoLogin(e){
+		e.preventDefault();
+		let demoUser = { 
+			email: 'henflix@gmail.com',
+			password: 'asdf1234'
+		};
+
+		// debugger
+		this.props.demoLogin(demoUser);
+	}
+
+
 	renderErrors() {
-		debugger
+		// debugger
 		let errors = this.props.errors.map( (error, idx) => {
 			return (
 				<li key={`error-${idx}`}>
@@ -44,17 +63,34 @@ class SessionForm extends React.Component {
 	}
 
 	render() {
-		const { email, password } = this.state;
+		const { email, password, state, first_name, last_name } = this.state;
+
+
+		// signup
+		// const signupForm = this.props.formType === 'signup' ? (<>
+		// 	First Name:
+		// 		<input type="text" value={first_name} onChange={this.update('first_name')} />
+		// 	Last Name:
+		// 		<input type="text" value={last_name} onChange={this.update('last_name')} />
+		// 	State:	
+		// 		<input type="text" value={state} onChange={this.update('state')} />
+		// </>) : null
+
+
 
 		return (
-			<form onSubmit={this.handleSubmit}>
-				{this.renderErrors()}
-				Email:
-				<input type="text" value={email} onChange={this.update('email')} />
-				Password:
-				<input type="password" value={password} onChange={this.update('password')}/>
-				<input type="submit" value={this.props.formType}/>
-			</form>
+			<div>
+				<form onSubmit={this.handleSubmit}>
+					{this.renderErrors()}
+					Email:
+					<input type="text" value={email} onChange={this.update('email')} />
+					Password:
+					<input type="password" value={password} onChange={this.update('password')}/>
+					{/* {signupForm} */}
+					<input type="submit" value={this.props.formType}/>
+				</form>
+				<button onClick={this.demoLogin}>DEMO LOGIN</button>
+			</div>
 		);
 	}
 }
