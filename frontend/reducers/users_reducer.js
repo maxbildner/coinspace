@@ -10,7 +10,7 @@ const usersReducers = (oldState={}, action) => {
 
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            newState = merge({}, state, { [action.user.id]: action.user });    // add the action's user to the state and set the key to the id of the user.
+            newState = merge({}, oldState, { [action.user.id]: action.user });    // add the action's user to the state and set the key to the id of the user.
             return newState;
 
         default:

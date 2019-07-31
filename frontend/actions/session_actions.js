@@ -60,3 +60,9 @@ const receiveErrors = (errors) => {     // takes in array
         errors
     });
 };
+
+// to test this on the window:
+// LOGIN
+// harry = { email: 'harry@gmail.com', password: '12345678' }
+// dispatch(login(harry));     //=> should see state change         // ? why does state get wiped clean after I log a user in, and then refresh manually?
+
