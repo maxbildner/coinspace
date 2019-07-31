@@ -9,7 +9,7 @@ const Greeting = (props) => {
     if (props.currentUser) {                                         // if user exists
         return (
             <>
-                <h1>Hello, {props.currentUser.firstName}</h1>
+                <h1>Hello, {props.currentUser.email}</h1>
                 <button onClick={props.logoutUser}>Log Out</button>
             </>
         )
