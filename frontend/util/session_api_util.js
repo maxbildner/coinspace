@@ -18,9 +18,20 @@ export const signup = (user) => {
     });
 };
 
+// to test on window!!!!
+// signup( {
+//     email: 'max@gmail.com',
+//     password: '12345678',
+//     first_name: 'max',
+//     last_name: 'b',
+//     state: 'New York'
+// })
 
 
-export const login = (user) => {
+
+// to test on window!!!!
+// login({ email: 'harry@gmail.com', password: '12345678' })
+export const login = (user) => {    
     return $.ajax({
         method: 'POST',
         url: 'api/session',                                                       
@@ -30,10 +41,11 @@ export const login = (user) => {
 
 
 
-export const logout = (user) => {
+// to test on window!!!!
+// logout()
+export const logout = () => {
     return $.ajax({
         method: 'DELETE',
-        url: 'api/session',
-        data: { user }
+        url: 'api/session'
     });
 };

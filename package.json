@@ -33,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxbildner/coinbase.git"
+    "url": "git+https://github.com/maxbildner/coinspace.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/maxbildner/coinbase/issues"
+    "url": "https://github.com/maxbildner/coinspace/issues"
   },
-  "homepage": "https://github.com/maxbildner/coinbase#readme"
+  "homepage": "https://github.com/maxbildner/coinspace#readme"
 }

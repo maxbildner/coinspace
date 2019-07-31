@@ -34,3 +34,9 @@ end
 #       state: 'New York' } }
 # })
 # => should get a json obj back with promise, and responseJSON keys
+
+# email: 'harry@gmail.com', 
+#       password: '12345678',
+#       first_name: 'harry',
+#       last_name: 'hobart',
+#       state: 'New York'
