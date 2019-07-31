@@ -9,19 +9,32 @@ import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', ()=> {
     
-    const store = configureStore();
+	let store;
+	
+	if (window.currentUser) {               // if someone's logged in?
+		const preloadedState = {            
+			entities: {
+				users: { [window.currentUser.id]: window.currentUser }
+			},
+			session: { id: window.currentUser.id }
+		};
+    
+    	store = configureStore(preloadedState);
+    	delete window.currentUser;
+   } else {
+		store = configureStore();
+   }
 
-    // TESTING
-    window.signup = signup;
-    window.login = login;                   // user == { email: 'harry@gmail.com', password: '12345678' }
-    window.logout = logout;
-    window.dispatch = store.dispatch;
-    window.getState = store.getState;
-    // TESTING
+	// TESTING
+	window.signup = signup;
+	window.login = login;                   // user == { email: 'harry@gmail.com', password: '12345678' }
+	window.logout = logout;
+	window.dispatch = store.dispatch;
+	window.getState = store.getState;
+	// TESTING
 
-
-    const root = document.getElementById('root');           // ? app/views/static_pages/root.html.erb
-    ReactDOM.render(<Root store={store}/>, root);
+	const root = document.getElementById('root');           // ? app/views/static_pages/root.html.erb
+	ReactDOM.render(<Root store={store}/>, root);
 });
 
 
