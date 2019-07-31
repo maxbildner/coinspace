@@ -41,7 +41,7 @@ export const signup = (user) => {
 
 
 // ACTION CREATORS
-const receiveCurrentUser = (user) => {
+const receiveCurrentUser = (user) => {   // takes in object
     return ({
         type: RECEIVE_CURRENT_USER,
         user
@@ -54,3 +54,9 @@ const logoutCurrentUser = () => {
     });
 };
 
+const receiveErrors = (errors) => {     // takes in array
+    return ({
+        type: receiveErrors,
+        errors
+    });
+};
