@@ -67,14 +67,14 @@ class SessionForm extends React.Component {
 
 
 		// signup
-		// const signupForm = this.props.formType === 'signup' ? (<>
-		// 	First Name:
-		// 		<input type="text" value={first_name} onChange={this.update('first_name')} />
-		// 	Last Name:
-		// 		<input type="text" value={last_name} onChange={this.update('last_name')} />
-		// 	State:	
-		// 		<input type="text" value={state} onChange={this.update('state')} />
-		// </>) : null
+		const signupForm = this.props.formType === 'Signup' ? (<>
+			First Name:
+				<input type="text" value={first_name} onChange={this.update('first_name')} />
+			Last Name:
+				<input type="text" value={last_name} onChange={this.update('last_name')} />
+			State:	
+				<input type="text" value={state} onChange={this.update('state')} />
+		</>) : null
 
 
 
@@ -86,10 +86,10 @@ class SessionForm extends React.Component {
 					<input type="text" value={email} onChange={this.update('email')} />
 					Password:
 					<input type="password" value={password} onChange={this.update('password')}/>
-					{/* {signupForm} */}
+					{signupForm}
 					<input type="submit" value={this.props.formType}/>
 				</form>
-				<button onClick={this.demoLogin}>DEMO LOGIN</button>
+				<button onClick={this.demoLogin}>Demo Login</button>
 			</div>
 		);
 	}
