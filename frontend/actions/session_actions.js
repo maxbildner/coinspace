@@ -40,7 +40,7 @@ export const signup = (user) => {
                 return dispatch(receiveCurrentUser(response));
             },
             (errors) => {
-                // debugger
+                
                 return dispatch(receiveErrors(errors.responseJSON))
             }
         );

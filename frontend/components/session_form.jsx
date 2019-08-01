@@ -46,13 +46,13 @@ class SessionForm extends React.Component {
 			password: 'asdf1234'
 		};
 
-		// debugger
+		
 		this.props.demoLogin(demoUser);
 	}
 
 
 	renderErrors() {
-		// debugger
+		
 		let errors = this.props.errors.map( (error, idx) => {
 			return (
 				<li key={`error-${idx}`}>
