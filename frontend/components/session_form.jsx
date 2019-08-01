@@ -106,6 +106,7 @@ class SessionForm extends React.Component {
 						onChange={this.update('email')} 
 						id="email"
 						placeholder="Email"
+						autoComplete="off"
 					/>
 				</div>
 
@@ -117,6 +118,7 @@ class SessionForm extends React.Component {
 						onChange={this.update('password')} 
 						id="password" 
 						placeholder="Password"
+						autoComplete="off"
 					/>
 				</div>
 

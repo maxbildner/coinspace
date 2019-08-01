@@ -16,8 +16,6 @@ form {
     padding: 2rem;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;
-    // border: 2px solid white;
-    // border-radius: 2ex;
     padding: 
 
     label {
@@ -26,9 +24,22 @@ form {
 }
 
 .center {
-    width: fit-content;
+    // width: fit-content;
+    width: 100%;
     margin: 0 auto;
 }
 
-// put div
-// width auto for div
+input#email, input#password {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0066cc;
+    border-width: thin;
+    // width: 100%;
+    // border-bottom: 2px orange;
+}
+
+
