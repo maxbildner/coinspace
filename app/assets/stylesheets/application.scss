@@ -16,7 +16,6 @@ form {
     padding: 2rem;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;
-    padding: 
 
     label {
         display: block;         // put on own line
@@ -29,17 +28,54 @@ form {
     margin: 0 auto;
 }
 
+.form-group {
+    margin-bottom: 12px;            // ? how to only target this login email/pw form?
+}
+
 input#email, input#password {
     width: 100%;
     box-sizing: border-box;
+    border-radius: 3px;
+    padding: 9px;
 }
 
 input:focus {
     outline: none;
     border-color: #0066cc;
     border-width: thin;
-    // width: 100%;
-    // border-bottom: 2px orange;
 }
 
+input[value="Login"], button.demo-login {
+    font-size: .85rem;
+    text-transform: uppercase;
+    height: 42px;
+    letter-spacing: .06em;
+    padding: 1em 2em;
+    border-radius: 2px;
+    background-color: #358bda;
+    color: white;
+}
 
+input[value="Login"] {
+    float: right;
+}
+
+h2.sign-up-header {
+    text-align: center;
+    color: white;
+    // font-family: proxima-nova, helvetica neue, Helvetica;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+}
+
+// button.demo-login {
+//     float: left;
+// }
+
+// font size: 11px
+// text-transform: uppercase
+// height: 42px
+// letter-spacing: .05em
+// padding: 13em 23em
+
+// hover #04c

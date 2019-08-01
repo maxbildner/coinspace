@@ -15,7 +15,7 @@ const sessionErrorsReducer = (oldState=[], action) => {
             return [].concat(action.errors);
             
 
-        case RECEIVE_CURRENT_USER:          // clears the errors
+        case RECEIVE_CURRENT_USER:          // ? clears the errors
             return [];
 
         case CLEAR_ERRORS:

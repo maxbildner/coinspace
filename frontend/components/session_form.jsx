@@ -21,7 +21,7 @@ class SessionForm extends React.Component {
 	// 	$('html').attr('data-page', this.props.formType);
 	// }
 
-	componentWillUnmount() {							// ? last lifecycle method?
+	componentWillUnmount() {								// ? last lifecycle method?
 		this.props.clearErrors();
 	}
 
@@ -51,13 +51,14 @@ class SessionForm extends React.Component {
 
 
 	renderErrors() {
-		let errors = this.props.errors.map( (error, idx) => {
-			return (
-				<li key={`error-${idx}`}>
-					{error}
-				</li>
-			)
-		});
+		// let errors = this.props.errors.map( (error, idx) => {
+		// 	return (
+		// 		<li key={`error-${idx}`}>
+		// 			{error}
+		// 		</li>
+		// 	)
+		// });
+		let errors = this.props.errors.join('.')
 
 		if (errors.length == 0) return null;
 
@@ -122,29 +123,33 @@ class SessionForm extends React.Component {
 					/>
 				</div>
 
-				<button onClick={this.demoLogin}>Demo Login</button>
+				<button className="demo-login" onClick={this.demoLogin}>Demo Login</button>
 			</>
 		);
 	}
 
 
 	render() {
-	const { email, password, state, first_name, last_name } = this.state;
+		const { email, password, state, first_name, last_name } = this.state;
 
-	let fragment = null;
+		let fragment;
+		let headerTitle;
 		if (this.props.formType === 'Signup') {
 			fragment = this.renderSignup();
+			headerTitle = <h2 className="sign-up-header">Create your account</h2>
 		} else {
 			fragment = this.renderSignin();
+			headerTitle = <h2 className="sign-up-header">Sign in to Coinspace</h2>
 		}
 
 		return (
 			<div>
+				{headerTitle}
 				<form onSubmit={this.handleSubmit}>
 					<div className="center">
-					{this.renderErrors()}
-					{fragment}
-					<input type="submit" value={this.props.formType} />
+						{this.renderErrors()}
+						{fragment}
+						<input type="submit" value={this.props.formType} />
 					</div>
 				</form>
 			</div>
