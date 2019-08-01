@@ -46,13 +46,11 @@ class SessionForm extends React.Component {
 			password: '12345678'
 		};
 
-		
 		this.props.demoLogin(demoUser);
 	}
 
 
 	renderErrors() {
-		
 		let errors = this.props.errors.map( (error, idx) => {
 			return (
 				<li key={`error-${idx}`}>
@@ -101,13 +99,25 @@ class SessionForm extends React.Component {
 		return (
 			<>
 				<div className="form-group">
-					<label htmlFor="email">Email:</label>
-					<input type="text" value={email} onChange={this.update('email')} id="email"/>
+					<label htmlFor="email"></label>
+					<input 
+						type="text" 
+						value={email} 
+						onChange={this.update('email')} 
+						id="email"
+						placeholder="Email"
+					/>
 				</div>
 
 				<div className="form-group">
-					<label htmlFor="password">Password:</label>
-					<input type="password" value={password} onChange={this.update('password')} id="password" />
+					<label htmlFor="password"></label>
+					<input 
+						type="password" 
+						value={password} 
+						onChange={this.update('password')} 
+						id="password" 
+						placeholder="Password"
+					/>
 				</div>
 
 				<button onClick={this.demoLogin}>Demo Login</button>
@@ -137,7 +147,6 @@ class SessionForm extends React.Component {
 				</form>
 			</div>
 		);
-		
 	}
 }
 

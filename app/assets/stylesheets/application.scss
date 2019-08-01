@@ -1,19 +1,27 @@
 @import './normalize.css';
 
 html[data-location="/login"] {
-    background-color: blue;
+    background-color: #0066cc;
 }
 
+body {
+    font-family: helvetica, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
 
 form {
-    margin: 0 auto; // centers horizontally
+    margin: 0 auto;             // centers horizontally
     width: 20rem;
-    padding: 2rem;
-    border: 2px solid white;
-    border-radius: 2ex;
+    padding: 2rem;              // 1rem == font size of html element (default 16px)
+    color: grey;                
+    background-color: white;
+    // border: 2px solid white;
+    // border-radius: 2ex;
+    padding: 
 
     label {
-        display: block; // put on own line
+        display: block;         // put on own line
     }
 }
 
