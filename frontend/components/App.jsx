@@ -5,6 +5,7 @@ import SignupFormContainer from './signup_form_container';
 import LoginFormContainer from './login_form_container';
 // import LogoutFormContainer from './signup_form_container';
 import { AuthRoute } from '../util/route_util';
+import RouteChange from './route_change';
 
 // ? functional component that will wrap all other components (but app will be wrapped in root component?)
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
 				</Link>
 				<GreetingContainer />
 			</header>
-
+			<RouteChange />
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
 				<AuthRoute exact path="/login" component={LoginFormContainer} />

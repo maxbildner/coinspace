@@ -1,0 +1,26 @@
+@import './normalize.css';
+
+html[data-location="/login"] {
+    background-color: blue;
+}
+
+
+form {
+    margin: 0 auto; // centers horizontally
+    width: 20rem;
+    padding: 2rem;
+    border: 2px solid white;
+    border-radius: 2ex;
+
+    label {
+        display: block; // put on own line
+    }
+}
+
+.center {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+// put div
+// width auto for div
