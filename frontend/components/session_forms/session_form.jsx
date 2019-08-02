@@ -10,6 +10,10 @@ class SessionForm extends React.Component {
 			first_name: "",
 			last_name: "",
 			state: "",
+			// errors: { email: "", password: "" }...
+			// have func validate submit, 
+			// check if each one is empty or an invlaid format
+			// conditionally give classes
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,12 +29,11 @@ class SessionForm extends React.Component {
 
 	componentWillUnmount() {								// ? last lifecycle method?
 		this.props.clearErrors();
-		
 	}
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const user = Object.assign({}, this.state);
+		const user = Object.assign({}, this.state);	// !!make sure not to include errors
 		this.props.processForm(user);						// triggering submit new user/login session action
 	}
 
@@ -61,6 +64,11 @@ class SessionForm extends React.Component {
 		// 		</li>
 		// 	)
 		// });
+
+		// for blank fields (can be taken care of on front end)
+		// need new parameter in state for errors 
+		// 
+
 		let errors = this.props.errors.join('.')
 
 		if (errors.length == 0) return null;
@@ -103,6 +111,7 @@ class SessionForm extends React.Component {
 					type="text" 
 					value={state} 
 					onChange={this.update('state')} 
+					placeholder="State"
 					id="state" />
 			</div>
 
@@ -113,13 +122,13 @@ class SessionForm extends React.Component {
 
 	renderSignin() {
 		const { email, password, state, first_name, last_name } = this.state;
-
+		// make if errors class value emtyy string if no errors
 		return (
 			<>
 				<div className="form-group">
 					<label htmlFor="email"></label>
 					<input 
-						type="text" 
+						type="email" 
 						value={email} 
 						onChange={this.update('email')} 
 						id="email"
