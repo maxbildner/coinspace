@@ -72,7 +72,7 @@ class SessionForm extends React.Component {
 	renderSignup(){
 		const { email, password, state, first_name, last_name } = this.state;
 
-		// signup
+		// SIGN UP
 		return (<>
 			<div className="form-group">
 				<label htmlFor="first_name">First Name:</label>
@@ -123,23 +123,35 @@ class SessionForm extends React.Component {
 					/>
 				</div>
 
-				<button className="demo-login" onClick={this.demoLogin}>Demo Login</button>
+				<button className="demo-login" onClick={this.demoLogin}>Demo</button>
 			</>
 		);
 	}
 
 
 	render() {
-		const { email, password, state, first_name, last_name } = this.state;
+		// const { email, password, state, first_name, last_name } = this.state;
 
 		let fragment;
 		let headerTitle;
+		let loginExtras;
 		if (this.props.formType === 'Signup') {
 			fragment = this.renderSignup();
 			headerTitle = <h2 className="sign-up-header">Create your account</h2>
 		} else {
 			fragment = this.renderSignin();
 			headerTitle = <h2 className="sign-up-header">Sign in to Coinspace</h2>
+			loginExtras = 
+				<div className="login-extras">
+					<p>
+						<a href="#">Forgot Password?</a>
+						<a href="#">Don't have an account?</a>
+						<a href="#">Privacy Policy</a>
+					</p>
+					<p>
+						<a href="#">Have an issue with 2-factor authentication?</a>
+					</p>
+				</div> 
 		}
 
 		return (
@@ -152,6 +164,7 @@ class SessionForm extends React.Component {
 						<input type="submit" value={this.props.formType} />
 					</div>
 				</form>
+					{loginExtras}
 			</div>
 		);
 	}
