@@ -1,11 +1,13 @@
 @import './normalize.css';
 @import './fonts.scss';
+@import './session_form.scss';
+@import './nav_login.scss';
 
 html[data-location="/login"] {
     background-color: #0066cc;
 }
 
-:root {                        // root == html
+:root {                              // root == html
     font-size: 14px;
 }
 
@@ -28,88 +30,9 @@ form {
     padding: 32px 24px;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;
-    border-radius: 1px;
+    border-radius: 2px;
     box-shadow: 0px 0px 19px #10101073;
     label {
         display: block;              // put on own line
     }
 }
-
-.center {
-    // width: fit-content;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 12px;              // ? how to only target this login email/pw form?
-}
-
-input:not([type="submit"]):not([type="button"]) {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #d4dce4;
-    border-radius: 2px;
-    padding: 9px;
-    &:focus {
-        outline: none;
-        border-color: #3d97f0;
-    }
-}
-
-input[type="submit"], input[type="button"], button {
-    font-size: .85rem;
-    text-transform: uppercase;
-    height: 42px;
-    letter-spacing: .06em;
-    padding: 1em 2em;
-    border-radius: 2px;
-    background-color: rgb(29, 144, 203);          // darker blue
-    color: white;
-    &:hover {
-        background-color: rgb(43, 113, 177);      // darker blue÷
-    }
-}
-
-input[value="Sign In"] {
-    float: right;
-}
-
-h2.sign-up-header {
-    margin-bottom: 40px;
-    font-size: 2.16rem;
-}
-
-.login-extras {
-    text-align: center;
-    margin-top: 2rem;
-    p {
-        a {
-            color: white;
-            text-decoration: none;
-            margin: 17px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    }
-}
-
-
-// put nav bar in its own div
-// div
-//    <nav>
-
-
-// for list of links use a ul
-// ul
-//     li   have an anchor tag
-//     li
-// nav {
-//     ul {
-//         li {    // & == include current tag == li.active
-//             &:.active { // equal to li.active
-//             }    
-//         }
-//     }
-// }

@@ -6,21 +6,22 @@ import { Link } from 'react-router-dom';
 // ? funcitonl component
 const Greeting = (props) => {
 
-    if (props.currentUser) {                                         // if user exists
+    if (props.currentUser) {                                         // if USER is logged in
         return (
             <>
                 <h1>Hello, {props.currentUser.email}</h1>
                 <button onClick={props.logoutUser}>Log Out</button>
             </>
         )
-    } else {
-        return (
-            <>
-                <Link to='/signup'>Sign Up</Link>
-                <br/>
-                <Link to='/login'>Login</Link>
-            </>
-        )
+    } else {  
+        return null;                                                      // if USER NOT logged in
+        // return (
+        //     <>
+        //         <Link to='/signup'>Sign Up</Link>
+        //         <br/>
+        //         <Link to='/login'>Login</Link>
+        //     </>
+        // )
     }
 }
 

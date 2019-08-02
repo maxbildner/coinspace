@@ -12,9 +12,6 @@ const App = () => {
    return (
 		<>
 			<header>
-				<Link to="/">
-					<h1 className="logo">coinspace</h1>
-				</Link>
 				<GreetingContainer />
 			</header>
 
@@ -26,5 +23,25 @@ const App = () => {
 		</>
    );
 };
+
+// Old: (8/1/19)
+// const App = () => {
+//    return (
+// 		<>
+// 			<header>
+// 				<Link to="/">
+// 					<h1 className="logo">coinspace</h1>
+// 				</Link>
+// 				<GreetingContainer />
+// 			</header>
+
+// 			<RouteChange />
+// 			<Switch>
+// 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
+// 				<AuthRoute exact path="/login" component={LoginFormContainer} />
+// 			</Switch>
+// 		</>
+//    );
+// };
 
 export default App;

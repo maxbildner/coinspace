@@ -6,7 +6,6 @@ import Greeting from './greeting';
 
 const mapStateToProps = (state) => {                    // msp gets hit everytime state changes
     let userId = state.session.id;
-    
 
     return ({
         currentUser: state.entities.users[userId]       // pass to GreetingContainer as props currentUser

@@ -1,0 +1,26 @@
+div#nav-login-container {
+    padding: 13px;
+    margin: 0px 60px;
+}
+
+img#nav-login-logo {
+    width: 9rem;
+}
+
+div#nav-login-right {
+    ul {
+        list-style-type: none;
+        font-size: 15px;
+        display: flex;
+
+        li a{
+            padding: 8px;
+            text-decoration: none;
+            color: white;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    float: right;
+}
