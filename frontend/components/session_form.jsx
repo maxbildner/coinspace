@@ -1,4 +1,5 @@
 import React from 'react';
+import NavLoginComponent from './nav_login';
 
 class SessionForm extends React.Component {
 	constructor (props) {
@@ -135,12 +136,14 @@ class SessionForm extends React.Component {
 		let fragment;
 		let headerTitle;
 		let loginExtras;
+		let navHeader;
 		if (this.props.formType === 'Signup') {
 			fragment = this.renderSignup();
 			headerTitle = <h2 className="sign-up-header">Create your account</h2>
 		} else {
 			fragment = this.renderSignin();
 			headerTitle = <h2 className="sign-up-header">Sign in to Coinspace</h2>
+			navHeader = <NavLoginComponent/>
 			loginExtras = 
 				<div className="login-extras">
 					<p>
@@ -155,17 +158,20 @@ class SessionForm extends React.Component {
 		}
 
 		return (
-			<div>
-				{headerTitle}
-				<form onSubmit={this.handleSubmit}>
-					<div className="center">
-						{this.renderErrors()}
-						{fragment}
-						<input type="submit" value={this.props.formType} />
-					</div>
-				</form>
-					{loginExtras}
-			</div>
+			<>
+				{navHeader}
+				<div>
+					{headerTitle}
+					<form onSubmit={this.handleSubmit}>
+						<div className="center">
+							{this.renderErrors()}
+							{fragment}
+							<input type="submit" value={this.props.formType} />
+						</div>
+					</form>
+						{loginExtras}
+				</div>
+			</>
 		);
 	}
 }

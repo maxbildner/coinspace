@@ -22,16 +22,16 @@ h2 {
 }
 
 form {
-    margin: 0 auto;             // centers horizontally
+    margin: 0 auto;                  // centers horizontally
     width: 25rem;
-    height: 12.1rem;
-    padding: 2rem;              // 1rem == font size of html element (default 16px)
+    height: 10rem;
+    padding: 32px 24px;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;
     border-radius: 1px;
     box-shadow: 0px 0px 19px #10101073;
     label {
-        display: block;         // put on own line
+        display: block;              // put on own line
     }
 }
 
@@ -42,7 +42,7 @@ form {
 }
 
 .form-group {
-    margin-bottom: 12px;            // ? how to only target this login email/pw form?
+    margin-bottom: 12px;              // ? how to only target this login email/pw form?
 }
 
 input:not([type="submit"]):not([type="button"]) {

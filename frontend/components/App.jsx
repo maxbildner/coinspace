@@ -13,10 +13,11 @@ const App = () => {
 		<>
 			<header>
 				<Link to="/">
-					<h1>COIN SPACE</h1>
+					<h1 className="logo">coinspace</h1>
 				</Link>
 				<GreetingContainer />
 			</header>
+
 			<RouteChange />
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
