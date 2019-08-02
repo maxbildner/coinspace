@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // import coinspaceLogo from "../../app/assets/images/coinspaceLogo.PNG";			// doesn't work without special webpack thingie
 
 // A simple presentational component that renders nav header just for login only
@@ -27,10 +27,10 @@ class NavLoginComponent extends React.Component {
 										<a href="#">Price</a>
 									</li>
 									<li>
-										<Link to='/login'>Sign In</Link>
+										<NavLink to='/login' activeClassName="nav-selected">Sign In</NavLink>
 									</li>
 									<li>
-										<Link to='/signup'>Sign Up</Link>
+										<NavLink to='/signup' activeClassName="nav-selected">Sign Up</NavLink>
 									</li>
 							</ul>
 						</div>
