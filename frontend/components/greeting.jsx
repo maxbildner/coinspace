@@ -15,8 +15,7 @@ const Greeting = (props) => {
 						<button onClick={props.logoutUser}>Log Out</button>
 					</>
 			)
-	} else { 
-		// debugger																													// if USER NOT logged in
+	} else { 																														// if USER NOT logged in														
 		return(
 			<>
 				<Route exact path="/" component={NavGreetingComponent} />																	                                                 
