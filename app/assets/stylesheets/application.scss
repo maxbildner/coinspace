@@ -1,12 +1,17 @@
 @import './normalize.css';
+@import './fonts.scss';
 
 html[data-location="/login"] {
     background-color: #0066cc;
 }
 
-body {
-    font-family: helvetica, Helvetica, Arial, sans-serif;
+:root {                        // root == html
     font-size: 14px;
+}
+
+body {
+    font-family: proxima-nova, helvetica neue, Helvetica;
+    
     line-height: 20px;
 }
 
@@ -16,7 +21,7 @@ form {
     padding: 2rem;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;
-
+    border-radius: 2px;
     label {
         display: block;         // put on own line
     }
@@ -32,20 +37,27 @@ form {
     margin-bottom: 12px;            // ? how to only target this login email/pw form?
 }
 
-input#email, input#password {
+// input#email, input#password {
+//     width: 100%;
+//     box-sizing: border-box;
+//     border-radius: 3px;
+//     padding: 9px;
+// }
+
+input:not([type="submit"]):not([type="button"]) {
     width: 100%;
     box-sizing: border-box;
-    border-radius: 3px;
+    border: 1px solid #d4dce4;
+    border-radius: 2px;
     padding: 9px;
+    &:focus {
+        outline: none;
+        border-color: #0066cc;
+    }
 }
 
-input:focus {
-    outline: none;
-    border-color: #0066cc;
-    border-width: thin;
-}
 
-input[value="Login"], button.demo-login {
+input[type="submit"], input[type="button"], button {
     font-size: .85rem;
     text-transform: uppercase;
     height: 42px;
@@ -60,22 +72,28 @@ input[value="Login"] {
     float: right;
 }
 
-h2.sign-up-header {
+h2 {
     text-align: center;
     color: white;
-    // font-family: proxima-nova, helvetica neue, Helvetica;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2rem;
+    font-weight: lighter;
+    font-size: 1.75rem;
 }
 
-// button.demo-login {
-//     float: left;
+
+// put nav bar in its own div
+// div
+//    <nav>
+
+
+// for list of links use a ul
+// ul
+//     li   have an anchor tag
+//     li
+// nav {
+//     ul {
+//         li {    // & == include current tag == li.active
+//             &:.active { // equal to li.active
+//             }    
+//         }
+//     }
 // }
-
-// font size: 11px
-// text-transform: uppercase
-// height: 42px
-// letter-spacing: .05em
-// padding: 13em 23em
-
-// hover #04c
