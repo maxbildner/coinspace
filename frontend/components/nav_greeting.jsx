@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 // renders nav header just for greeting path='/' only
 class NavGreetingComponent extends React.Component {
@@ -24,10 +24,10 @@ class NavGreetingComponent extends React.Component {
                                 <a href="#">Price</a>
                             </li>
                             <li>
-                                <Link to='/login'>Sign In</Link>
+                                <NavLink to='/login'>Sign In</NavLink>
                             </li>
                             <li>
-                                <Link to='/signup'>Sign Up</Link>
+                                <NavLink to='/signup' activeClassName="nav-selected-greeting">Sign Up</NavLink>
                             </li>
                         </ul>
                     </div>

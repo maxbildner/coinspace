@@ -30,7 +30,7 @@ class NavLoginComponent extends React.Component {
 										<NavLink to='/login' activeClassName="nav-selected">Sign In</NavLink>
 									</li>
 									<li>
-										<NavLink to='/signup' activeClassName="nav-selected">Sign Up</NavLink>
+										<NavLink to='/signup'>Sign Up</NavLink>
 									</li>
 							</ul>
 						</div>
