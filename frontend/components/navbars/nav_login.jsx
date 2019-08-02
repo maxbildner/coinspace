@@ -18,13 +18,13 @@ class NavLoginComponent extends React.Component {
 						<div id="nav-login-right">
 							<ul>
 									<li>
-										<a href="#">Products</a>
+										<a>Products</a>
 									</li>
 									<li>
-										<a href="#">Help</a>
+										<a>Help</a>
 									</li>
 									<li>
-										<a href="#">Price</a>
+										<a>Price</a>
 									</li>
 									<li>
 										<NavLink to='/login' activeClassName="nav-selected">Sign In</NavLink>

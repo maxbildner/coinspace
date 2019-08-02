@@ -42,6 +42,7 @@ input[value="Sign In"] {
 h2.sign-up-header {
     margin-bottom: 40px;
     font-size: 2.16rem;
+    // color: black;
 }
 
 .login-extras {
@@ -58,22 +59,3 @@ h2.sign-up-header {
         }
     }
 }
-
-
-// put nav bar in its own div
-// div
-//    <nav>
-
-
-// for list of links use a ul
-// ul
-//     li   have an anchor tag
-//     li
-// nav {
-//     ul {
-//         li {    // & == include current tag == li.active
-//             &:.active { // equal to li.active
-//             }    
-//         }
-//     }
-// }

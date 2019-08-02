@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLoginComponent from './nav_login';
+import NavLoginComponent from '../navbars/nav_login';
 
 class SessionForm extends React.Component {
 	constructor (props) {
@@ -18,12 +18,14 @@ class SessionForm extends React.Component {
 		this.renderSignup = this.renderSignup.bind(this);
 	}
 
-	// componentDidMount() {
-	// 	$('html').attr('data-page', this.props.formType);
-	// }
+	componentDidMount() {
+		// $('html').attr('data-page', this.props.formType);
+		$('html').attr('data-location', this.props.location.pathname);
+	}
 
 	componentWillUnmount() {								// ? last lifecycle method?
 		this.props.clearErrors();
+		
 	}
 
 	handleSubmit(e) {
@@ -76,18 +78,32 @@ class SessionForm extends React.Component {
 		// SIGN UP
 		return (<>
 			<div className="form-group">
-				<label htmlFor="first_name">First Name:</label>
-				<input type="text" value={first_name} onChange={this.update('first_name')} id="first_name" />
+				<label htmlFor="first_name">First name</label>
+				<input 
+					type="text" 
+					value={first_name} 
+					onChange={this.update('first_name')} 
+					placeholder="First name"
+					id="first_name" />
 			</div>
 
 			<div className="form-group">
-				<label htmlFor="last_name">Last Name:</label>
-				<input type="text" value={last_name} onChange={this.update('last_name')} id="last_name" />
+				<label htmlFor="last_name">Last name</label>
+				<input 
+					type="text" 
+					value={last_name} 
+					onChange={this.update('last_name')} 
+					placeholder="Last name"
+					id="last_name" />
 			</div>
 
 			<div className="form-group">
-				<label htmlFor="state">State:</label>
-				<input type="text" value={state} onChange={this.update('state')} id="state" />
+				<label htmlFor="state">State</label>
+				<input 
+					type="text" 
+					value={state} 
+					onChange={this.update('state')} 
+					id="state" />
 			</div>
 
 			{this.renderSignin()}
@@ -177,3 +193,6 @@ class SessionForm extends React.Component {
 }
 
 export default SessionForm;
+
+// if formtype is sign in, 
+//

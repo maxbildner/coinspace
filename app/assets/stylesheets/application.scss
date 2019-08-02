@@ -1,4 +1,4 @@
-@import './normalize.css';
+@import './normalize.scss';
 @import './fonts.scss';
 @import './session_form.scss';
 @import './nav_login.scss';
@@ -27,7 +27,7 @@ h2 {
 form {
     margin: 0 auto;                  // centers horizontally
     width: 25rem;
-    height: 10rem;
+    // height: 10rem;                   // if we hardcode this, there will be overflow from children elemen ts
     padding: 32px 24px;              // 1rem == font size of html element (default 16px)
     color: grey;                
     background-color: white;

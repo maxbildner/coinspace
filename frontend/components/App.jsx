@@ -1,8 +1,8 @@
 import React from 'react';
 import GreetingContainer from './greeting_container';
 import { Link, Route, Switch } from 'react-router-dom';
-import SignupFormContainer from './signup_form_container';
-import LoginFormContainer from './login_form_container';
+import SignupFormContainer from './session_forms/signup_form_container';
+import LoginFormContainer from './session_forms/login_form_container';
 // import LogoutFormContainer from './signup_form_container';
 import { AuthRoute } from '../util/route_util';
 import RouteChange from './route_change';
@@ -12,7 +12,7 @@ const App = () => {
    return (
 		<>
 			<GreetingContainer />
-			<RouteChange />
+			
 
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />

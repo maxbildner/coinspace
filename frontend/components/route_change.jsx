@@ -21,7 +21,8 @@ class RouteChange extends React.Component {
     onRouteChanged() {
         const { match, location, history } = this.props;
         
-        $('html').attr('data-location', location.pathname);
+
+        $('html').attr('ndata-locatio', location.pathname);
     }
 
     render() {
