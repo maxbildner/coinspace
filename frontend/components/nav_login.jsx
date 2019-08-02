@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom';
 class NavLoginComponent extends React.Component {
 
 	render() {
+
+	
 		return (
 			<>
 					<div id="nav-login-container">
-						<a>
-						<img src="https://i.imgur.com/wLiW760.png" id="nav-login-logo" alt="coinspace-logo"/>
-						</a>
-	
+						<Link to='/'>
+							<img src="https://i.imgur.com/wLiW760.png" id="nav-login-logo" alt="coinspace-logo"/>
+						</Link>
+
 						<div id="nav-login-right">
 							<ul>
 									<li>
@@ -25,10 +27,10 @@ class NavLoginComponent extends React.Component {
 										<a href="#">Price</a>
 									</li>
 									<li>
-										<a href="#">Sign In</a>
+										<Link to='/login'>Sign In</Link>
 									</li>
 									<li>
-										<a href="#">Sign Up</a>
+										<Link to='/signup'>Sign Up</Link>
 									</li>
 							</ul>
 						</div>
@@ -40,12 +42,3 @@ class NavLoginComponent extends React.Component {
 
 
 export default NavLoginComponent;
-
-
-// //     <>
-//         //         <Link to='/signup'>Sign Up</Link>
-//         //         <br/>
-//         //         <Link to='/login'>Login</Link>
-//         //     </>
-//         // )
-//     }

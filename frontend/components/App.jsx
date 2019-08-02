@@ -11,11 +11,9 @@ import RouteChange from './route_change';
 const App = () => {
    return (
 		<>
-			<header>
-				<GreetingContainer />
-			</header>
-
+			<GreetingContainer />
 			<RouteChange />
+
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
 				<AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -23,6 +21,10 @@ const App = () => {
 		</>
    );
 };
+
+// Switch component returns only the first one matching the route path
+export default App;
+
 
 // Old: (8/1/19)
 // const App = () => {
@@ -44,4 +46,3 @@ const App = () => {
 //    );
 // };
 
-export default App;
