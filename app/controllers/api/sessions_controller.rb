@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
             # render 'api/users/show'
             render json:  { id: user.id, email: user.email }                    # ? args or hash w/ key/vals?
         else
-            render json: ['Invalid username and/or password'], status: 401       # ? could also be 422
+            render json: ["Invalid email or password. Try clicking 'Forgot Password' if you're having trouble signing in."], status: 401       # ? could also be 422
         end
     end
     

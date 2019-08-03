@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     max-height: 670px;
+    
 
     .slide {
         width: 100%;
@@ -22,9 +23,13 @@
 }
 
 .background-img {
-    top: 0px;
+    // background-position-x: 0%;
+    // background-position-y: 0%;
+    // top: 0px;
     width: 1030px;
     min-width: 1030px;
     height: 680px;
-    position: absolute;
+    bottom: 0px;
+
+    // position: absolute;
 }

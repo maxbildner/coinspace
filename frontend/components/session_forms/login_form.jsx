@@ -65,14 +65,15 @@ class LoginForm extends React.Component {
 		// need new parameter in state for errors 
 		// 
 
-		let errors = this.props.errors.join('.')
+		let errors = this.props.errors.join('.');
 
 		if (errors.length == 0) return null;
 
 		return(
-			<ul>
+			<p className="sign-in-error">
+				<a className="close" onClick={() => this.props.clearErrors()}>x</a>
 				{errors}		
-			</ul>
+			</p>
 		);
 	}
 
@@ -129,11 +130,11 @@ class LoginForm extends React.Component {
 
 		return (
 			<>
+				{this.renderErrors()}
 				<div>
 					<h2 className="sign-up-header">Sign in to Coinspace</h2>
 					<form onSubmit={this.handleSubmit}>
 						<div className="center">
-							{this.renderErrors()}
 							{this.renderSignin()}
 							<input type="submit" value={this.props.formType} />
 						</div>
