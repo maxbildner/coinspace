@@ -65,7 +65,7 @@ class NavBarComponent extends React.Component {
                                     <NavLink activeClassName="nav-selected" to="">Products</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink activeClassName="nav-selected" to="/help">Help</NavLink>
+                                    <NavLink activeClassName="nav-selected" to="">Help</NavLink>
                                 </li>
                                 <li>
                                     <NavLink activeClassName="nav-selected" to="">Price</NavLink>

@@ -1,11 +1,10 @@
 @import './normalize.scss';
 @import './fonts.scss';
 @import './session_form.scss';
-// @import './nav_login.scss';
 @import './nav_bar.scss';
 @import './carousel.scss';
 
-html[data-location="/login"] {
+html[data-location="/login"], html[data-location="/signup"] {
     background-color: #0066cc;
 }
 

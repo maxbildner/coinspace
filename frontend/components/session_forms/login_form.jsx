@@ -1,15 +1,12 @@
 import React from 'react';
 // import NavLoginComponent from '../navbars/nav_login';
 
-class SessionForm extends React.Component {
+class LoginForm extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {										// ? ! come back and fix later to add other values for sign up
 			email: "",
 			password: "",
-			first_name: "",
-			last_name: "",
-			state: "",
 			// errors: { email: "", password: "" }...
 			// have func validate submit, 
 			// check if each one is empty or an invlaid format
@@ -19,7 +16,6 @@ class SessionForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.demoLogin = this.demoLogin.bind(this);
 		this.renderSignin = this.renderSignin.bind(this);
-		this.renderSignup = this.renderSignup.bind(this);
 	}
 
 	componentDidMount() {
@@ -80,48 +76,9 @@ class SessionForm extends React.Component {
 		);
 	}
 
-	renderSignup(){
-		const { email, password, state, first_name, last_name } = this.state;
-
-		// SIGN UP
-		return (<>
-			<div className="form-group">
-				<label htmlFor="first_name">First name</label>
-				<input 
-					type="text" 
-					value={first_name} 
-					onChange={this.update('first_name')} 
-					placeholder="First name"
-					id="first_name" />
-			</div>
-
-			<div className="form-group">
-				<label htmlFor="last_name">Last name</label>
-				<input 
-					type="text" 
-					value={last_name} 
-					onChange={this.update('last_name')} 
-					placeholder="Last name"
-					id="last_name" />
-			</div>
-
-			<div className="form-group">
-				<label htmlFor="state">State</label>
-				<input 
-					type="text" 
-					value={state} 
-					onChange={this.update('state')} 
-					placeholder="State"
-					id="state" />
-			</div>
-
-			{this.renderSignin()}
-		</>);
-	}
-
 
 	renderSignin() {
-		const { email, password, state, first_name, last_name } = this.state;
+		const { email, password } = this.state;
 		// make if errors class value emtyy string if no errors
 		return (
 			<>
@@ -158,39 +115,26 @@ class SessionForm extends React.Component {
 	render() {
 		// const { email, password, state, first_name, last_name } = this.state;
 
-		let fragment;
-		let headerTitle;
-		let loginExtras;
-		let navHeader;
-		if (this.props.formType === 'Signup') {
-			fragment = this.renderSignup();
-			headerTitle = <h2 className="sign-up-header">Create your account</h2>
-		} else {
-			fragment = this.renderSignin();
-			headerTitle = <h2 className="sign-up-header">Sign in to Coinspace</h2>
-			// navHeader = <NavLoginComponent/>
-			loginExtras = 
-				<div className="login-extras">
-					<p>
-						<a href="#">Forgot Password?</a>
-						<a href="#">Don't have an account?</a>
-						<a href="#">Privacy Policy</a>
-					</p>
-					<p>
-						<a href="#">Have an issue with 2-factor authentication?</a>
-					</p>
-				</div> 
-		}
+		let loginExtras =
+			<div className="login-extras">
+				<p>
+					<a href="#">Forgot Password?</a>
+					<a href="#">Don't have an account?</a>
+					<a href="#">Privacy Policy</a>
+				</p>
+				<p>
+					<a href="#">Have an issue with 2-factor authentication?</a>
+				</p>
+			</div>
 
 		return (
 			<>
-			
 				<div>
-					{headerTitle}
+					<h2 className="sign-up-header">Sign in to Coinspace</h2>
 					<form onSubmit={this.handleSubmit}>
 						<div className="center">
 							{this.renderErrors()}
-							{fragment}
+							{this.renderSignin()}
 							<input type="submit" value={this.props.formType} />
 						</div>
 					</form>
@@ -201,7 +145,4 @@ class SessionForm extends React.Component {
 	}
 }
 
-export default SessionForm;
-
-// if formtype is sign in, 
-//
+export default LoginForm;

@@ -31,7 +31,7 @@ input[type="submit"], input[type="button"], button {
     background-color: rgb(29, 144, 203);          // darker blue
     color: white;
     &:hover {
-        background-color: rgb(43, 113, 177);      // darker blue÷
+        background-color: rgb(43, 113, 177);      // darker blue
     }
 }
 
@@ -58,4 +58,20 @@ h2.sign-up-header {
             text-decoration: underline;
         }
     }
+}
+
+// Signup form
+// .sign-up-header {
+//     color: black;
+// }
+
+label[for="email"], label[for="password"],
+label[for="first_name"], label[for="last_name"],
+label[for="state"] {              // attribute selectors
+    color: black;
+    font-weight: 450;
+}
+
+.sign-up-input {
+    float: right;
 }
