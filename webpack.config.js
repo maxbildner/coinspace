@@ -24,5 +24,9 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        overlay: true,
+        hot: true
+    },
     devtool: 'eval-source-map'
 };

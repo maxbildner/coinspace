@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import NavGreetingComponent from './navbars/nav_greeting';
+import NavGreetingComponent from './navbars/nav_bar';
 
 // Greeting Component == page we see if user is logged in
 // Greeting Component == Home Page/Splash Page we see if user is logged out

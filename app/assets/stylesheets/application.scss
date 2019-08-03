@@ -1,8 +1,9 @@
 @import './normalize.scss';
 @import './fonts.scss';
 @import './session_form.scss';
-@import './nav_login.scss';
-@import './nav_greeting.scss';
+// @import './nav_login.scss';
+@import './nav_bar.scss';
+@import './carousel.scss';
 
 html[data-location="/login"] {
     background-color: #0066cc;

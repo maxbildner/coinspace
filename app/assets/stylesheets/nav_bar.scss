@@ -1,33 +1,46 @@
-div#nav-login-container {
+div#nav-container {
     padding: 13px;
     margin: 0px 20px;
 }
 
-img#nav-login-logo {
-    width: 9rem;
+a#nav-logo {
+    height: fit-content;
+    margin: auto 1rem auto 0;
+    img {
+        width: 9rem;
+    }
 }
 
-div#nav-login-right {
+#nav-container {
+    display: flex;
+}
+#nav-sections {
+    display: flex;
+    width: 100%;
+}
+
+div.nav-section {
     ul {
         list-style-type: none;
         font-size: 15px;
         display: flex;
-
+        padding-left: 0;
         li a{
             padding: 8px;
             text-decoration: none;
-            color: white;
+            color: black;
             margin-left: 7px;
         }
         a:hover {
             text-decoration: underline;
         }
     }
-    float: right;
+    &#nav-left {
+        flex-grow: 1;
+    }
 }
 
-
 .nav-selected {
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 2px;
 }

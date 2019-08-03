@@ -22,7 +22,7 @@ class RouteChange extends React.Component {
         const { match, location, history } = this.props;
         
 
-        $('html').attr('ndata-locatio', location.pathname);
+        $('html').attr('data-location', location.pathname);
     }
 
     render() {

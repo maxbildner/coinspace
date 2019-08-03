@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLoginComponent from '../navbars/nav_login';
+// import NavLoginComponent from '../navbars/nav_login';
 
 class SessionForm extends React.Component {
 	constructor (props) {
@@ -23,8 +23,8 @@ class SessionForm extends React.Component {
 	}
 
 	componentDidMount() {
-		// $('html').attr('data-page', this.props.formType);
-		$('html').attr('data-location', this.props.location.pathname);
+		$('html').attr('data-page', this.props.formType);
+		// $('html').attr('data-location', this.props.location.pathname);
 	}
 
 	componentWillUnmount() {								// ? last lifecycle method?
@@ -168,7 +168,7 @@ class SessionForm extends React.Component {
 		} else {
 			fragment = this.renderSignin();
 			headerTitle = <h2 className="sign-up-header">Sign in to Coinspace</h2>
-			navHeader = <NavLoginComponent/>
+			// navHeader = <NavLoginComponent/>
 			loginExtras = 
 				<div className="login-extras">
 					<p>
@@ -184,7 +184,7 @@ class SessionForm extends React.Component {
 
 		return (
 			<>
-				{navHeader}
+			
 				<div>
 					{headerTitle}
 					<form onSubmit={this.handleSubmit}>

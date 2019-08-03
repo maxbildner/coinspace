@@ -27,6 +27,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development",
+    "dev": "webpack-dev-server --mode development",
     "postinstall": "webpack"
   },
   "engines": {
@@ -43,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/maxbildner/coinspace/issues"
   },
-  "homepage": "https://github.com/maxbildner/coinspace#readme"
+  "homepage": "https://github.com/maxbildner/coinspace#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^3.7.2"
+  }
 }
