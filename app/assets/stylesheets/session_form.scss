@@ -28,10 +28,11 @@ input[type="submit"], input[type="button"], button {
     letter-spacing: .06em;
     padding: 1em 2em;
     border-radius: 2px;
-    background-color: rgb(29, 144, 203);          // darker blue
+    background-color: #002244;                    // darkest blue
+    // background-color: rgb(29, 144, 203);         // light blue
     color: white;
     &:hover {
-        background-color: rgb(43, 113, 177);      // darker blue
+        background-color: #004488;                // slightly darker blue
     }
 }
 

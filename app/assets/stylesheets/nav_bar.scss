@@ -1,34 +1,39 @@
 div#nav-container {
-    padding: 13px;
-    margin: 0px 20px;
+    // padding: 13px;
+    padding: 13px 0px;
+    // margin: 0px 20px;
+    background: black;
 }
 
 a#nav-logo {
     height: fit-content;
-    margin: auto 1rem auto 0;
+    margin: auto 1rem auto 7rem;           // top right bottom left
     img {
         width: 9rem;
     }
 }
 
-#nav-container {
+#nav-container {            // ? why have div#navcontainer AND this?
     display: flex;
 }
+
 #nav-sections {
     display: flex;
     width: 100%;
+    margin-right: 7rem;
 }
 
 div.nav-section {
     ul {
         list-style-type: none;
-        font-size: 15px;
+        font-size: 13px;
         display: flex;
         padding-left: 0;
         li a{
+            text-transform: uppercase;
             padding: 8px;
             text-decoration: none;
-            color: black;
+            color: white;
             margin-left: 7px;
         }
         a:hover {
@@ -41,6 +46,6 @@ div.nav-section {
 }
 
 .nav-selected {
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 2px;
 }

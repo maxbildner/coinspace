@@ -5,7 +5,8 @@
 @import './carousel.scss';
 
 html[data-location="/login"], html[data-location="/signup"] {
-    background-color: #0066cc;
+    background-color: #002244;
+    // background-color: #0066cc;
 }
 
 :root {                              // root == html

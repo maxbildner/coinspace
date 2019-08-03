@@ -12,9 +12,9 @@ import HomePage from './home_page';
 const App = () => {
    return (
 		<>
-			<NavBarContainer />
 			<RouteChange />
-
+			<NavBarContainer />
+			
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
 				<AuthRoute exact path='/login' component={LoginFormContainer} />

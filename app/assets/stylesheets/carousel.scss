@@ -3,6 +3,7 @@
     height: 70vh;
     position: relative;
     overflow: hidden;
+    max-height: 670px;
 
     .slide {
         width: 100%;
@@ -18,4 +19,12 @@
             opacity: 0;
         }
     }
+}
+
+.background-img {
+    top: 0px;
+    width: 1030px;
+    min-width: 1030px;
+    height: 680px;
+    position: absolute;
 }
