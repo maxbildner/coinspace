@@ -69,6 +69,8 @@ class LoginForm extends React.Component {
 
 		if (errors.length == 0) return null;
 
+		window.setTimeout(() => this.props.clearErrors(), 10000);
+
 		return(
 			<p className="sign-in-error">
 				<a className="close" onClick={() => this.props.clearErrors()}>x</a>
