@@ -1,26 +1,28 @@
-class CurrencyTableItem {
-    constructor(props) {
-        super(props);
-    }
+// import React from 'react';
 
-    render() {
-        return (
-            <>
-                <React.Fragment key="name">
-                    {this.props.name}
-                </React.Fragment>
-                <React.Fragment key="price">
-                    {this.state.price}
-                </React.Fragment>
-                <React.Fragment key="change">
-                    {this.state.price}
-                </React.Fragment>
-                <React.Fragment key="chart">
-                    {this.state.price}
-                </React.Fragment>
-            </>
-        );
-    }
-}
+// class CurrencyTableItem extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
 
-export default CurrencyTableItem;
+//     render() {
+//         return (
+//             <>
+//                 <React.Fragment key="name">
+//                     {this.props.name}
+//                 </React.Fragment>
+//                 <React.Fragment key="price">
+//                     {this.state.price}
+//                 </React.Fragment>
+//                 <React.Fragment key="change">
+//                     {this.state.price}
+//                 </React.Fragment>
+//                 <React.Fragment key="chart">
+//                     {this.state.price}
+//                 </React.Fragment>
+//             </>
+//         );
+//     }
+// }
+
+// export default CurrencyTableItem;

@@ -1,4 +1,6 @@
 import React from 'react';
+// import CurrencyTable from './currency_table';
+// import CurrencyTableItem from './currency_table_item';
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -38,28 +40,28 @@ class HomePage extends React.Component {
 		return (
 			<>
 				<div className="carousel" ref={this.carousel}> 
-					<div className="slide"><img src="/assets/space.jpeg" className="background-img" alt="outer space"/></div>
-					<div className="slide"><img src="/assets/new_york.jpeg" className="background-img" alt="new york"/></div>
-					<div className="slide"><img src="/assets/vault.png" className="background-img" alt="bank vault"/></div>
+					<div className="slide"><img src="/assets/space.jpg" className="background-img" alt="outer space"/></div>
+					<div className="slide"><img src="/assets/vault.png" className="background-img" alt="new york"/></div>
+					<div className="slide"><img src="/assets/new_york.jpg" className="background-img" alt="bank vault"/></div>
 
 					<div className="carousel-bottom">
 						<div className="carousel-description">
 							<div className="carousel-slide-label"></div>
 							<div className="carousel-bottom-action">
-								<button>Sign Up</button>
+								<button className="sign-up-home">Sign Up</button>
 							</div>
 						</div>
 
 						<ul className="carousel-tabs">
-							<li>Buy and sell cryptocurrency</li>
+							<li className="left-tab">Buy and sell cryptocurrency</li>
 							<li>Vault Protection</li>
-							<li>The most trusted cryptocurrency platform</li>
+							<li className="right-tab">The most trusted cryptocurrency platform</li>
 						</ul>
 					</div>
 				</div>
-				<CurrencyTable>
+				{/* <CurrencyTable>
 					<CurrencyTableItem symbol="BTC"/>
-				</CurrencyTable>
+				</CurrencyTable> */}
 			</>
 		)
 	}
