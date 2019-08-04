@@ -1,17 +1,18 @@
 .carousel {
     width: 100%;
-    height: 70vh;
+    max-height: 80vh;
     position: relative;
     overflow: hidden;
-    max-height: 670px;
+    height: 66vw;
     
 
     .slide {
         width: 100%;
-        height: 100%;
+        height: auto;
+        max-height: 100%;
         position: absolute;
         left: 0;
-        top: 0;
+        bottom: 0;
         transition: opacity 1s ease-in-out;
         &.active {
             opacity: 1;
@@ -19,17 +20,81 @@
         &:not(.active) {
             opacity: 0;
         }
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .carousel-bottom {
+        z-index: 10;
+        bottom: 0;
+        left: 0;
+        top: 80%;
+        width: 100%;
+        background: rgba(24,28,31,0.8);     // last number coefficient is opacity (the higher the more opaque)
+        color: white;
+        position: absolute;
+
+        .carousel-description {
+            bottom: 50%;
+            top: 0;
+            padding: 1em;
+            width: 100%;
+            position: absolute;
+            
+            .carousel-slide-label {
+                float: left;
+                max-width: 80%;
+
+                // position: relative;
+                // max-width: 80%;
+            }
+
+            .carousel-bottom-action {
+                max-width: 20%;
+                float: right;
+                padding-right: 7rem;
+                height: 100%;
+            }
+        }
+
+
+        > ul {                                  // direct children
+            width: 100%;
+            top: 50%;
+            bottom: 0;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            > li {
+                flex: 1;
+                padding: 1rem;
+                display: block;
+                border: 1px solid white;
+                transition: all 1s ease-in-out;
+                &:hover {
+                    background: rgba(24,28,31,1);
+                }
+            }
+
+        }
     }
 }
 
-.background-img {
-    // background-position-x: 0%;
-    // background-position-y: 0%;
-    // top: 0px;
-    width: 1030px;
-    min-width: 1030px;
-    height: 680px;
-    bottom: 0px;
+// .background-img {
+//     // background-position-x: 0%;
+//     // background-position-y: 0%;
+//     // top: 0px;
+//     // width: 1030px;
 
-    // position: absolute;
-}
+
+//     // min-width: 1030px;
+//     // height: 680px;
+//     // bottom: 0px;
+
+//     // position: absolute;
+// }
