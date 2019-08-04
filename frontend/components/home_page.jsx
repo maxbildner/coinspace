@@ -1,6 +1,6 @@
 import React from 'react';
-// import CurrencyTable from './currency_table';
-// import CurrencyTableItem from './currency_table_item';
+import CurrencyTable from './currency_table/currency_table';
+import CurrencyTableItemContainer from './currency_table/currency_table_item_container';
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -59,9 +59,11 @@ class HomePage extends React.Component {
 						</ul>
 					</div>
 				</div>
-				{/* <CurrencyTable>
-					<CurrencyTableItem symbol="BTC"/>
-				</CurrencyTable> */}
+				<CurrencyTable>
+					<CurrencyTableItemContainer symbol="BTC"/>
+					<CurrencyTableItemContainer symbol="ETH"/>
+					<CurrencyTableItemContainer symbol="XRP"/>
+				</CurrencyTable>
 			</>
 		)
 	}
