@@ -1,8 +1,11 @@
 import React from 'react';
+import { Fragment } from 'react';
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
         super(props);
+// 
+        // debugger
 
         this.getName = this.getName.bind(this);
     }
@@ -36,10 +39,10 @@ class CurrencyTableItem extends React.Component {
                     {this.props.symbol}
                 </React.Fragment>
                 <React.Fragment key="price">
-                    {this.state.price}
+                    {this.props.price}
                 </React.Fragment>
                 <React.Fragment key="change">
-                    {this.state.changePct24HR}
+                    {this.props.changePct24HR}
                 </React.Fragment>
                 {/* <React.Fragment key="chart">
                     {this.state.price}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
 import CurrencyTableItemContainer from './currency_table/currency_table_item_container';
 
@@ -27,7 +28,7 @@ class HomePage extends React.Component {
 			label.text(newSlideTab.text());
 		};
 		rotateSlide();
-		this.interval = window.setInterval(rotateSlide, 5000);
+		this.interval = window.setInterval(rotateSlide, 5000);		// 5 seconds 
 	}
 
 
@@ -37,6 +38,7 @@ class HomePage extends React.Component {
 
 
 	render() {
+		
 		return (
 			<>
 				<div className="carousel" ref={this.carousel}> 
@@ -48,22 +50,19 @@ class HomePage extends React.Component {
 						<div className="carousel-description">
 							<div className="carousel-slide-label"></div>
 							<div className="carousel-bottom-action">
-								<button className="sign-up-home">Sign Up</button>
+								{/* <button className="sign-up-home">Sign Up</button> */}
+								<NavLink to='/signup' className="sign-up-home">Sign Up</NavLink>
 							</div>
 						</div>
 
 						<ul className="carousel-tabs">
-							<li className="left-tab">Buy and sell cryptocurrency</li>
-							<li>Vault Protection</li>
-							<li className="right-tab">The most trusted cryptocurrency platform</li>
+							<li className="left-tab" id="animation1">Buy and sell cryptocurrency</li>
+							<li id="animation2">Vault Protection</li>
+							<li className="right-tab" id="animation3">The most trusted cryptocurrency platform</li>
 						</ul>
 					</div>
 				</div>
-				<CurrencyTable>
-					<CurrencyTableItemContainer symbol="BTC"/>
-					<CurrencyTableItemContainer symbol="ETH"/>
-					<CurrencyTableItemContainer symbol="XRP"/>
-				</CurrencyTable>
+				<CurrencyTable/>
 			</>
 		)
 	}

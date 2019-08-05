@@ -21,7 +21,8 @@ export const fetchCurrentPrice = (symbol) => {                    // symbol ex. 
 
 // ACTION CREATOR
 const receiveCurrentPrice = (data) => {
-    data = data.responseJSON;
+    // debugger
+    // data = data.responseJSON;
 
     return {
         type: RECEIVE_PRICE,
@@ -30,7 +31,8 @@ const receiveCurrentPrice = (data) => {
 }
 
 
-// response.responseJSON    //=>
+// response.responseJSON    //=>        <- ? wrong
+// data =>
 // {
 //      DISPLAY: { FROMSYMBOL: "Ƀ", TOSYMBOL: "$", MARKET: "CUSTOMAGG", PRICE: "$ 10,896.6", LASTUPDATE: "Just now", … }
 //      RAW: { MARKET: "CUSTOMAGG", FROMSYMBOL: "BTC", TOSYMBOL: "USD", FLAGS: 0, PRICE: 10896.55, … }
