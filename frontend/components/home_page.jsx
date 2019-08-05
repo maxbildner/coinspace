@@ -42,9 +42,9 @@ class HomePage extends React.Component {
 		return (
 			<>
 				<div className="carousel" ref={this.carousel}> 
-					<div className="slide"><img src="/assets/space.jpg" className="background-img" alt="outer space"/></div>
-					<div className="slide"><img src="/assets/vault.png" className="background-img" alt="new york"/></div>
-					<div className="slide"><img src="/assets/new_york.jpg" className="background-img" alt="bank vault"/></div>
+					<div className="slide"><img src="https://www.spacex.com/sites/spacex/files/bfrlunar_v2.jpg" className="background-img" alt="outer space"/></div>
+					<div className="slide"><img src="https://i.imgur.com/LxGUNGt.png" className="background-img" alt="new york"/></div>
+					<div className="slide"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
 
 					<div className="carousel-bottom">
 						<div className="carousel-description">
