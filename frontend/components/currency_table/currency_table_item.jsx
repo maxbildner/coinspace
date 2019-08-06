@@ -1,5 +1,5 @@
 import React from 'react';
-// import ChartMini from './chart_mini';
+import ChartMini from './chart_mini';
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class CurrencyTableItem extends React.Component {
                     <td>{this.props.name} {this.props.symbol}</td>
                     <td>{price}</td>
                     <td>{changePct24HR}</td>
-                    {/* <td><ChartMini/></td> */}
+                    <td><ChartMini/></td>
                     <td><button>TRADE</button></td>
                 </tr>
 
