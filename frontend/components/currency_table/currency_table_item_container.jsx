@@ -4,7 +4,9 @@ import { fetchCurrentPrice } from '../../actions/currency_actions';
 
 const mapStateToProps = (state, ownProps) => {
     // const { price, changePct24HR, id } = state.entities.cryptocurrencies;
+    // BEFORE^ WRONG
 
+    // AFTER CORRECT
     const { price, changePct24HR, id } = state.entities.cryptocurrencies[ownProps.symbol] || {}
 
     debugger

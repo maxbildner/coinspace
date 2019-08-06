@@ -28,7 +28,16 @@ const receiveCurrentPrice = (data) => {
     debugger
     // data = data.responseJSON;
 
-    return {
+    // return {        // WRONG BELOW
+    //     type: RECEIVE_PRICE,
+    //     payload: {
+    //         price: data.RAW.PRICE,
+    //         changePct24HR: data.RAW.CHANGEPCT24HOUR
+    //     }
+    // }
+
+
+    return {        // CORECT BELOW
         type: RECEIVE_PRICE,
         payload: { 
             price: data.RAW.PRICE, 

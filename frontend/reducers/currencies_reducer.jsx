@@ -9,7 +9,9 @@ export default (oldState = {}, action) => {
     switch (action.type) {
         case RECEIVE_PRICE:
             // action.payload == {price: 11645.05, changePct24HR: -1.0162682825865141}
+            // return action.payload;      // WRONG
 
+            // CORRECT
             newState = merge({}, 
                 oldState, 
                 {[action.payload.symbol]: action.payload})

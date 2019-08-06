@@ -4,9 +4,11 @@ import { Link, Route, Switch } from 'react-router-dom';
 import SignupFormContainer from './session_forms/signup_form_container';
 import LoginFormContainer from './session_forms/login_form_container';
 // import LogoutFormContainer from './signup_form_container';
-import { AuthRoute } from '../util/route_util';
+// import { AuthRoute, Protected } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import RouteChange from './route_change';
 import HomePage from './home_page';
+import DashboardContainer from './dashboard/dashboard_container';
 
 // ? functional component that will wrap all other components (but app will be wrapped in root component?)
 const App = () => {
@@ -18,7 +20,8 @@ const App = () => {
 			<Switch>
 				<AuthRoute exact path='/signup' component={SignupFormContainer} />
 				<AuthRoute exact path='/login' component={LoginFormContainer} />
-				<Route exact path="/" component={HomePage} />
+				<ProtectedRoute exact path='/dashboard' component={DashboardContainer} />
+			    <Route exact path="/" component={HomePage} />
 			</Switch>
 		</>
    );

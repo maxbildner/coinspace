@@ -1,21 +1,11 @@
 import React from 'react';
-import { Fragment } from 'react';
+// import ChartMini from './chart_mini';
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
         super(props); 
 
         this.state = {}
-        // this.state = {
-        //     entities: { 
-        //         currentPrice: {
-        //             price: null,
-        //             changePct24HR: null   
-        //         }
-        //     }
-        // }
-        // debugger
-
     }
 
 
@@ -25,7 +15,10 @@ class CurrencyTableItem extends React.Component {
     }
 
     render() {                      
-        // const { price, changePct24HR } = this.state;
+        // const { price, changePct24HR } = this.state; // DOESN'T WORK
+        // const { price, changePct24HR } = this.props;    // DOESN'T WORK IF 
+        // // REDUCER/MAP STATE TO PROPS NOT SET UP RIGHT
+
 
         const { price, changePct24HR } = this.props;    // WORKS
         // debugger
@@ -37,7 +30,7 @@ class CurrencyTableItem extends React.Component {
                     <td>{this.props.name} {this.props.symbol}</td>
                     <td>{price}</td>
                     <td>{changePct24HR}</td>
-                    {/* <td>{this.props.chart}</td> */}
+                    {/* <td><ChartMini/></td> */}
                     <td><button>TRADE</button></td>
                 </tr>
 

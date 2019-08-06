@@ -1,8 +1,7 @@
 import React from 'react';
-import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
-import CurrencyTableItemContainer from './currency_table/currency_table_item_container';
+
 
 const CURRENCIES = [
 		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 // import NavLoginComponent from '../navbars/nav_login';
 
 class LoginForm extends React.Component {
@@ -30,7 +31,10 @@ class LoginForm extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const user = Object.assign({}, this.state);	// !!make sure not to include errors
-		this.props.processForm(user);						// triggering submit new user/login session action
+		this.props.processForm(user).then(						// triggering submit new user/login session action
+			() => this.props.history.push('/dashboard')
+			);
+		// this.props.action(this.state).then(() => this.props.history.push('/'));	// from A06
 	}
 
 	update(field) {
@@ -48,7 +52,9 @@ class LoginForm extends React.Component {
 			password: '12345678'
 		};
 
-		this.props.demoLogin(demoUser);
+		this.props.demoLogin(demoUser) //.then(						// triggering submit new user/login session action
+		// 	() => this.props.history.push('/dashboard')
+		// );
 	}
 
 
@@ -148,4 +154,5 @@ class LoginForm extends React.Component {
 	}
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
+// export default withRouter(PostForm);
