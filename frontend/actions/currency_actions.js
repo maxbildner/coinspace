@@ -2,7 +2,7 @@ import * as CryptoCompare from '../util/prices_util';
 import * as CurrencyAPIUtil from '../util/currency_api_util';
 
 export const RECEIVE_PRICE = 'RECEIVE_PRICE';                       // 24HR price data
-
+export const RECEIVE_24HR_PRICES = 'RECEIVE_24HR_PRICES';
 
 // THUNK ACTION CREATORS
 export const fetchCurrentPrice = (symbol) => {                      // symbol ex. 'BTC'
@@ -22,10 +22,9 @@ export const fetchCurrentPrice = (symbol) => {                      // symbol ex
 };
 
 
-
 // ACTION CREATOR
 const receiveCurrentPrice = (data) => {
-    debugger
+    // debugger
     // data = data.responseJSON;
 
     // return {        // WRONG BELOW
@@ -47,14 +46,12 @@ const receiveCurrentPrice = (data) => {
     }
 }
 
-
 // response.responseJSON    //=>        <- ? wrong
 // data =>
 // {
 //      DISPLAY: { FROMSYMBOL: "Ƀ", TOSYMBOL: "$", MARKET: "CUSTOMAGG", PRICE: "$ 10,896.6", LASTUPDATE: "Just now", … }
 //      RAW: { MARKET: "CUSTOMAGG", FROMSYMBOL: "BTC", TOSYMBOL: "USD", FLAGS: 0, PRICE: 10896.55, … }
 // }
-
 // response.responseJSON.RAW.PRICE               //=> 10875.75
 // response.responseJSON.RAW.CHANGEPCT24HOUR     //=> 4.11
 
@@ -63,7 +60,49 @@ const receiveCurrentPrice = (data) => {
 
 
 
-// THUNK ACTION CREATORS
+
+
+
+// THUNK ACTIONS
+export const fetchHourly1DayPrices = (symbol) => {
+    return (dispatch) => {
+        return CryptoCompare.fetchHourly1DayPrices(symbol).then(
+            (response) => { 
+                return dispatch(receiveHourly1DayPrices(response))
+            }
+        )
+    }
+}
+
+// ACTION CREATOR
+const receiveHourly1DayPrices = (payload) => {
+
+    return ({
+        type: RECEIVE_24HR_PRICES,
+        data: payload
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// THUNK ACTION CREATORS TO INTERACT WITHH OWN SERVER (NOT OUTSIDE API)
 // export const fetchCurrencies = () => {                          // symbol ex. 'BTC'
 //     return (dispatch) => {
 //         return CurrencyAPIUtil.fetchCurrencies().then(

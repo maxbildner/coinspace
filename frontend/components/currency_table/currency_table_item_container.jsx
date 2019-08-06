@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     // AFTER CORRECT
     const { price, changePct24HR, id } = state.entities.cryptocurrencies[ownProps.symbol] || {}
 
-    debugger
+    // debugger
     return ({
         price,
         changePct24HR,

@@ -20,17 +20,17 @@ class CurrencyTableItem extends React.Component {
         // // REDUCER/MAP STATE TO PROPS NOT SET UP RIGHT
 
 
-        const { price, changePct24HR } = this.props;    // WORKS
+        const { price, changePct24HR, symbol } = this.props;    // WORKS
         // debugger
 
         return (            
             <>
                 <tr>
                     <td>{this.props.idx + 1}</td>
-                    <td>{this.props.name} {this.props.symbol}</td>
+                    <td>{this.props.name} {symbol}</td>
                     <td>{price}</td>
                     <td>{changePct24HR}</td>
-                    <td><ChartMini/></td>
+                    <td><ChartMini symbol={symbol}/></td>
                     <td><button>TRADE</button></td>
                 </tr>
 

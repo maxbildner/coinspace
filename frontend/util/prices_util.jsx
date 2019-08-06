@@ -48,6 +48,21 @@ export const fetchCurrentPrice = (symbol) => {
 
 
 
+// GET HOURLY PRICES FOR LAST 24HOURS (for homepage chart table):
+// price calculated as volume weighted average price of over 70 exchanges
+export const fetchHourly1DayPrices = (symbol) => {
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}&tsym=USD&limit=24&api_key=23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8`
+    })
+}
+// resp = fetchHourly1DayPrices('BTC') 
+// resp.responseJSON.Data  //=>
+// [  {close: 11187}, {}, ... ] 
+
+
+
+
 
 
 
