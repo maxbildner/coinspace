@@ -3,7 +3,7 @@ import React from 'react';
 class Dashboard extends React.Component {
     
     render() {
-        debugger
+        // debugger
         return (
             <h1>WELCOME!</h1>
         );
