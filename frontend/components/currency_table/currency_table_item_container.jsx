@@ -2,12 +2,18 @@ import { connect } from 'react-redux';
 import CurrencyTableItem from './currency_table_item';
 import { fetchCurrentPrice } from '../../actions/currency_actions';
 
-const mapStateToProps = (state) => {
-    // debugger
+const mapStateToProps = (state, ownProps) => {
+    // const { price, changePct24HR, id } = state.entities.cryptocurrencies;
+
+    const { price, changePct24HR, id } = state.entities.cryptocurrencies[ownProps.symbol] || {}
+
+    debugger
     return ({
-        price: null,
-        changePct24HR: null
-    });
+        price,
+        changePct24HR,
+        id
+    })
+    
 }
 
 

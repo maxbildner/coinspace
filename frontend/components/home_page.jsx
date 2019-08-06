@@ -1,12 +1,21 @@
 import React from 'react';
+import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
 import CurrencyTableItemContainer from './currency_table/currency_table_item_container';
+
+const CURRENCIES = [
+		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 
+		{ name: "Ethereum", symbol: "ETH", key: "ETH"},
+		{ name: "XRapid", symbol: "XRP", key: "XRP"}, 
+		{ name: "Litecoin", symbol: "LTC", key: "LTC"},
+];
 
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.carousel = React.createRef();
+		this.currencyTable = React.createRef();
 		this.interval = false;
 	}
 	
@@ -62,10 +71,27 @@ class HomePage extends React.Component {
 						</ul>
 					</div>
 				</div>
-				<CurrencyTable/>
+				<div className="gradient-homepage"></div>
+				<div className="description-homepage">Coinbase is the easiest place to buy, sell, and manage, your cryptocurrency portfolio</div>
+
+				{/* <CurrencyTable/> */}
+
+				{/* <div id="table">
+					<CurrencyTable>
+						<CurrencyTableItemContainer name="Bitcoin" symbol="BTC" price="11,779.80" change="+7.69%"/>		
+						<CurrencyTableItemContainer name="Ethereum" symbol="ETH" price="232.65" change="+5.08%"/>
+						<CurrencyTableItemContainer name="XRapid" symbol="XRP" price="0.32" change="+.91%"/>
+						<CurrencyTableItemContainer name="Litecoin" symbol="LTC" price="98.39" change="+5.96%"/>
+					</CurrencyTable>
+				</div> */}
+
+				<div id="table">
+					<CurrencyTable currencies={CURRENCIES}/>
+				</div>
+				
 			</>
 		)
-	}
+	}		// these CurrencyTableItemContainer components are passed to the grid component as props.children
 }
 
 export default HomePage;

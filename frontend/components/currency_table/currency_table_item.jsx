@@ -3,50 +3,44 @@ import { Fragment } from 'react';
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
-        super(props);
-// 
+        super(props); 
+
+        this.state = {}
+        // this.state = {
+        //     entities: { 
+        //         currentPrice: {
+        //             price: null,
+        //             changePct24HR: null   
+        //         }
+        //     }
+        // }
         // debugger
 
-        this.getName = this.getName.bind(this);
     }
 
-    getName() {
-        switch (this.props.symbol) {
-            case 'BTC':
-                return 'Bitcoin';
-            case 'ETH':
-                return 'Ethereum';
-            case 'XRP':
-                return 'Bitcoin';
-            default:
-                return 'unknown';
-        }
-    }
 
     componentDidMount() {
         this.props.fetchCurrentPrice(this.props.symbol);
+        // debugger
     }
 
     render() {                      
-        // React.Fragment sort of like <> but lets us use other props like key=""
+        // const { price, changePct24HR } = this.state;
+
+        const { price, changePct24HR } = this.props;    // WORKS
         // debugger
+
         return (            
             <>
-                <React.Fragment key="name">
-                    {this.getName()}
-                </React.Fragment>
-                <React.Fragment key="symbol">
-                    {this.props.symbol}
-                </React.Fragment>
-                <React.Fragment key="price">
-                    {this.props.price}
-                </React.Fragment>
-                <React.Fragment key="change">
-                    {this.props.changePct24HR}
-                </React.Fragment>
-                {/* <React.Fragment key="chart">
-                    {this.state.price}
-                </React.Fragment> */}
+                <tr>
+                    <td>{this.props.idx + 1}</td>
+                    <td>{this.props.name} {this.props.symbol}</td>
+                    <td>{price}</td>
+                    <td>{changePct24HR}</td>
+                    {/* <td>{this.props.chart}</td> */}
+                    <td><button>TRADE</button></td>
+                </tr>
+
             </>
         );
     }
