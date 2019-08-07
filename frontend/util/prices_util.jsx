@@ -1,7 +1,7 @@
 export const fetchCurrentPrices = (...symbols) => {        // takes in comma separated strings of Crypto symbols ex. 'BTC', 'XRP'
     return $.ajax({
         method: "GET",
-        url: `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD&api_key={}`              // API key DELETED for push to heroku
+        url: `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`              // API key DELETED for push to heroku
     });
 }
 // prices = fetchPrices('BTC', 'ETH', 'XRP');
@@ -18,7 +18,7 @@ export const fetchCurrentPrices = (...symbols) => {        // takes in comma sep
 // export const fetchCurrentPrice = (symbol) => {        
 //     return $.ajax({
 //         method: "GET",
-//         url: `https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key={}`
+//         url: `https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
 //     });       
 // }
 // price = fetchCurrentPrice('BTC');
@@ -31,7 +31,7 @@ export const fetchCurrentPrices = (...symbols) => {        // takes in comma sep
 export const fetchCurrentPrice = (symbol) => {
     return $.ajax({
         method: "GET",
-        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key={}`        // API key DELETED for push to heroku
+        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`        // API key DELETED for push to heroku
     }); 
 }
 // response = fetchCurrentPrice('BTC');
@@ -47,13 +47,13 @@ export const fetchCurrentPrice = (symbol) => {
 
 
 
-
+//******************************************************************************
 // GET HOURLY PRICES FOR LAST 24HOURS (for homepage chart table):
 // price calculated as volume weighted average price of over 70 exchanges
 export const fetchHourly1DayPrices = (symbol) => {
     return $.ajax({
         method: 'GET',
-        url: `https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}&tsym=USD&limit=24&api_key={}`
+        url: `https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}&tsym=USD&limit=24&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
     })
 }
 // resp = fetchHourly1DayPrices('BTC') 
@@ -64,8 +64,22 @@ export const fetchHourly1DayPrices = (symbol) => {
 
 
 
+//******************************************************************************
+// CURRENCY SHOW/DETAIL PAGE
+export const fetch1MonthPrices = (symbol) => {
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/histoday?fsym=${symbol}&tsym=USD&limit=30&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
+    })
+}
 
 
+
+
+
+
+
+//******************************************************************************
 // CRYPTOCOMPARE
 // https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,DASH&tsyms=BTC,USD,EUR&api_key=INSERT-YOUR-API-KEY-HERE
 
