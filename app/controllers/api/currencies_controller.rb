@@ -5,15 +5,16 @@ class Api::CurrenciesController < ApplicationController
     end
 
     def show 
-        @currency = Currency.find_by(currency_params)
+        # debugger
+        @currency = Currency.find_by(currency_params)         
         # debugger
         render :show
     end
 
     private
     def currency_params
+        params.permit(:symbol)    
         # debugger
-        params.permit(:id)
     end
 end
 
@@ -41,12 +42,13 @@ end
 # To test on SHOW the browser/console window: 
 # promise = $.ajax({
 #   method: 'GET',
-#   url: 'api/currencies/1'
+#   url: 'api/currencies/ethereum',
 # })
 
 # promise.responseJSON =>
 # {
-#     id: 1,
-#     symbol: 'BTC',
-#     name: 'BITCOIN'
+#     id: 2,
+#     symbol: 'ETH',
+#     name: 'BITCOIN',
+#     description: "Ethereum is both a cryptocurrency and a decentralized computing platform. Developers can use the platform to create decentralized applications and issue new crypto assets, known as Ethereum tokens."
 # }

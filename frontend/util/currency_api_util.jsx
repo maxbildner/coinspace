@@ -30,3 +30,17 @@ export const fetchCurrency = (id) => {
 //         symbol: 'BTC',
 //             name: 'BITCOIN'
 // }
+
+
+
+
+// FOR CURRENCY SHOW/DETAIL PAGE:
+// To test on SHOW the browser / console window:
+// fetch currency BY SYMBOL and we want id
+export const fetchDescription = (symbol) => {
+    return $.ajax({
+        method: 'GET',
+        url: `api/currencies/${symbol}`,
+        data: { symbol }
+    });
+}
