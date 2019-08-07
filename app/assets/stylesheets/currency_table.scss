@@ -38,7 +38,7 @@ table.currencies {
     
     th, td {
         // background: transparent;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #00000047;
     }
 
     tr {
@@ -74,6 +74,8 @@ table.currencies {
 
     button.currency-trade {
         margin: 0;
+        padding: 1rem .8rem;
+        border-radius: 3px;
     }
 }
 

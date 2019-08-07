@@ -100,7 +100,10 @@ class HomePage extends React.Component {
 				<div id="table">
 					<CurrencyTable currencies={CURRENCIES}/>
 				</div>
-				
+
+				<div id="footer-wrapper">
+					<div id="footer">FOOTER</div>
+				</div>
 			</>
 		)
 	}		// these CurrencyTableItemContainer components are passed to the grid component as props.children
