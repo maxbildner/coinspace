@@ -70,12 +70,25 @@ class DetailsPage extends React.Component {
 		this.get1MonthPrices = this.get1MonthPrices.bind(this);
 		this.get1WeekPrices = this.get1WeekPrices.bind(this);
 		this.get1DayPrices = this.get1DayPrices.bind(this);
+		this.updateDescription = this.updateDescription.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
+		const { symbol } = this.props;
 		// debugger
-		if (prevProps.symbol !== this.props.symbol) {
-			this.get1MonthPrices(this.props.symbol);
+		if (prevProps.symbol !== symbol) {
+			// debugger
+			this.get1MonthPrices(symbol)
+			// fetchDescription(this.props.symbol).then(
+			// 	(response) => {
+			// 		// debugger
+			// 		return this.setState({
+			// 			description: response.description
+			// 		});
+			// 	}
+			// )
+			// debugger
+			this.updateDescription(symbol);
 		}
 	}
 
@@ -84,8 +97,8 @@ class DetailsPage extends React.Component {
 		// const { symbol, fetchDescription } = this.props;
 		const { symbol } = this.props;
 		// const { symbol } = this.state;
-		debugger
-		
+		// debugger
+
 		if (this.state.timePeriodActive != "month") {
 			// debugger
 			fetch1MonthPrices(symbol).then(
@@ -98,14 +111,15 @@ class DetailsPage extends React.Component {
 				}
 			)
 			debugger
-			fetchDescription(symbol).then(
-				(response) => {
-					debugger
-					return this.setState({
-						["description"]: response.description
-					});
-				}
-			)
+			// fetchDescription(symbol).then(
+			// 	(response) => {
+			// 		// debugger
+			// 		return this.setState({
+			// 			description: response.description
+			// 		});
+			// 	}
+			// )
+			this.updateDescription(symbol);
 		}
 	}
 
@@ -157,6 +171,17 @@ class DetailsPage extends React.Component {
 		)
 	}
 
+	updateDescription(symbol) {
+		fetchDescription(symbol).then(
+			(response) => {
+				// debugger
+				return this.setState({
+					description: response.description
+				});
+			}
+		)
+	}
+
 
 	
 	render() {
@@ -164,7 +189,7 @@ class DetailsPage extends React.Component {
 		const { timePeriodActive } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
-		debugger
+		// debugger
 
 		switch (timePeriodActive) {
 			case "day":
