@@ -8,13 +8,32 @@ import {
  } from '../../util/prices_util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
+const CURRENCYNAMES = {
+	bitcoin: 'BTC',
+	ethereum: "ETH",
+	bitcoincash: 'BTC',
+	litecoin: 'LTC',
+	xrapid: 'XRP',
+	eos: 'EOS',
+	stellar: 'XLM',
+	chainlink: 'LINK',
+	"ethereum-classic": 'ETC',
+	zcash: 'ZEC',
+	usdcoin: 'USDC',
+	tron: 'TRX',
+	monero: 'XMR',
+	cardano: 'ADA',
+}
+
+
 const mapStateToProps = (state, ownProps) => {
 	// debugger
 	const currencyName = ownProps.match.params.currencyName || {};
 
 	return ({
 		currencyName,
-		userId: state.session.id		// will be null if no one logged in
+		userId: state.session.id,							// will be null if no one logged in
+		symbol: CURRENCYNAMES[currencyName],
 	});
 }
 
@@ -31,6 +50,7 @@ const DATA1M = [{ "time": 1562457600, "close": 306.43, "high": 310.72, "low": 28
 
 
 
+
 class DetailsPage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -41,8 +61,10 @@ class DetailsPage extends React.Component {
 			"1M": [],
 			"1Y": [],
 			"decription": '',
-			"timePeriodActive": ''
+			"timePeriodActive": '',
+			// symbol: props.symbol,
 		}
+		debugger
 
 		this.get1YearPrices = this.get1YearPrices.bind(this);
 		this.get1MonthPrices = this.get1MonthPrices.bind(this);
@@ -50,15 +72,26 @@ class DetailsPage extends React.Component {
 		this.get1DayPrices = this.get1DayPrices.bind(this);
 	}
 
+	componentDidUpdate(prevProps) {
+		// debugger
+		if (prevProps.symbol !== this.props.symbol) {
+			this.get1MonthPrices(this.props.symbol);
+		}
+	}
+
 	componentDidMount() {
 		// debugger
+		const { symbol } = this.props;
+		// const { symbol } = this.state;
+
 		if (this.state.timePeriodActive != "month") {
 			// debugger
-			fetch1MonthPrices('ETH').then(
+			fetch1MonthPrices(symbol).then(
 				(response) => {
+					// debugger
 					return this.setState({
 						["1M"]: response.Data,
-						"timePeriodActive": 'month'
+						"timePeriodActive": 'month',
 					});
 				}
 			)
@@ -66,21 +99,21 @@ class DetailsPage extends React.Component {
 	}
 
 
-	get1DayPrices() {
+	get1DayPrices(symbol) {
 		// debugger
-		fetch1DayPrices('ETH').then(
+		fetch1DayPrices(symbol).then(
 			(response) => {
 				// debugger
 				return this.setState({
 					["1D"]: response.Data,
-					"timePeriodActive": "day"
+					"timePeriodActive": "day",
 				});
 			}
 		)
 	}
 	
-	get1WeekPrices() {
-		fetch1WeekPrices('ETH').then(
+	get1WeekPrices(symbol) {
+		fetch1WeekPrices(symbol).then(
 			(response) => {
 				// debugger
 				return this.setState({
@@ -91,8 +124,8 @@ class DetailsPage extends React.Component {
 		)
 	}
 
-	get1MonthPrices() {
-		fetch1MonthPrices('ETH').then(
+	get1MonthPrices(symbol) {
+		fetch1MonthPrices(symbol).then(
 			(response) => {
 				return this.setState({
 					["1M"]: response.Data,
@@ -102,8 +135,8 @@ class DetailsPage extends React.Component {
 		)
 	}
 	
-	get1YearPrices() {
-		fetch1YearPrices('ETH').then(
+	get1YearPrices(symbol) {
+		fetch1YearPrices(symbol).then(
 			(response) => {
 				return this.setState({
 					["1Y"]: response.Data,
@@ -116,7 +149,7 @@ class DetailsPage extends React.Component {
 
 	
 	render() {
-
+		const { symbol } = this.props;
 		const { timePeriodActive } = this.state;
 		let dataPeriod;
 
@@ -139,14 +172,14 @@ class DetailsPage extends React.Component {
 				break;
 		}
 		
-		// debugger
+		debugger
 
 		return (
 			<>
 			<div id="detail-wrapper">
 				<section id="left-detail">
 					<div className="chart-container">
-						<h1 className="chart-title">CHART TITLE</h1>
+							<h1 className="chart-title">{this.props.currencyName}</h1>
 						<div id="chart">
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={745} height={245} data={this.state[dataPeriod]}>
@@ -165,10 +198,10 @@ class DetailsPage extends React.Component {
 							</LineChart>
 							<div id="timeframe">
 								<ul id="time-periods">
-									<li className={timePeriodActive} onClick={() => this.get1DayPrices()}>1D</li>
-									<li className={timePeriodActive} onClick={() => this.get1WeekPrices()}>1W</li>
-									<li className={timePeriodActive} onClick={() => this.get1MonthPrices()}>1M</li>
-									<li className={timePeriodActive} onClick={() => this.get1YearPrices()}>1Y</li>
+									<li className={timePeriodActive} onClick={() => this.get1DayPrices(symbol)}>1D</li>
+									<li className={timePeriodActive} onClick={() => this.get1WeekPrices(symbol)}>1W</li>
+									<li className={timePeriodActive} onClick={() => this.get1MonthPrices(symbol)}>1M</li>
+									<li className={timePeriodActive} onClick={() => this.get1YearPrices(symbol)}>1Y</li>
 								</ul>
 							</div>
 						</div>
