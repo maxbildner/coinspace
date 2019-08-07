@@ -1,0 +1,18 @@
+#time-periods {
+    
+	li {
+		display: inline;
+		margin-right: 1rem;
+		color: #9c9898;
+		
+		.time-period-active {
+			color: darkblue;
+		}
+
+		&:hover {
+			color: black;
+			cursor: pointer;
+		}
+	}
+    
+}
