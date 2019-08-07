@@ -48,9 +48,9 @@ export const fetchCurrentPrice = (symbol) => {
 
 
 //******************************************************************************
-// GET HOURLY PRICES FOR LAST 24HOURS (for homepage chart table):
+// GET HOURLY PRICES FOR LAST 24HOURS (for HOMEPAGE MINI CHART table ONLY)
 // price calculated as volume weighted average price of over 70 exchanges
-export const fetchHourly1DayPrices = (symbol) => {
+export const fetchHourly1DayPrices = (symbol) => {  // 1 day, hourly prices (24 hours)
     return $.ajax({
         method: 'GET',
         url: `https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}&tsym=USD&limit=24&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
@@ -66,13 +66,34 @@ export const fetchHourly1DayPrices = (symbol) => {
 
 //******************************************************************************
 // CURRENCY SHOW/DETAIL PAGE
-export const fetch1MonthPrices = (symbol) => {
+export const fetch1DayPrices = (symbol) => {        // 1 day, minute prices (1440 minutes)
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/histominute?fsym=${symbol}&tsym=USD&limit=1440&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
+    })      
+}
+
+
+export const fetch1WeekPrices = (symbol) => {       // 7 days, hourly prices (168 hours)
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}&tsym=USD&limit=168&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
+    })       
+}
+
+export const fetch1MonthPrices = (symbol) => {      // 30 days, daily "closing" prices
     return $.ajax({
         method: 'GET',
         url: `https://min-api.cryptocompare.com/data/histoday?fsym=${symbol}&tsym=USD&limit=30&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
     })
 }
 
+export const fetch1YearPrices = (symbol) => {       // 360 days, daily prices
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/histoday?fsym=${symbol}&tsym=USD&limit=360&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
+    })       
+}
 
 
 
