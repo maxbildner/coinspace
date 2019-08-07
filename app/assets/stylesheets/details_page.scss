@@ -13,6 +13,14 @@
 			color: black;
 			cursor: pointer;
 		}
+
+		&.month-active, &.day-active, &.week-active, &.month-active, &.year-active  {
+			color: black;
+		}
+		// day-active
+		// week-active
+		// month-active
+		// year-active
 	}
     
 }

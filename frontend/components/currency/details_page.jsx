@@ -13,7 +13,7 @@ const CURRENCYNAMES = {
 	ethereum: "ETH",
 	bitcoincash: 'BTC',
 	litecoin: 'LTC',
-	xrapid: 'XRP',
+	xrp: 'XRP',
 	eos: 'EOS',
 	stellar: 'XLM',
 	chainlink: 'LINK',
@@ -64,7 +64,7 @@ class DetailsPage extends React.Component {
 			"timePeriodActive": '',
 			// symbol: props.symbol,
 		}
-		debugger
+		// debugger
 
 		this.get1YearPrices = this.get1YearPrices.bind(this);
 		this.get1MonthPrices = this.get1MonthPrices.bind(this);
@@ -151,24 +151,28 @@ class DetailsPage extends React.Component {
 	render() {
 		const { symbol } = this.props;
 		const { timePeriodActive } = this.state;
-		let dataPeriod;
+		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
 		switch (timePeriodActive) {
 			case "day":
 				// debugger
 				dataPeriod = "1D";
+				dayActive = 'day-active';
 				break;								// NEED BREAK STATEMENTS OR ELSE dataPeriod gets overwritten!!
 			case "week":
 				// debugger
 				dataPeriod = "1W";
+				weekActive = 'week-active';
 				break;
 			case "month":
 				// debugger
 				dataPeriod = "1M";
+				monthActive = 'month-active';
 				break;
 			case "year":
 				// debugger
 				dataPeriod = "1Y";
+				yearActive = 'year-active';
 				break;
 		}
 		
@@ -185,7 +189,6 @@ class DetailsPage extends React.Component {
 							<LineChart width={745} height={245} data={this.state[dataPeriod]}>
 								<Tooltip />
 								<XAxis dataKey="name" />
-								{/* <YAxis /> */}
 								<YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} />
 								<Line
 									type="monotone"
@@ -198,10 +201,10 @@ class DetailsPage extends React.Component {
 							</LineChart>
 							<div id="timeframe">
 								<ul id="time-periods">
-									<li className={timePeriodActive} onClick={() => this.get1DayPrices(symbol)}>1D</li>
-									<li className={timePeriodActive} onClick={() => this.get1WeekPrices(symbol)}>1W</li>
-									<li className={timePeriodActive} onClick={() => this.get1MonthPrices(symbol)}>1M</li>
-									<li className={timePeriodActive} onClick={() => this.get1YearPrices(symbol)}>1Y</li>
+									<li className={dayActive} onClick={() => this.get1DayPrices(symbol)}>1D</li>
+									<li className={weekActive} onClick={() => this.get1WeekPrices(symbol)}>1W</li>
+									<li className={monthActive} onClick={() => this.get1MonthPrices(symbol)}>1M</li>
+									<li className={yearActive} onClick={() => this.get1YearPrices(symbol)}>1Y</li>
 								</ul>
 							</div>
 						</div>
