@@ -22,18 +22,30 @@ class HomePage extends React.Component {
 	componentDidMount() {
 		let carousel = $(this.carousel.current);
 		let slides = carousel.find('.slide');
-		let tabs = carousel.find('ul.carousel-tabs > li');			// array-like of all tabs
-		let label = carousel.find('.carousel-slide-label');
+		let tabsContainer = carousel.find('ul.carousel-tabs');
+		let labelContainer = carousel.find('.carousel-slide-labels');
+		slides.each((idx, el) => {
+			let slide = $(el);
+			let desc = slide.data('description');
+			let label = $('<div/>').text(desc);
+			let tab = $('<li/>').text(desc);
+			labelContainer.append(label);
+			tabsContainer.append(tab);
+		});
+		let tabs = tabsContainer.children('li');			// array-like of all tabs
+		let labels = labelContainer.children('div');
 		let slideCount = slides.length;
 		let rotateSlide = () => {
 			let activeSlide = slides.filter('.active');
+			let activeTab = tabs.filter('.active');
+			let activeLabel = labels.filter('.active');
 			let activeSlideIdx = (activeSlide.length > 0) ? slides.index(activeSlide) : -1;
 			let newSlideIdx = (activeSlideIdx + 1) % slideCount;
 			let newSlide = $(slides.get(newSlideIdx));
 			let newSlideTab = $(tabs.get(newSlideIdx));
-			if (activeSlideIdx >= 0) activeSlide.removeClass('active');
-			newSlide.addClass('active');
-			label.text(newSlideTab.text());
+			let newSlideLabel = $(labels.get(newSlideIdx));
+			[activeSlide, activeTab, activeLabel].forEach(el => { $(el).removeClass('active') });
+			[newSlide, newSlideTab, newSlideLabel].forEach(el => { $(el).addClass('active') });
 		};
 		rotateSlide();
 		this.interval = window.setInterval(rotateSlide, 5000);		// 5 seconds 
@@ -50,13 +62,14 @@ class HomePage extends React.Component {
 		return (
 			<>
 				<div className="carousel" ref={this.carousel}> 
-					<div className="slide"><img src="https://www.spacex.com/sites/spacex/files/bfrlunar_v2.jpg" className="background-img" alt="outer space"/></div>
-					<div className="slide"><img src="https://i.imgur.com/LxGUNGt.png" className="background-img" alt="new york"/></div>
-					<div className="slide"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
+					<div className="slide" id="slide1" data-description="Buy and sell cryptocurrency"><img src="https://www.spacex.com/sites/spacex/files/bfrlunar_v2.jpg" className="background-img" alt="outer space"/></div>
+					<div className="slide" id="slide2" data-description="Vault Protection"><img src="https://i.imgur.com/LxGUNGt.png" className="background-img" alt="new york"/></div>
+					<div className="slide" id="slide3" data-description="The most trusted cryptocurrency platform"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
 
 					<div className="carousel-bottom">
 						<div className="carousel-description">
-							<div className="carousel-slide-label"></div>
+							<div className="carousel-slide-labels">
+							</div>
 							<div className="carousel-bottom-action">
 								{/* <button className="sign-up-home">Sign Up</button> */}
 								<NavLink to='/signup' className="sign-up-home">Sign Up</NavLink>
@@ -64,9 +77,9 @@ class HomePage extends React.Component {
 						</div>
 
 						<ul className="carousel-tabs">
-							<li className="left-tab" id="animation1">Buy and sell cryptocurrency</li>
+							{/* <li className="left-tab" id="animation1">Buy and sell cryptocurrency</li>
 							<li id="animation2">Vault Protection</li>
-							<li className="right-tab" id="animation3">The most trusted cryptocurrency platform</li>
+							<li className="right-tab" id="animation3">The most trusted cryptocurrency platform</li> */}
 						</ul>
 					</div>
 				</div>

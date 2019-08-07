@@ -12,7 +12,8 @@
         max-height: 100%;
         position: absolute;
         left: 0;
-        bottom: 0;
+        // bottom: 0;
+        bottom: 60px;
         transition: opacity 1s ease-in-out;         // opacity == not transparent == opaque
         &.active {
             opacity: 1;
@@ -48,7 +49,7 @@
             position: absolute;
             // transition: opacity 1s ease-in-out;          // doesn't work
             
-            .carousel-slide-label {
+            .carousel-slide-labels {
                 float: left;
                 max-width: 80%;
                 text-transform: uppercase;
@@ -56,8 +57,17 @@
                 font-weight: 450;
                 margin-left: 7rem;
                 margin-top: .5rem;
+                position: relative;
                 // transition: opacity 1s ease-in-out;      // doesn't work
                 // max-width: 80%;
+                > div {
+                    position: absolute;
+                    transition: opacity 1s ease-in-out;         // opacity == not transparent == opaque
+                    opacity: 0;
+                    &.active {
+                        opacity: 1;
+                    }
+                }
             }
             
             .carousel-bottom-action {
@@ -121,19 +131,29 @@
                 // border: 1px solid #6564646e;
                 border-right: 1px solid #d4d4d452;
                 transition: all 1s ease-in-out;
+                &.active {
+                    background-color: #333 !important;
+                }
                 &:hover {
                     background-color: rgba(24,28,31,0) !important;
                 }
+
+                &:first-of-type {
+                    margin-left: 7rem;
+                    border-left: 1px solid #d4d4d452;
+                }
+                &:last-of-type {
+                    margin-right: 7rem;
+                }
             }
 
-            li.left-tab {
-                margin-left: 7rem;
-                border-left: 1px solid #d4d4d452;
-            }
+                // li.left-tab {
+                    
+                // }
 
-            li.right-tab {
-                margin-right: 7rem;
-            }
+                // li.right-tab {
+                    
+                // }
         }
     }
 }

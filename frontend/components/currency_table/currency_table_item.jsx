@@ -1,5 +1,6 @@
 import React from 'react';
 import ChartMini from './chart_mini';
+import roundTo from 'round-to'
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
@@ -21,17 +22,22 @@ class CurrencyTableItem extends React.Component {
 
 
         const { price, changePct24HR, symbol } = this.props;    // WORKS
-        // debugger
+        const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
+        const logoPath = `/assets/${symbol.toLowerCase()}.png`
 
         return (            
             <>
                 <tr>
                     <td>{this.props.idx + 1}</td>
-                    <td>{this.props.name} {symbol}</td>
+                    <td>
+                        <img src={logoPath} alt={this.props.name} className="currency-logo"/>
+                        <span className="currency-name">{this.props.name} </span>    
+                        <span className="currency-symbol">{symbol}</span>    
+                    </td>
                     <td>{price}</td>
-                    <td>{changePct24HR}</td>
+                    <td>{changePctRounded}%</td>
                     <td><ChartMini symbol={symbol}/></td>
-                    <td><button>TRADE</button></td>
+                    <td><button className="currency-trade">TRADE</button></td>
                 </tr>
 
             </>

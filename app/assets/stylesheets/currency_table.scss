@@ -14,15 +14,66 @@
 }
 
 div#table {
-    margin-top: 2rem;
+    // margin-top: 2rem;
+    margin: 2rem 7rem 0 7rem;
+    width: available;
+    // background: pink;
 }
 
 table.currencies {
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+    // background: lightgrey;
+
+    .currency-logo {
+        width: auto;
+        height: 3rem;
+    }
+
+    col.currency-id {
+        width: 2rem;
+    }
     
+    th, td {
+        // background: transparent;
+        border-bottom: 1px solid black;
+    }
+
+    tr {
+        padding: 0 1rem;
+        
+        th {
+            text-align: left;
+            
+        }
+        td {
+            padding: 0.5rem 0;
+            height: 3rem;
+            font-size: 1.1rem;
+            
+            &:nth-of-type(2) {
+                img.currency-logo {
+                    vertical-align: middle;
+                }
+                span {   
+                    margin-left: 1ex;
+                }
+            }
+        }
+    }
+
+    svg.currency-chart {
+        height: available;
+    }
     
     thead {
         text-transform: uppercase;
+    }
+
+    button.currency-trade {
+        margin: 0;
     }
 }
 

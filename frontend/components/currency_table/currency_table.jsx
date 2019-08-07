@@ -42,14 +42,22 @@ class CurrencyTable extends React.Component {
         return (
             <>
                 <table className="currencies">
+                    <colgroup>
+                        <col className="currency-id"/>
+                        <col className="currency-name"/>
+                        <col className="currency-price"/>
+                        <col className="currency-change"/>
+                        <col className="currency-chart"/>
+                        <col className="currency-trade"/>
+                    </colgroup>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>name</th>
-                            <th>price</th>
-                            <th>change</th>
-                            <th>chart</th>
-                            <th>trade</th>
+                            <th scope="col">#</th>
+                            <th scope="col">name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">change</th>
+                            <th scope="col">chart</th>
+                            <th scope="col">trade</th>
                         </tr>
                     </thead>
                     <tbody>

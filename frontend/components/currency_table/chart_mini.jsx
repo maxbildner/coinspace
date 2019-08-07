@@ -31,7 +31,8 @@ class ChartMini extends React.Component {
 		return (
 			<>
 				{/* <LineChart width={100} height={100} data={DATA}> */}
-				<LineChart width={100} height={100} data={this.state["1D"]}>
+				{/* <LineChart width={100} height={100} data={this.state["1D"]}> */}
+				<LineChart height={70} width={70} data={this.state["1D"]}>
 						<Line 
 							type="monotone" 
 							dataKey="close" 
