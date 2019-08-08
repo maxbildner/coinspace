@@ -33,7 +33,7 @@ class ChartMini extends React.Component {
 				{/* <LineChart width={100} height={100} data={DATA}> */}
 				{/* <LineChart width={100} height={100} data={this.state["1D"]}> */}
 				<LineChart height={50} width={80} data={this.state["1D"]}>
-						<YAxis hide="true" domain={['dataMin', 'dataMax'] }/>
+						<YAxis hide={true} domain={['dataMin', 'dataMax'] }/>
 						<Line 
 							type="monotone" 
 							dataKey="close" 

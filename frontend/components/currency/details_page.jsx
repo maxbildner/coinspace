@@ -246,7 +246,7 @@ class DetailsPage extends React.Component {
 
 			return (
 					<li key={idx}>
-						<h4 key={title} className="news-title">{title}</h4> */}
+						<h4 key={title} className="news-title">{title}</h4>
 						<p key={idx + 1} className="news-body">{body}</p>
 						<p key={idx + 2} className="news-source">{source}</p>
 						<p key={idx + 3} className="news-date">{date}</p>
