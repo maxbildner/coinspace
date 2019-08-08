@@ -110,7 +110,7 @@ class DetailsPage extends React.Component {
 					});
 				}
 			)
-			debugger
+			
 			// fetchDescription(symbol).then(
 			// 	(response) => {
 			// 		// debugger
@@ -224,7 +224,7 @@ class DetailsPage extends React.Component {
 							<h1 className="chart-title">{this.props.currencyName}</h1>
 						<div id="chart">
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
-							<LineChart width={745} height={245} data={this.state[dataPeriod]}>
+							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
 								<Tooltip />
 								<XAxis dataKey="name" />
 								<YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} />
@@ -246,13 +246,38 @@ class DetailsPage extends React.Component {
 								</ul>
 							</div>
 						</div>
+
+						<div id="currency-info-container">
+							<ul id="currency-info">
+								<li>
+										<div>Market Cap</div>	
+										<h3>213</h3>	
+								</li>
+								<li>
+										<div>Volume (24 hours)</div>
+										<h3>22.1B</h3>	
+									</li>
+								<li>
+										<div>Circulating Supply</div>
+										<h3>17.9M</h3>	
+								</li>
+								<li>
+										<div>All-time high</div>
+										<h3>20,089</h3>	
+								</li>
+							</ul>
+						</div>
 					</div>
 
 						<div id="description-container">
 							<h2 id="title">About {this.props.currencyName}</h2>
-							<section id="description">
+							<p id="description">
 								{this.state.description}
-							</section>
+							</p>
+
+							<h3 id="resources">RESOURCES</h3>
+							<p>Offcial website</p>
+							<p>Whitepaper</p>
 						</div>
 
 						<div id="news-container">

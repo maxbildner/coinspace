@@ -1,3 +1,7 @@
+div#timeframe {
+    background: #ff9e9e;
+}
+
 #time-periods {
     
 	li {
@@ -24,11 +28,42 @@
 	}
 }
 
+// div#detail-wrapper {	// DARK MODE
+//     color: white;
+//     background: #000000fa;
+// }
+
+div#detail-wrapper {
+	margin: 3.5rem 7rem;
+	width: 800px;
+	background: pink;
+	display: flex;
+}
+
 section#left-detail {
+	// display: inline-block;
 	background: lightgrey;
-	display: inline-block;
+	width: 41rem;
 }
 
 section#right-detail {
-	display: inline-block;
+	// display: inline-block;
+	background: yellow;
+	width: 16rem;
 }
+
+h2#title {
+    text-align: left;
+}
+
+
+ul#currency-info {
+	background: grey;
+
+	li {
+		display: inline-block;
+		margin-right: 2rem;
+		background: #b1b1b1
+	}
+}
+// dark blue #00030cfc;
