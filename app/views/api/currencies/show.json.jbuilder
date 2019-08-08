@@ -1,5 +1,7 @@
 json.extract! @currency, :id, :symbol, :name, :description
 
+json.imageurl asset_path("#{@currency.symbol.downcase}.png")
+
 
 # DESIRED RESPONSE TO FRONT END:
 # promise = $.ajax({

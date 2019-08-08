@@ -2,17 +2,27 @@ import React from 'react';
 import ChartMini from './chart_mini';
 import roundTo from 'round-to'
 import { Link, Route, Switch } from 'react-router-dom';
+import { fetchDescription } from '../../util/currency_api_util';
 
 class CurrencyTableItem extends React.Component {
     constructor(props) {
         super(props); 
 
-        this.state = {}
+        this.state = {
+            logoPath: ''
+        }
     }
 
 
     componentDidMount() {
         this.props.fetchCurrentPrice(this.props.symbol);
+        fetchDescription(this.props.symbol).then(
+            (response) => {
+                return this.setState({
+                    logoPath: response.imageurl
+                })
+            }
+        );
         // debugger
     }
 
@@ -25,7 +35,7 @@ class CurrencyTableItem extends React.Component {
         // const { price, changePct24HR, symbol } = this.props;         // WORKS
         let { price, changePct24HR, symbol, name } = this.props;    
         const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
-        const logoPath = `/assets/${symbol.toLowerCase()}.png`
+        // const logoPath = `/assets/${symbol.toLowerCase()}.png`;
         if (name == 'XRapid') name = 'xrp';
         name = name.toLowerCase();
 
@@ -35,8 +45,9 @@ class CurrencyTableItem extends React.Component {
                     <td>{this.props.idx + 1}</td>
                     <td>
                         <Link to={`/price/${name}`}>
-                            <img src={logoPath} alt={this.props.name} className="currency-logo"/>
-                            {/* <span className="currency-name">{this.props.name} </span>     */}
+                            {/* <img src={logoPath} alt={this.props.name} className="currency-logo"/> */}
+                            <img src={this.state.logoPath} alt={this.props.name} className="currency-logo"/>
+                            
                             <span className="currency-name">{name} </span>    
                             <span className="currency-symbol">{symbol}</span>    
                         </Link>
