@@ -5,16 +5,17 @@ import {
 	fetch1WeekPrices,
 	fetch1MonthPrices,
 	fetch1YearPrices,
+	fetchCurrencyInfo,
  } from '../../util/prices_util';
 import { fetchDescription } from '../../util/currency_api_util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 const CURRENCYNAMES = {
-	bitcoin: 'BTC',
-	ethereum: "ETH",
-	bitcoincash: 'BTC',
-	litecoin: 'LTC',
-	xrp: 'XRP',
+	bitcoin: { sym: 'BTC', high: 20089 },
+	ethereum: { sym: "ETH", high: 1432.88 },
+	bitcoincash: { sym: 'BTC', high: 4355.62 },
+	litecoin: { sym: 'LTC', high: 375.29 },
+	xrp: { sym: 'XRP', high: 3.84 },
 	eos: 'EOS',
 	stellar: 'XLM',
 	chainlink: 'LINK',
@@ -30,11 +31,12 @@ const CURRENCYNAMES = {
 const mapStateToProps = (state, ownProps) => {
 	// debugger
 	const currencyName = ownProps.match.params.currencyName || {};
-
+	debugger
 	return ({
 		currencyName,
 		userId: state.session.id,							// will be null if no one logged in
-		symbol: CURRENCYNAMES[currencyName],
+		symbol: CURRENCYNAMES[currencyName].sym,
+		high: CURRENCYNAMES[currencyName].high,
 	});
 }
 
@@ -62,7 +64,9 @@ class DetailsPage extends React.Component {
 			"1Y": [],
 			"description": '',
 			"timePeriodActive": '',
-			// symbol: props.symbol,
+			marketCap: '',
+			volume24HRS: '',
+			supply: '',
 		}
 		// debugger
 
@@ -71,6 +75,7 @@ class DetailsPage extends React.Component {
 		this.get1WeekPrices = this.get1WeekPrices.bind(this);
 		this.get1DayPrices = this.get1DayPrices.bind(this);
 		this.updateDescription = this.updateDescription.bind(this);
+		this.updateCurrencyInfo = this.updateCurrencyInfo.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -78,26 +83,15 @@ class DetailsPage extends React.Component {
 		// debugger
 		if (prevProps.symbol !== symbol) {
 			// debugger
-			this.get1MonthPrices(symbol)
-			// fetchDescription(this.props.symbol).then(
-			// 	(response) => {
-			// 		// debugger
-			// 		return this.setState({
-			// 			description: response.description
-			// 		});
-			// 	}
-			// )
-			// debugger
+			this.get1MonthPrices(symbol);
 			this.updateDescription(symbol);
+			this.updateCurrencyInfo(symbol);
 		}
 	}
 
 	componentDidMount() {
 		// debugger
-		// const { symbol, fetchDescription } = this.props;
 		const { symbol } = this.props;
-		// const { symbol } = this.state;
-		// debugger
 
 		if (this.state.timePeriodActive != "month") {
 			// debugger
@@ -109,17 +103,10 @@ class DetailsPage extends React.Component {
 						"timePeriodActive": 'month',
 					});
 				}
-			)
+			);
 			
-			// fetchDescription(symbol).then(
-			// 	(response) => {
-			// 		// debugger
-			// 		return this.setState({
-			// 			description: response.description
-			// 		});
-			// 	}
-			// )
 			this.updateDescription(symbol);
+			this.updateCurrencyInfo(symbol);
 		}
 	}
 
@@ -134,7 +121,7 @@ class DetailsPage extends React.Component {
 					"timePeriodActive": "day",
 				});
 			}
-		)
+		);
 	}
 	
 	get1WeekPrices(symbol) {
@@ -146,7 +133,7 @@ class DetailsPage extends React.Component {
 					"timePeriodActive": "week"
 				});
 			}
-		)
+		);
 	}
 
 	get1MonthPrices(symbol) {
@@ -157,7 +144,7 @@ class DetailsPage extends React.Component {
 					"timePeriodActive": "month"
 				});
 			}
-		)
+		);
 	}
 	
 	get1YearPrices(symbol) {
@@ -168,7 +155,7 @@ class DetailsPage extends React.Component {
 					"timePeriodActive": "year"
 				});
 			}
-		)
+		);
 	}
 
 	updateDescription(symbol) {
@@ -179,14 +166,26 @@ class DetailsPage extends React.Component {
 					description: response.description
 				});
 			}
-		)
+		);
 	}
 
+	updateCurrencyInfo(symbol) {
+		fetchCurrencyInfo(symbol).then(
+			(response) => {
+				// debugger
+				return this.setState({
+					marketCap: response.DISPLAY[symbol].USD.MKTCAP,
+					volume24HRS: response.DISPLAY[symbol].USD.TOTALVOLUME24HTO,
+					supply: response.DISPLAY[symbol].USD.SUPPLY,
+				});
+			}
+		);
+	}
 
 	
 	render() {
-		const { symbol } = this.props;
-		const { timePeriodActive } = this.state;
+		const { symbol, high } = this.props;
+		const { timePeriodActive, marketCap, volume24HRS, supply } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
 		// debugger
@@ -251,19 +250,19 @@ class DetailsPage extends React.Component {
 							<ul id="currency-info">
 								<li>
 										<div>Market Cap</div>	
-										<h3>213</h3>	
+										<h3>{marketCap}</h3>	
 								</li>
 								<li>
 										<div>Volume (24 hours)</div>
-										<h3>22.1B</h3>	
+										<h3>{volume24HRS}</h3>	
 									</li>
 								<li>
 										<div>Circulating Supply</div>
-										<h3>17.9M</h3>	
+										<h3>{supply}</h3>	
 								</li>
 								<li>
 										<div>All-time high</div>
-										<h3>20,089</h3>	
+										<h3>{high}</h3>	
 								</li>
 							</ul>
 						</div>

@@ -63,7 +63,12 @@ ul#currency-info {
 	li {
 		display: inline-block;
 		margin-right: 2rem;
-		background: #b1b1b1
+		background: #b1b1b1;
+		
+		h3 {
+			background: pink;
+			font-weight: 400;
+		}
 	}
 }
 // dark blue #00030cfc;
