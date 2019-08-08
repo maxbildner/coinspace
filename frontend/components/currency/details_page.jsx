@@ -243,18 +243,16 @@ class DetailsPage extends React.Component {
 			let body = article.body.slice(0, 100) + '...';
 			let { source, title, imageurl } = article;
 			// let [ i1, i2, i3, i4]
-			
+
 			return (
-				<>
 					<li key={idx}>
-						<h4 key={title} className="news-title">{title}</h4>
+						<h4 key={title} className="news-title">{title}</h4> */}
 						<p key={idx + 1} className="news-body">{body}</p>
 						<p key={idx + 2} className="news-source">{source}</p>
 						<p key={idx + 3} className="news-date">{date}</p>
 						<p key={idx + 4} className="news-symbol">{symbol}</p>
 						<img key={imageurl} src={imageurl} alt="article-image" className="news-image"/>
 					</li>
-				</>
 			);
 		});
 	//  {
@@ -330,8 +328,8 @@ class DetailsPage extends React.Component {
 						</p>
 				
 						<h3 id="resources">RESOURCES</h3>
-						<li><a href={site}>Offcial website</a></li>
-						<li><a href={paper}>Whitepaper</a></li>
+						<li key={`website`}><a href={site}>Offcial website</a></li>
+						<li key={`whitepaper`}><a href={paper}>Whitepaper</a></li>
 					</div>
 
 					<div id="news-container">
