@@ -242,16 +242,17 @@ class DetailsPage extends React.Component {
 			date = date.toString().slice(4, 10);								//=> 'Jan 18'
 			let body = article.body.slice(0, 100) + '...';
 			let { source, title, imageurl } = article;
-
+			// let [ i1, i2, i3, i4]
+			
 			return (
 				<>
-					<li>
-						<h4>{title}</h4>
-						<p>{body}</p>
-						<p>{source}</p>
-						<p>{date}</p>
-						<p>{symbol}</p>
-						<img src={imageurl} alt="article-image"/>
+					<li key={idx}>
+						<h4 key={title} className="news-title">{title}</h4>
+						<p key={idx + 1} className="news-body">{body}</p>
+						<p key={idx + 2} className="news-source">{source}</p>
+						<p key={idx + 3} className="news-date">{date}</p>
+						<p key={idx + 4} className="news-symbol">{symbol}</p>
+						<img key={imageurl} src={imageurl} alt="article-image" className="news-image"/>
 					</li>
 				</>
 			);
