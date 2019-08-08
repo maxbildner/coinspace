@@ -11,11 +11,11 @@ import { fetchDescription } from '../../util/currency_api_util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 
 const CURRENCYNAMES = {
-	bitcoin: { sym: 'BTC', high: 20089 },
-	ethereum: { sym: "ETH", high: 1432.88 },
-	bitcoincash: { sym: 'BTC', high: 4355.62 },
-	litecoin: { sym: 'LTC', high: 375.29 },
-	xrp: { sym: 'XRP', high: 3.84 },
+	bitcoin: { sym: 'BTC', high: 20089, site: 'https://bitcoin.org/en/', paper: 'https://bitcoin.org/bitcoin.pdf' },
+	ethereum: { sym: "ETH", high: 1432.88, site: 'https://ethereum.org/', paper: 'https://github.com/ethereum/wiki/wiki/White-Paper' },
+	bitcoincash: { sym: 'BTC', high: 4355.62, site: 'https://www.bitcoincash.org/', paper: 'https://www.bitcoincash.org/bitcoin.pdf' },
+	litecoin: { sym: 'LTC', high: 375.29, site: 'https://litecoin.org/', paper: 'https://github.com/litecoin-project/litecoin/blob/master/README.md'  },
+	xrp: { sym: 'XRP', high: 3.84, site: 'https://ripple.com/xrp/', paper: 'https://ripple.com/files/ripple_consensus_whitepaper.pdf' },
 	eos: 'EOS',
 	stellar: 'XLM',
 	chainlink: 'LINK',
@@ -31,12 +31,15 @@ const CURRENCYNAMES = {
 const mapStateToProps = (state, ownProps) => {
 	// debugger
 	const currencyName = ownProps.match.params.currencyName || {};
-	debugger
+	const { sym, high, site, paper } = CURRENCYNAMES[currencyName];
+
 	return ({
 		currencyName,
 		userId: state.session.id,							// will be null if no one logged in
-		symbol: CURRENCYNAMES[currencyName].sym,
-		high: CURRENCYNAMES[currencyName].high,
+		symbol: sym,
+		high: high,
+		site: site,
+		paper: paper,
 	});
 }
 
@@ -95,16 +98,16 @@ class DetailsPage extends React.Component {
 
 		if (this.state.timePeriodActive != "month") {
 			// debugger
-			fetch1MonthPrices(symbol).then(
-				(response) => {
-					// debugger
-					return this.setState({
-						["1M"]: response.Data,
-						"timePeriodActive": 'month',
-					});
-				}
-			);
-			
+			// fetch1MonthPrices(symbol).then(
+			// 	(response) => {
+			// 		// debugger
+			// 		return this.setState({
+			// 			["1M"]: response.Data,
+			// 			"timePeriodActive": 'month',
+			// 		});
+			// 	}
+			// );
+			this.get1MonthPrices(symbol);
 			this.updateDescription(symbol);
 			this.updateCurrencyInfo(symbol);
 		}
@@ -184,7 +187,7 @@ class DetailsPage extends React.Component {
 
 	
 	render() {
-		const { symbol, high } = this.props;
+		const { symbol, high, site, paper } = this.props;
 		const { timePeriodActive, marketCap, volume24HRS, supply } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
@@ -268,20 +271,20 @@ class DetailsPage extends React.Component {
 						</div>
 					</div>
 
-						<div id="description-container">
-							<h2 id="title">About {this.props.currencyName}</h2>
-							<p id="description">
-								{this.state.description}
-							</p>
+					<div id="description-container">
+						<h2 id="title">About {this.props.currencyName}</h2>
+						<p id="description">
+							{this.state.description}
+						</p>
+				
+						<h3 id="resources">RESOURCES</h3>
+						<li><a href={site}>Offcial website</a></li>
+						<li><a href={paper}>Whitepaper</a></li>
+					</div>
 
-							<h3 id="resources">RESOURCES</h3>
-							<p>Offcial website</p>
-							<p>Whitepaper</p>
-						</div>
-
-						<div id="news-container">
-							<div id="news">NEWS</div>
-						</div>
+					<div id="news-container">
+						<div id="news">NEWS</div>
+					</div>
 				</section>
 
 				<section id="right-detail">
