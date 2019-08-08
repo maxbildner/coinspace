@@ -6,6 +6,7 @@ import {
 	fetch1MonthPrices,
 	fetch1YearPrices,
 	fetchCurrencyInfo,
+	fetchCurrencyNews,
  } from '../../util/prices_util';
 import { fetchDescription } from '../../util/currency_api_util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
@@ -70,6 +71,7 @@ class DetailsPage extends React.Component {
 			marketCap: '',
 			volume24HRS: '',
 			supply: '',
+			news: [],			// array of news objects (keep latest 4 only)
 		}
 		// debugger
 
@@ -79,6 +81,7 @@ class DetailsPage extends React.Component {
 		this.get1DayPrices = this.get1DayPrices.bind(this);
 		this.updateDescription = this.updateDescription.bind(this);
 		this.updateCurrencyInfo = this.updateCurrencyInfo.bind(this);
+		this.updateCurrencyNews = this.updateCurrencyNews.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -97,19 +100,10 @@ class DetailsPage extends React.Component {
 		const { symbol } = this.props;
 
 		if (this.state.timePeriodActive != "month") {
-			// debugger
-			// fetch1MonthPrices(symbol).then(
-			// 	(response) => {
-			// 		// debugger
-			// 		return this.setState({
-			// 			["1M"]: response.Data,
-			// 			"timePeriodActive": 'month',
-			// 		});
-			// 	}
-			// );
 			this.get1MonthPrices(symbol);
 			this.updateDescription(symbol);
 			this.updateCurrencyInfo(symbol);
+			this.updateCurrencyNews(symbol);
 		}
 	}
 
@@ -185,10 +179,36 @@ class DetailsPage extends React.Component {
 		);
 	}
 
+	updateCurrencyNews(symbol) {
+		fetchCurrencyNews(symbol).then(
+			(response) => {
+				// debugger
+				return this.setState({
+					news: response.Data.slice(0, 4)				// get only 4 news articles
+				});
+			}
+		)
+	}
+// promise = fetchCurrencyNews('BTC');
+// promise.responseJSON.Data       
+//=> [ {
+//      id: '1', 
+//      guid: 'wsjournal.com', 
+//      published_on: 1565287425, 
+//      imageurl: '', 
+//      title: '',
+//      source: 'wsjournal',
+//      body: 'blah blah blah...'
+//     }, 
+//     {} ]
+
+
+
+
 	
 	render() {
 		const { symbol, high, site, paper } = this.props;
-		const { timePeriodActive, marketCap, volume24HRS, supply } = this.state;
+		const { timePeriodActive, marketCap, volume24HRS, supply, news } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
 		// debugger
@@ -216,8 +236,39 @@ class DetailsPage extends React.Component {
 				break;
 		}
 		
-		// debugger
+		const newsArticles = news.map( (article, idx) => {		// loop over array of 4 article objects, return an array of <li>'s
+			// 1565287425 * 1000	// ? what kind of time format?
+			let date = new Date(article.published_on * 1000);		//=> Sun Jan 18 1970 21:48:07 GMT-0500 (Eastern Standard Time)		date object!
+			date = date.toString().slice(4, 10);								//=> 'Jan 18'
+			let body = article.body.slice(0, 100) + '...';
+			let { source, title, imageurl } = article;
 
+			return (
+				<>
+					<li>
+						<h4>{title}</h4>
+						<p>{body}</p>
+						<p>{source}</p>
+						<p>{date}</p>
+						<p>{symbol}</p>
+						<img src={imageurl} alt="article-image"/>
+					</li>
+				</>
+			);
+		});
+	//  {
+//      id: '1', 
+//      guid: 'wsjournal.com', 
+//      published_on: 1565287425, 
+//      imageurl: '', 
+//      title: '',
+//      source: 'wsjournal',
+//      body: 'handful of XRP investors can’t handle its flatlining price and are petitioning Ripple to stop flooding the market with new coins...'
+//     }
+
+
+
+		// debugger
 		return (
 			<>
 			<div id="detail-wrapper">
@@ -283,7 +334,10 @@ class DetailsPage extends React.Component {
 					</div>
 
 					<div id="news-container">
-						<div id="news">NEWS</div>
+						<h2 id="news">Top Stories</h2>
+						<ul>
+							{newsArticles}
+						</ul>
 					</div>
 				</section>
 

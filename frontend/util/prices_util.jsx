@@ -102,13 +102,29 @@ export const fetchCurrencyInfo = (symbol) => {       // 360 days, daily prices
         url: `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${symbol}&tsyms=USD&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
     })       
 }
-
 // promise = fetchVol24HRS('BTC');
 // promise.responseJSON.DISPLAY.BTC.USD.TOTALVOLUME24HTO    //=> "$4.52B"
 // promise.responseJSON.DISPLAY.BTC.USD.MKTCAP              //=> "$ 209.88 B"
 // promise.responseJSON.DISPLAY.BTC.USD.SUPPLY              //=> "Ƀ 17,864,975.0"
 
-
+export const fetchCurrencyNews = (symbol) => {
+    return $.ajax({
+        method: 'GET',
+        url: `https://min-api.cryptocompare.com/data/v2/news/?categories=${symbol}&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`
+    });
+};
+// promise = fetchCurrencyNews('BTC');
+// promise.responseJSON.Data       
+//=> [ {
+//      id: '1', 
+//      guid: 'wsjournal.com', 
+//      published_on: 1565287425, 
+//      imageurl: '', 
+//      title: '',
+//      source: 'wsjournal',
+//      body: 'blah blah blah...'
+//     }, 
+//     {} ]
 
 
 
