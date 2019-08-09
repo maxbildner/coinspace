@@ -73,6 +73,7 @@ section#right-detail {
 h2#title {
 	text-align: left;
 	color: black;														// LIGHT MODE
+	margin-bottom: 0;
 }
 
 
@@ -142,8 +143,13 @@ p#description {
     margin-left: 1rem;
 }
 
+div#description-container {
+    margin: 3rem 0;
+}
+
 h3#resources {
-	margin-bottom: .7rem;
+	// margin-bottom: .7rem;
+	margin-bottom: .3rem;
     font-weight: 400;
     font-size: 1rem;
 }
@@ -151,7 +157,7 @@ h3#resources {
 li.resources-link {
     list-style-type: none;
     margin: 0 0 0 1rem;			// margin left 1rem
-	padding: 0 0 .6rem 0;
+	padding: 0 0 .1rem 0;
 
 	a {
 		color: blue;
@@ -206,3 +212,5 @@ button.detail-trade {
     margin: 0 auto;
     display: flex;
 }
+
+    

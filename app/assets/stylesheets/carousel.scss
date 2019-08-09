@@ -125,14 +125,17 @@
 
             > li {
                 flex: 1;
-                padding: 1rem;
+                // padding: 1rem;
+                padding: 1.5rem 0 0 0;
+                text-align: -webkit-center;
                 display: block;
                 // border: 1px solid white;     // for testing
                 // border: 1px solid #6564646e;
                 border-right: 1px solid #d4d4d452;
                 transition: all 1s ease-in-out;
                 &.active {
-                    background-color: #333 !important;
+                    // background-color: #333 !important;
+                    background-color: #232222 !important;
                 }
                 &:hover {
                     background-color: rgba(24,28,31,0) !important;

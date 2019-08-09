@@ -64,7 +64,8 @@ class HomePage extends React.Component {
 				<div className="carousel" ref={this.carousel}> 
 					<div className="slide" id="slide1" data-description="Buy and sell cryptocurrency"><img src="https://www.spacex.com/sites/spacex/files/bfrlunar_v2.jpg" className="background-img" alt="outer space"/></div>
 					<div className="slide" id="slide2" data-description="Vault Protection"><img src="https://i.imgur.com/LxGUNGt.png" className="background-img" alt="new york"/></div>
-					<div className="slide" id="slide3" data-description="The most trusted cryptocurrency platform"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
+					{/* <div className="slide" id="slide3" data-description="The most trusted cryptocurrency platform"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div> */}
+					<div className="slide" id="slide3" data-description="Insurance coverage"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
 
 					<div className="carousel-bottom">
 						<div className="carousel-description">
