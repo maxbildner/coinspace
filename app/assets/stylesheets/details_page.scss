@@ -86,8 +86,33 @@ ul#currency-info {
 	border-radius: 2px;
 	width: 130px;
 	height: 50px;
+
+	.tooltip-label, .tooltip-time {
+		text-align: center;
+		// padding: 5px;
+	}
+	.tooltip-label {
+		// padding-top: 5px;
+		margin: 0;
+		padding: 5px 0 0 0;
+		font-size: 1.25rem;
+		// text-align: center;
+		// top: 5px;
+		// position: absolute;
+	}
+	.tooltip-time {
+		// padding-bottom: 5px;
+		margin: 0;
+		padding: 0 0 5px 0;
+		font-size: .85rem;
+		// bottom: 5px;
+		// text-align: center;
+		// margin: 0 auto;
+		// position: absolute;
+	}
 }
 
 // <div className="custom-tooltip">
-// 	<p className="tooltip-label">{`HELLLOO : ${payload[0].value}`}</p>
+// 	<p className="tooltip-label">{`$ ${payload[0].value}`}</p>
+// 	<p className="tooltip-time">{`${day} ${time}`}</p>
 // </div>

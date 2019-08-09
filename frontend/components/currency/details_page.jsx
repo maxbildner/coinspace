@@ -63,15 +63,16 @@ class CustomTooltip extends React.Component {
 		// debugger
 		const { active } = this.props || {};
 		if (active) {
-			const { payload } = this.props || {};
-			let date = this.props.payload[0].payload.time;		//=> 1564358400
-			let day = new Date(date * 1000);									//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
+			const { payload } = this.props || [{}];
+			// let date = this.props.payload[0].payload.time;		//=> 1564358400
+			let date = payload[0].payload.time;						//=> 1564358400
+			let day = new Date(date * 1000);						//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
 			// debugger
-			let time = day.toLocaleTimeString();							//=> '8:00:00 PM'
-			let amOrPm = time.slice(-2);										  //=> 'PM'
+			let time = day.toLocaleTimeString();					//=> '8:00:00 PM'
+			let amOrPm = time.slice(-2);							//=> 'PM'
 			// time = time.slice(0, 4) + amOrPm + ' EST';			//=> '8:00 PM EST'
-			time = time.slice(0, 4) + ' ' + amOrPm;					  //=> '8:00 PM'
-			day = day.toString().slice(4, 10);								//=> 'Jul 28'
+			time = time.slice(0, 4) + ' ' + amOrPm;					//=> '8:00 PM'
+			day = day.toString().slice(4, 10);						//=> 'Jul 28'
 
 			return (
 				<div className="custom-tooltip">
@@ -306,7 +307,8 @@ class DetailsPage extends React.Component {
 						<div id="chart">
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
-								<Tooltip content={<CustomTooltip/>} />
+								{/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
+								<Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100}/>
 								{/* <Tooltip/>} */}
 								{/* <Tooltip labelFormatter={() => 'hello'}/>} */}
 								{/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
@@ -318,7 +320,7 @@ class DetailsPage extends React.Component {
 									type="monotone"
 									dataKey="close"
 									dot={false}
-									activeDot={{ r: 8 }}
+									activeDot={{ r: 5 }}
 								// stroke="#8884d8" 
 								// strokeWidth={4}
 								/>
