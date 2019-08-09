@@ -289,13 +289,20 @@ class DetailsPage extends React.Component {
 			// let [ i1, i2, i3, i4]
 
 			return (
-					<li key={idx}>
+					<li key={idx} className="news-li">
 						<a href={guid}><h4 key={title} className="news-title">{title}</h4></a>
-						<a href={guid}><p key={idx + 1} className="news-body">{body}</p></a>
-						<p key={idx + 2} className="news-source">{source}</p>
-						<p key={idx + 3} className="news-date">{date}</p>
-						<p key={idx + 4} className="news-symbol">{symbol}</p>
-						<a href={guid}><img key={imageurl} src={imageurl} alt="article-image" className="news-image"/></a>
+						<div key={idx + 1} className="news-item">
+							{/* <a href={guid}><h4 key={title} className="news-title">{title}</h4></a> */}
+							<div key={idx + 2} className="news-left">
+								<a href={guid}><p key={idx + 3} className="news-body">{body}</p></a>
+								<p key={idx + 4} className="news-source">{source}</p>
+								<p key={idx + 5} className="news-date">{date}</p>
+								<p key={idx + 6} className="news-symbol">{symbol}</p>
+							</div>
+							<div key={idx + 7} className="news-right">
+								<a href={guid}><img key={imageurl} src={imageurl} alt="article-image" className="news-image"/></a>
+							</div>
+						</div>
 					</li>
 			);
 		});

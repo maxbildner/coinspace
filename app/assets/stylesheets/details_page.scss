@@ -135,14 +135,19 @@ h3.currency-detail {
 // 	<p className="tooltip-label">{`$ ${payload[0].value}`}</p>
 // 	<p className="tooltip-time">{`${day} ${time}`}</p>
 // </div>
+p#description {
+    margin-left: 1rem;
+}
 
 h3#resources {
-    margin-bottom: .7rem;
+	margin-bottom: .7rem;
+    font-weight: 400;
+    font-size: 1rem;
 }
 
 li.resources-link {
     list-style-type: none;
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 1rem;			// margin left 1rem
 	padding: 0 0 .6rem 0;
 
 	a {
@@ -151,4 +156,44 @@ li.resources-link {
 		&:visited { color: black }
 		&:hover { color: blue }
 	}
+}
+
+h2#news-header {
+	text-align: left;
+}
+
+ul.news {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 1rem;
+	
+	li a {
+		text-decoration: none;
+		color: black;
+		&:hover { color: blue }
+	}
+}
+
+// .news-li {						// change!
+//     height: 18rem;
+// }
+
+.news-item {
+    display: flex;
+}
+
+p.news-source, p.news-date, p.news-symbol {
+	display: inline-block;
+	margin-right: 1rem;
+	margin-top: 0;
+}
+
+p.news-body {
+	margin-top: 0;
+	margin-right: 21px;
+}
+
+img.news-image {
+	width: 73px; 
+	float: right;
 }
