@@ -2,20 +2,24 @@ h1.chart-title {
 	text-transform: capitalize;
 	margin-bottom: 0;
 	padding-bottom: 0;
+	// color: black;														// LIGHT MODE
+	color: white;		// DARK MODE
 }
 
 .sym-title {
 	display: inline-block;
     font-size: 1.5rem;
     font-weight: 400;
-    color: grey;
+    color: grey;								// LIGHT MODE
 }
 
 h3.current-price {
     margin-top: 0;
     padding-top: 0;
     font-size: 1.8rem;
-    font-weight: 500;
+	font-weight: 500;
+	// color: black;								// LIGHT MODE
+	color: white;			// DARK MODE
 }
 
 div#timeframe {
@@ -27,19 +31,22 @@ div#timeframe {
 	li {
 		display: inline;
 		margin-right: 1rem;
-		color: #9c9898;
+		color: #9b9a9a;							// LIGHT MODE
 		
 		.time-period-active {
-			color: darkblue;
+			// color: darkblue;					  // LIGHT MODE
+			color: white;					    // LIGHT MODE
 		}
 
 		&:hover {
-			color: black;
+			// color: black;				      // LIGHT MODE
+			color: #0066cc;				// DARK MODE
 			cursor: pointer;
 		}
 
 		&.month-active, &.day-active, &.week-active, &.month-active, &.year-active  {
-			color: black;
+			// color: black;						// LIGHT MODE
+			color: #0066cc;				// DARK MODE
 		}
 		// day-active
 		// week-active
@@ -72,13 +79,16 @@ section#right-detail {
 
 h2#title {
 	text-align: left;
-	color: black;														// LIGHT MODE
+	// color: black;														// LIGHT MODE
+	color: white;				// DARK MODE
 	margin-bottom: 0;
 }
 
 
 ul#currency-info {
 	// background: grey;
+	// color: black;															// LIGHT MODE
+	color: white;				// DARK MODE
 
 	li {
 		display: inline-block;
@@ -140,7 +150,10 @@ ul#time-periods {
 // 	<p className="tooltip-time">{`${day} ${time}`}</p>
 // </div>
 p#description {
-    margin-left: 1rem;
+	margin-left: 1rem;
+	// color: black;													// LIGHT MODE
+	color: white;					// DARK MODE
+
 }
 
 div#description-container {
@@ -151,7 +164,9 @@ h3#resources {
 	// margin-bottom: .7rem;
 	margin-bottom: .3rem;
     font-weight: 400;
-    font-size: 1rem;
+	font-size: 1rem;
+	// color: black;									// LIGHT MODE
+	color: white;									// DARK MODE
 }
 
 li.resources-link {
@@ -160,17 +175,20 @@ li.resources-link {
 	padding: 0 0 .1rem 0;
 
 	a {
-		color: blue;
+		// color: #002244;														  // LIGHT MODE
+		color: white;							// DARK MODE
 		text-decoration: none;
-		&:visited { color: black }											  // LIGHT MODE
-		// &:hover { color: #002244 }												  // DARK BLUE
-		&:hover { color: #458dc3 }												  // LIGHT MODE
+		// &:visited { color: black }											  // LIGHT MODE
+		&:visited { color: white }				// DARK MODE
+		// &:hover { color: #002244 }											// DARK BLUE
+		&:hover { color: #458dc3 }										      // LIGHT MODE
 	}
 }
 
 h2#news-header {
 	text-align: left;
-	color: black;															// LIGHT MODE
+	// color: black;															  // LIGHT MODE
+	color: white;								// DARK MODE
 }
 
 ul.news {
@@ -180,7 +198,8 @@ ul.news {
 	
 	li a {
 		text-decoration: none;
-		color: black;														  // LIGHT MODE
+		// color: black;														  // LIGHT MODE
+		color: white;							// DARK MODE
 		&:hover { color: #458dc3 }
 	}
 }
@@ -195,6 +214,8 @@ p.news-source, p.news-date, p.news-symbol {
 	display: inline-block;
 	margin-right: 1rem;
 	margin-top: 0;
+	// color: black;								// LIGHT MODE
+	color: rgb(111, 111, 111);				// DARK MODE
 }
 
 p.news-body {

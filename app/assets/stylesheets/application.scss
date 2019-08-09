@@ -8,9 +8,15 @@
 @import './footer.scss';
 
 
-html[data-location="/login"], html[data-location="/signup"] {
-    background-color: #002244;
-    // background-color: #0066cc;
+html[data-location="/login"], 
+html[data-location="/signup"], 
+html[data-location="/price/bitcoin"],
+html[data-location="/price/ethereum"], 
+html[data-location="/price/litecoin"], 
+html[data-location="/price/xrp"] {
+// html[data-location="/login"], html[data-location="/signup"] {        // LIGHT MODE
+    background-color: #000a13fa;  // DARK MODE
+    // background-color: #0066cc;   // baby blue
 }
 
 :root {                              // root == html
