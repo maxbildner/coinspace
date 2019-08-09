@@ -252,9 +252,9 @@ class DetailsPage extends React.Component {
 	
 	render() {
 		const { symbol, high, site, paper } = this.props;
-		const { currentPrice, timePeriodActive, marketCap, volume24HRS, supply, news } = this.state;
+		const { currentPrice, timePeriodActive, marketCap, volume24HRS, news } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
-
+		let supply = this.state.supply.slice(1);
 		// debugger
 
 		switch (timePeriodActive) {
@@ -354,20 +354,20 @@ class DetailsPage extends React.Component {
 						<div id="currency-info-container">
 							<ul id="currency-info">
 								<li>
-										<div>Market Cap</div>	
-										<h3>{marketCap}</h3>	
+										<div className="currency-detail-title">Market Cap</div>	
+										<h3 className="currency-detail">{marketCap}</h3>	
 								</li>
 								<li>
-										<div>Volume (24 hours)</div>
-										<h3>{volume24HRS}</h3>	
+										<div className="currency-detail-title">Volume (24 hours)</div>
+										<h3 className="currency-detail">{volume24HRS}</h3>	
 									</li>
 								<li>
-										<div>Circulating Supply</div>
-										<h3>{supply}</h3>	
+										<div className="currency-detail-title">Circulating Supply</div>
+										<h3 className="currency-detail">{supply}</h3>	
 								</li>
 								<li>
-										<div>All-time high</div>
-										<h3>{high}</h3>	
+										<div className="currency-detail-title">All-time high</div>
+										<h3 className="currency-detail">{high}</h3>	
 								</li>
 							</ul>
 						</div>
@@ -380,8 +380,8 @@ class DetailsPage extends React.Component {
 						</p>
 				
 						<h3 id="resources">RESOURCES</h3>
-						<li><a href={site}>Offcial website</a></li>
-						<li><a href={paper}>Whitepaper</a></li>
+						<li className="resources-link"><a target="_blank" href={site}>Offcial website</a></li>
+						<li className="resources-link"><a target="_blank" href={paper}>Whitepaper</a></li>
 					</div>
 
 					<div id="news-container">

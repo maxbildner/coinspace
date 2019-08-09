@@ -18,12 +18,6 @@ h3.current-price {
     font-weight: 500;
 }
 
-
-// <h1 className="chart-title">{this.props.currencyName} <p className="sym-title">({symbol})</p></h1>
-// 	<div id="chart">
-// 		<h3 className="current-price">{currentPrice}</h3>
-
-
 div#timeframe {
     background: #ff9e9e;
 }
@@ -97,6 +91,15 @@ ul#currency-info {
 		}
 	}
 }
+
+.currency-detail-title {
+	font-size: 1rem;
+    font-weight: 410;
+}
+
+h3.currency-detail {
+    margin: .4rem 0 0;
+}
 // dark blue #00030cfc;
 
 
@@ -115,26 +118,16 @@ ul#currency-info {
 
 	.tooltip-label, .tooltip-time {
 		text-align: center;
-		// padding: 5px;
 	}
 	.tooltip-label {
-		// padding-top: 5px;
 		margin: 0;
 		padding: 5px 0 0 0;
 		font-size: 1.25rem;
-		// text-align: center;
-		// top: 5px;
-		// position: absolute;
 	}
 	.tooltip-time {
-		// padding-bottom: 5px;
 		margin: 0;
 		padding: 0 0 5px 0;
 		font-size: .85rem;
-		// bottom: 5px;
-		// text-align: center;
-		// margin: 0 auto;
-		// position: absolute;
 	}
 }
 
@@ -142,3 +135,20 @@ ul#currency-info {
 // 	<p className="tooltip-label">{`$ ${payload[0].value}`}</p>
 // 	<p className="tooltip-time">{`${day} ${time}`}</p>
 // </div>
+
+h3#resources {
+    margin-bottom: .7rem;
+}
+
+li.resources-link {
+    list-style-type: none;
+    margin: 0 0 0 1rem;
+	padding: 0 0 .6rem 0;
+
+	a {
+		color: blue;
+		text-decoration: none;
+		&:visited { color: black }
+		&:hover { color: blue }
+	}
+}
