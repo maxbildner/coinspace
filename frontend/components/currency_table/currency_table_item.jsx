@@ -44,7 +44,7 @@ class CurrencyTableItem extends React.Component {
                 <tr>
                     <td>{this.props.idx + 1}</td>
                     <td>
-                        <Link to={`/price/${name}`}>
+                        <Link to={`/price/${name}`} className="chart-mini-currency-name">
                             {/* <img src={logoPath} alt={this.props.name} className="currency-logo"/> */}
                             <img src={this.state.logoPath} alt={this.props.name} className="currency-logo"/>
                             

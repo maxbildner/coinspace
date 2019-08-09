@@ -161,6 +161,16 @@
     }
 }
 
+a.chart-mini-currency-name {
+    text-decoration: none;
+    &:visited { color: black }
+    &:hover { color: #2570bb }
+}
+
+
+
+
+
 // li.left-tab {
 //     margin-left: 7rem;
 // }

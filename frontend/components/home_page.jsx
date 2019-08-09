@@ -103,7 +103,7 @@ class HomePage extends React.Component {
 				</div>
 
 				<div id="footer-wrapper">
-					<div id="footer">FOOTER</div>
+					<div id="footer"></div>
 				</div>
 			</>
 		)
