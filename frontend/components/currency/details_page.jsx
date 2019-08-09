@@ -61,12 +61,22 @@ class CustomTooltip extends React.Component {
 
 	render() {
 		// debugger
-		const { active,  } = this.props || {};
+		const { active } = this.props || {};
 		if (active) {
-			const { payload, label } = this.props || {};
+			const { payload } = this.props || {};
+			let date = this.props.payload[0].payload.time;		//=> 1564358400
+			let day = new Date(date * 1000);									//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
+			// debugger
+			let time = day.toLocaleTimeString();							//=> '8:00:00 PM'
+			let amOrPm = time.slice(-2);										  //=> 'PM'
+			// time = time.slice(0, 4) + amOrPm + ' EST';			//=> '8:00 PM EST'
+			time = time.slice(0, 4) + ' ' + amOrPm;					  //=> '8:00 PM'
+			day = day.toString().slice(4, 10);								//=> 'Jul 28'
+
 			return (
 				<div className="custom-tooltip">
-					<p className="tooltip-label">{`HELLLOO : ${payload[0].value}`}</p>
+					<p className="tooltip-label">{`$ ${payload[0].value}`}</p>
+					<p className="tooltip-time">{`${day} ${time}`}</p>
 				</div>
 			);
 		}
@@ -296,7 +306,7 @@ class DetailsPage extends React.Component {
 						<div id="chart">
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
-								<Tooltip content={<CustomTooltip/>} offset={20}/>
+								<Tooltip content={<CustomTooltip/>} />
 								{/* <Tooltip/>} */}
 								{/* <Tooltip labelFormatter={() => 'hello'}/>} */}
 								{/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
