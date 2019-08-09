@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { 
+	fetchCurrentPrice,
 	fetch1DayPrices,
 	fetch1WeekPrices,
 	fetch1MonthPrices,
@@ -64,7 +65,7 @@ class CustomTooltip extends React.Component {
 		const { active } = this.props || {};
 		if (active) {
 			const { payload } = this.props || [{}];
-			// let date = this.props.payload[0].payload.time;		//=> 1564358400
+			// let date = this.props.payload[0].payload.time;		//=> 1564358400 <- works ~9/10 times?
 			let date = payload[0].payload.time;						//=> 1564358400
 			let day = new Date(date * 1000);						//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
 			// debugger
@@ -91,6 +92,7 @@ class DetailsPage extends React.Component {
 		super(props);
 		// debugger
 		this.state = {
+			currentPrice: '',
 			"1D": [],
 			"1W": [],
 			"1M": [],
@@ -104,6 +106,7 @@ class DetailsPage extends React.Component {
 		}
 		// debugger
 
+		this.getCurrentPrice = this.getCurrentPrice.bind(this);
 		this.get1YearPrices = this.get1YearPrices.bind(this);
 		this.get1MonthPrices = this.get1MonthPrices.bind(this);
 		this.get1WeekPrices = this.get1WeekPrices.bind(this);
@@ -121,6 +124,7 @@ class DetailsPage extends React.Component {
 			this.get1MonthPrices(symbol);
 			this.updateDescription(symbol);
 			this.updateCurrencyInfo(symbol);
+			this.getCurrentPrice(symbol);
 		}
 	}
 
@@ -133,9 +137,20 @@ class DetailsPage extends React.Component {
 			this.updateDescription(symbol);
 			this.updateCurrencyInfo(symbol);
 			this.updateCurrencyNews(symbol);
+			this.getCurrentPrice(symbol);
 		}
 	}
 
+	getCurrentPrice(symbol) {
+		fetchCurrentPrice(symbol).then(
+			(response) => {
+				// debugger
+				return this.setState({
+					currentPrice: response.RAW.PRICE
+				});
+			}
+		);
+	}
 
 	get1DayPrices(symbol) {
 		// debugger
@@ -237,7 +252,7 @@ class DetailsPage extends React.Component {
 	
 	render() {
 		const { symbol, high, site, paper } = this.props;
-		const { timePeriodActive, marketCap, volume24HRS, supply, news } = this.state;
+		const { currentPrice, timePeriodActive, marketCap, volume24HRS, supply, news } = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 
 		// debugger
@@ -303,8 +318,9 @@ class DetailsPage extends React.Component {
 			<div id="detail-wrapper">
 				<section id="left-detail">
 					<div className="chart-container">
-							<h1 className="chart-title">{this.props.currencyName}</h1>
+							<h1 className="chart-title">{this.props.currencyName} <p className="sym-title">({symbol})</p></h1>
 						<div id="chart">
+								<h3 className="current-price">${currentPrice}</h3>
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
 								{/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}

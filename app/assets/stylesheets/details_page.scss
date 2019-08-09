@@ -1,3 +1,29 @@
+h1.chart-title {
+	text-transform: capitalize;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.sym-title {
+	display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: grey;
+}
+
+h3.current-price {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+
+// <h1 className="chart-title">{this.props.currencyName} <p className="sym-title">({symbol})</p></h1>
+// 	<div id="chart">
+// 		<h3 className="current-price">{currentPrice}</h3>
+
+
 div#timeframe {
     background: #ff9e9e;
 }
