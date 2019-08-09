@@ -19,7 +19,7 @@ h3.current-price {
 }
 
 div#timeframe {
-    background: #ff9e9e;
+    // background: #ff9e9e;														// FOR TESTING
 }
 
 #time-periods {
@@ -56,37 +56,36 @@ div#timeframe {
 div#detail-wrapper {
 	margin: 3.5rem 7rem;
 	width: 800px;
-	background: pink;
+	// background: pink;												    	// FOR TESTING
 	display: flex;
 }
 
 section#left-detail {
-	// display: inline-block;
-	background: lightgrey;
+	// background: lightgrey;													// FOR TESTING
 	width: 41rem;
 }
 
 section#right-detail {
-	// display: inline-block;
-	background: yellow;
+	// background: yellow;														// FOR TESTING
 	width: 16rem;
 }
 
 h2#title {
-    text-align: left;
+	text-align: left;
+	color: black;														// LIGHT MODE
 }
 
 
 ul#currency-info {
-	background: grey;
+	// background: grey;
 
 	li {
 		display: inline-block;
 		margin-right: 2rem;
-		background: #b1b1b1;
+		// background: #b1b1b1;  											    // FOR TESTING
 		
 		h3 {
-			background: pink;
+			// background: pink;										        // FOR TESTING
 			font-weight: 400;
 		}
 	}
@@ -109,8 +108,12 @@ h3.currency-detail {
 // 	border-radius: 2px;
 // }
 
+ul#time-periods {
+    margin-top: 0;
+}
+
 .custom-tooltip {
-	background: black;
+	background: #002244;
 	color: white;
 	border-radius: 2px;
 	width: 130px;
@@ -153,13 +156,15 @@ li.resources-link {
 	a {
 		color: blue;
 		text-decoration: none;
-		&:visited { color: black }
-		&:hover { color: blue }
+		&:visited { color: black }											  // LIGHT MODE
+		// &:hover { color: #002244 }												  // DARK BLUE
+		&:hover { color: #458dc3 }												  // LIGHT MODE
 	}
 }
 
 h2#news-header {
 	text-align: left;
+	color: black;															// LIGHT MODE
 }
 
 ul.news {
@@ -169,14 +174,12 @@ ul.news {
 	
 	li a {
 		text-decoration: none;
-		color: black;
-		&:hover { color: blue }
+		color: black;														  // LIGHT MODE
+		&:hover { color: #458dc3 }
 	}
 }
 
-// .news-li {						// change!
-//     height: 18rem;
-// }
+
 
 .news-item {
     display: flex;
@@ -196,4 +199,10 @@ p.news-body {
 img.news-image {
 	width: 73px; 
 	float: right;
+}
+
+
+button.detail-trade {
+    margin: 0 auto;
+    display: flex;
 }

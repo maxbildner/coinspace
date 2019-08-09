@@ -400,7 +400,7 @@ class DetailsPage extends React.Component {
 				</section>
 
 				<section id="right-detail">
-					<div id="detail-trade">TRADE</div>
+						<div id="detail-trade"><button className="detail-trade">TRADE</button></div>
 				</section>
 				
 			</div>
