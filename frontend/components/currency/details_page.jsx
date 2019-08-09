@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { 
 	fetch1DayPrices,
@@ -55,6 +56,23 @@ const mapStateToProps = (state, ownProps) => {
 // const DATA1M = [{ "time": 1562457600, "close": 306.43, "high": 310.72, "low": 284.46, "open": 287.98, "volumefrom": 331494.23, "volumeto": 99666457.6 }, { "time": 1562544000, "close": 313.34, "high": 314.94, "low": 302.56, "open": 306.43, "volumefrom": 374097.05, "volumeto": 115496166.88 }, { "time": 1562630400, "close": 307.89, "high": 318.32, "low": 303.09, "open": 313.34, "volumefrom": 404444.05, "volumeto": 125850428.68 }, { "time": 1562716800, "close": 288.64, "high": 314.74, "low": 281.62, "open": 307.89, "volumefrom": 610500.01, "volumeto": 180940011.77 }, { "time": 1562803200, "close": 268.56, "high": 288.66, "low": 263, "open": 288.64, "volumefrom": 629439.43, "volumeto": 171079615.45 }, { "time": 1562889600, "close": 275.41, "high": 279.06, "low": 266.46, "open": 268.56, "volumefrom": 280208.9, "volumeto": 76685542.26 }, { "time": 1562976000, "close": 268.94, "high": 275.72, "low": 261.81, "open": 275.41, "volumefrom": 249274.1, "volumeto": 66861426.61 }, { "time": 1563062400, "close": 226.16, "high": 269.59, "low": 223.07, "open": 268.94, "volumefrom": 728976.05, "volumeto": 175331440.46 }, { "time": 1563148800, "close": 228.14, "high": 235.48, "low": 203.63, "open": 226.16, "volumefrom": 1013350.33, "volumeto": 226218116.46 }, { "time": 1563235200, "close": 198.71, "high": 234.28, "low": 191.03, "open": 228.14, "volumefrom": 1112504.13, "volumeto": 232180403.8 }, { "time": 1563321600, "close": 211.29, "high": 219.84, "low": 192.48, "open": 198.71, "volumefrom": 788919.61, "volumeto": 162154895.01 }, { "time": 1563408000, "close": 226.09, "high": 229.65, "low": 206.32, "open": 211.29, "volumefrom": 653923.33, "volumeto": 142904884.96 }, { "time": 1563494400, "close": 221.28, "high": 226.51, "low": 214.01, "open": 226.09, "volumefrom": 374753.46, "volumeto": 82409808.32 }, { "time": 1563580800, "close": 228.71, "high": 235.69, "low": 220.33, "open": 221.28, "volumefrom": 324652.44, "volumeto": 74318209.77 }, { "time": 1563667200, "close": 225.4, "high": 229.69, "low": 217.43, "open": 228.71, "volumefrom": 266556.13, "volumeto": 59548497.11 }, { "time": 1563753600, "close": 217.22, "high": 227.99, "low": 211.88, "open": 225.4, "volumefrom": 337131.38, "volumeto": 73718555.78 }, { "time": 1563840000, "close": 212.21, "high": 219.1, "low": 208.55, "open": 217.22, "volumefrom": 328148.57, "volumeto": 69993297.42 }, { "time": 1563926400, "close": 216.66, "high": 218.14, "low": 201.32, "open": 212.21, "volumefrom": 461977.64, "volumeto": 96519402.36 }, { "time": 1564012800, "close": 219.41, "high": 225.58, "low": 215.73, "open": 216.66, "volumefrom": 290086.51, "volumeto": 64183254.14 }, { "time": 1564099200, "close": 219.23, "high": 220.88, "low": 212.99, "open": 219.41, "volumefrom": 215332.24, "volumeto": 46712261.33 }, { "time": 1564185600, "close": 207.17, "high": 223.83, "low": 202.84, "open": 219.23, "volumefrom": 369772.96, "volumeto": 78126135.79 }, { "time": 1564272000, "close": 211.15, "high": 213.27, "low": 197.96, "open": 207.17, "volumefrom": 231954.63, "volumeto": 47846437.2 }, { "time": 1564358400, "close": 210.83, "high": 215.03, "low": 206.43, "open": 211.15, "volumefrom": 217677.6, "volumeto": 45830094.98 }, { "time": 1564444800, "close": 209.82, "high": 214.39, "low": 204.58, "open": 210.83, "volumefrom": 163905.97, "volumeto": 34387958.79 }, { "time": 1564531200, "close": 218.7, "high": 218.98, "low": 209.73, "open": 209.82, "volumefrom": 212060.61, "volumeto": 45601288.97 }, { "time": 1564617600, "close": 217.51, "high": 219.28, "low": 211.04, "open": 218.7, "volumefrom": 187353.48, "volumeto": 40239508.23 }, { "time": 1564704000, "close": 217.7, "high": 222.66, "low": 214.99, "open": 217.51, "volumefrom": 209180.55, "volumeto": 45725495.69 }, { "time": 1564790400, "close": 222.02, "high": 224.6, "low": 216.25, "open": 217.7, "volumefrom": 183417.15, "volumeto": 40674495.72 }, { "time": 1564876800, "close": 222.7, "high": 223.65, "low": 217.5, "open": 222.02, "volumefrom": 114461.74, "volumeto": 25241603.35 }, { "time": 1564963200, "close": 233.19, "high": 236.66, "low": 222.7, "open": 222.7, "volumefrom": 386277.04, "volumeto": 89350182.76 }, { "time": 1565049600, "close": 224.13, "high": 239.54, "low": 222.67, "open": 233.19, "volumefrom": 358041.93, "volumeto": 82559841.56 }]
 
 
+
+class CustomTooltip extends React.Component {
+
+	render() {
+		// debugger
+		const { active,  } = this.props || {};
+		if (active) {
+			const { payload, label } = this.props || {};
+			return (
+				<div className="custom-tooltip">
+					<p className="tooltip-label">{`HELLLOO : ${payload[0].value}`}</p>
+				</div>
+			);
+		}
+		return null;
+	}
+}
 
 
 class DetailsPage extends React.Component {
@@ -240,18 +258,18 @@ class DetailsPage extends React.Component {
 			// 1565287425 * 1000	// ? what kind of time format?
 			let date = new Date(article.published_on * 1000);		//=> Sun Jan 18 1970 21:48:07 GMT-0500 (Eastern Standard Time)		date object!
 			date = date.toString().slice(4, 10);								//=> 'Jan 18'
-			let body = article.body.slice(0, 100) + '...';
-			let { source, title, imageurl } = article;
+			let body = article.body.slice(0, 130) + '...';
+			let { source, title, imageurl, guid } = article;
 			// let [ i1, i2, i3, i4]
 
 			return (
 					<li key={idx}>
-						<h4 key={title} className="news-title">{title}</h4>
-						<p key={idx + 1} className="news-body">{body}</p>
+						<a href={guid}><h4 key={title} className="news-title">{title}</h4></a>
+						<a href={guid}><p key={idx + 1} className="news-body">{body}</p></a>
 						<p key={idx + 2} className="news-source">{source}</p>
 						<p key={idx + 3} className="news-date">{date}</p>
 						<p key={idx + 4} className="news-symbol">{symbol}</p>
-						<img key={imageurl} src={imageurl} alt="article-image" className="news-image"/>
+						<a href={guid}><img key={imageurl} src={imageurl} alt="article-image" className="news-image"/></a>
 					</li>
 			);
 		});
@@ -267,6 +285,7 @@ class DetailsPage extends React.Component {
 
 
 
+
 		// debugger
 		return (
 			<>
@@ -277,7 +296,12 @@ class DetailsPage extends React.Component {
 						<div id="chart">
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
-								<Tooltip />
+								<Tooltip content={<CustomTooltip/>} offset={20}/>
+								{/* <Tooltip/>} */}
+								{/* <Tooltip labelFormatter={() => 'hello'}/>} */}
+								{/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
+								{/* <Tooltip separator="$"/> */}
+								
 								<XAxis dataKey="name" />
 								<YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} />
 								<Line
@@ -328,13 +352,13 @@ class DetailsPage extends React.Component {
 						</p>
 				
 						<h3 id="resources">RESOURCES</h3>
-						<li key={`website`}><a href={site}>Offcial website</a></li>
-						<li key={`whitepaper`}><a href={paper}>Whitepaper</a></li>
+						<li><a href={site}>Offcial website</a></li>
+						<li><a href={paper}>Whitepaper</a></li>
 					</div>
 
 					<div id="news-container">
-						<h2 id="news">Top Stories</h2>
-						<ul>
+						<h2 id="news-header">Top Stories</h2>
+						<ul className="news">
 							{newsArticles}
 						</ul>
 					</div>

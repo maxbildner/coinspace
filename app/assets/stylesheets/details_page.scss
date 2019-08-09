@@ -72,3 +72,20 @@ ul#currency-info {
 	}
 }
 // dark blue #00030cfc;
+
+
+// .recharts-tooltip-wrapper {
+// 	background: black;
+// 	color: white;
+// 	border-radius: 2px;
+// }
+
+.custom-tooltip {
+	background: black;
+	color: white;
+	border-radius: 2px;
+}
+
+// <div className="custom-tooltip">
+// 	<p className="tooltip-label">{`HELLLOO : ${payload[0].value}`}</p>
+// </div>
