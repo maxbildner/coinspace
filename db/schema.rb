@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_161147) do
+ActiveRecord::Schema.define(version: 2019_08_12_204200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,29 @@ ActiveRecord::Schema.define(version: 2019_08_05_161147) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["password_digest"], name: "index_users_on_password_digest"
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
+  end
+
+  create_table "wallet_transactions", force: :cascade do |t|
+    t.integer "wallet_id", null: false
+    t.float "quantity"
+    t.float "price"
+    t.string "transaction_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_wallet_transactions_on_wallet_id"
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer "currency_id", null: false
+    t.integer "user_id", null: false
+    t.string "wallet_address", null: false
+    t.float "total_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_wallets_on_currency_id"
+    t.index ["total_value"], name: "index_wallets_on_total_value"
+    t.index ["user_id"], name: "index_wallets_on_user_id"
+    t.index ["wallet_address"], name: "index_wallets_on_wallet_address", unique: true
   end
 
 end
