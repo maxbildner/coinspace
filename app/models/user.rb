@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
+    has_many :wallets,
+        foreign_key: :user_id,
+        class_name: :Wallet
+
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
         user && user.is_password?(password) ? user : nil
@@ -50,5 +54,12 @@ class User < ApplicationRecord
 
     def ensure_session_token
         self.session_token ||= self.class.generate_session_token
+    end
+
+    def create_wallets 
+        # supported_currencies = ['BTC', 'BCH', 'ETH', 'LTC', 'XRP', 'ETC', 'DAI']
+        # supported_currencies.each do |currency|
+        #     curr = Wallet.new()
+        # end
     end
 end
