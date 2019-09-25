@@ -1,7 +1,7 @@
 import React from 'react';
 import ChartMini from './chart_mini';
 import roundTo from 'round-to'
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import { fetchDescription } from '../../util/currency_api_util';
 
 class CurrencyTableItem extends React.Component {
@@ -11,6 +11,7 @@ class CurrencyTableItem extends React.Component {
         this.state = {
             logoPath: ''
         }
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
 
@@ -26,6 +27,15 @@ class CurrencyTableItem extends React.Component {
         // debugger
     }
 
+    handleOnClick() {
+        // debugger
+        let name = this.props.name.toLowerCase();
+
+        if (name == 'xrapid') { name = 'xrp' };
+
+        this.props.history.push(`/price/${name}`);
+    }
+
     render() {                      
         // const { price, changePct24HR } = this.state;         // DOESN'T WORK
         // const { price, changePct24HR } = this.props;         // DOESN'T WORK IF 
@@ -36,15 +46,15 @@ class CurrencyTableItem extends React.Component {
         let { price, changePct24HR, symbol, name } = this.props;    
         const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
         // const logoPath = `/assets/${symbol.toLowerCase()}.png`;
-        if (name == 'XRapid') name = 'xrp';
-        name = name.toLowerCase();
+        // if (name == 'XRapid') name = 'xrp';
+        // name = name.toLowerCase();
 
         return (            
-            <>
-                <tr>
+            <> 
+                <tr className="mini-table-row" onClick={this.handleOnClick}> 
                     <td>{this.props.idx + 1}</td>
                     <td>
-                        <Link to={`/price/${name}`} className="chart-mini-currency-name">
+                        <Link to={`/price/${name.toLowerCase()}`} className="chart-mini-currency-name">
                             {/* <img src={logoPath} alt={this.props.name} className="currency-logo"/> */}
                             <img src={this.state.logoPath} alt={this.props.name} className="currency-logo"/>
                             
@@ -63,7 +73,7 @@ class CurrencyTableItem extends React.Component {
     }
 }
 
-export default CurrencyTableItem;
+export default withRouter(CurrencyTableItem);
 
 
 // export default class Example extends PureComponent {

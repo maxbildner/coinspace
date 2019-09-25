@@ -32,7 +32,6 @@ const CURRENCYNAMES = {
 
 
 const mapStateToProps = (state, ownProps) => {
-	// debugger
 	const currencyName = ownProps.match.params.currencyName || {};
 	const { sym, high, site, paper } = CURRENCYNAMES[currencyName];
 
