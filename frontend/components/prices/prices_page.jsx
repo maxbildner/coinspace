@@ -86,34 +86,42 @@ class PricesPage extends React.Component {
   renderSuggestions() {
     // Const { matches } = this.state;
     const { symbolSuggestions, nameSuggestions, userInput } = this.state;
-    
-    // debugger
-    // Grab input value
-    // let inputVal = document.getElementById("search-bar").value;
+    let whatToMap, nameToMap;
+
+    // This is so we don't repeat code below
+    if (userInput === "") {
+      whatToMap = SYMBOLS;
+      nameToMap = NAMES;
+    } else {
+      whatToMap = symbolSuggestions;
+      nameToMap = nameSuggestions;
+    }
 
     // if array of matches empty
-    // if (matches.length === 0) {
-    if (userInput === "") {
-      return (
-        <ul>
-          {NAMES.map((currency, i) => {
-            return (
-              <li key={i}>
-                <span key={i + 1} className="search-ticker">{currency}</span>
-              </li>
-            );
-          })}
-        </ul>
-      );
-    } else if (symbolSuggestions.length === 0) {
+    // if user input
+    // if (userInput === "") {
+    //   return (
+    //     <ul>
+    //       {NAMES.map((currency, i) => {
+    //         return (
+    //           <li key={i}>
+    //             <span key={i + 1} className="search-ticker">{currency}</span>
+    //           </li>
+    //         );
+    //       })}
+    //     </ul>
+    //   );
+    // } else if (symbolSuggestions.length === 0) {
+
+    if (symbolSuggestions.length === 0 && userInput !== "") {
       return null;
     } else {    
       return (
         <ul>
-          {nameSuggestions.map( (currency, i) => {
+          {whatToMap.map( (currency, i) => {
             return (
             <li key={i}>
-              <span key={i+1} className="search-ticker">{currency}</span>
+                <div><span key={i + 1} className="search-ticker">{currency}</span><span className="search-name">{nameToMap[i]}</span></div>
             </li>
             );
           })}
