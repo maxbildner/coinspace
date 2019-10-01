@@ -37,7 +37,8 @@ class PricesPage extends React.Component {
     this.state = {
       // matches: []
       symbolSuggestions: [],
-      nameSuggestions: []
+      nameSuggestions: [],
+      userInput: "",
     };
 
     this.onTextChange = this.onTextChange.bind(this);
@@ -76,18 +77,35 @@ class PricesPage extends React.Component {
     this.setState({ 
       symbolSuggestions: symbolMatches,
       nameSuggestions: nameMatches,
+      userInput: value,
     });
   }
 
 
   // renderMatches() {
   renderSuggestions() {
-    // const { matches } = this.state;
-    const { symbolSuggestions, nameSuggestions } = this.state;
+    // Const { matches } = this.state;
+    const { symbolSuggestions, nameSuggestions, userInput } = this.state;
+    
+    // debugger
+    // Grab input value
+    // let inputVal = document.getElementById("search-bar").value;
 
     // if array of matches empty
     // if (matches.length === 0) {
-    if (symbolSuggestions.length === 0) {
+    if (userInput === "") {
+      return (
+        <ul>
+          {NAMES.map((currency, i) => {
+            return (
+              <li key={i}>
+                <span key={i + 1} className="search-ticker">{currency}</span>
+              </li>
+            );
+          })}
+        </ul>
+      );
+    } else if (symbolSuggestions.length === 0) {
       return null;
     } else {    
       return (
@@ -108,7 +126,7 @@ class PricesPage extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.onTextChange} type="text"/>
+        <input onChange={this.onTextChange} type="text" id="search-bar"/>
         <h2>Availble on Coinspace</h2>
         {this.renderSuggestions()}
       </div>
