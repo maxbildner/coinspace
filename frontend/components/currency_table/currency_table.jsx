@@ -61,36 +61,8 @@ class CurrencyTable extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {React.Children.toArray(children).map((child, idx) => (
-                            <Fragment key={idx}>
-                                <tr key={idx}>
-                                    <td>{idx + 1}</td>
-                                    <td>{child.name} {child.props.symbol}</td>
-                                    <td>{child.props.price}</td>
-                                    <td>{child.props.change}</td>
-                                    <td>{child.chart}</td>
-                                    <td><button>TRADE</button></td>
-                                </tr>
-                            </Fragment>
-                        ))} */}
-                        {/*  */}
-
-                       
+            
                         {this.props.currencies.map((currency, idx) => <CurrencyTableItemContainer idx={idx} {...currency}/>)}
-                       
-                        
-
-                        {/* {tableRows} */}
-
-
-                        {/* <tr>
-                            <td>0</td>
-                            <td>Bitcoin</td>
-                            <td> <CurrencyTableItemContainer symbol="BTC"/> </td>
-                            <td> <CurrencyTableItemContainer symbol="BTC"/> </td>
-                            <td> <CurrencyTableItemContainer symbol="XRP"/> </td>
-                            <td> <button>TRADE</button> </td>
-                        </tr> */}
 
                     </tbody>
                 </table>

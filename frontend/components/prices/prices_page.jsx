@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PricesRow from './prices_row';
+import { fetchCurrentPrices } from '../../util/prices_util';
+
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
 // Render matches function- returned from main component that displays input and search results
@@ -40,11 +43,41 @@ class PricesPage extends React.Component {
       symbolSuggestions: [],
       nameSuggestions: [],
       userInput: "",
+      prices: {}          // ex. { BTC:{USD: 10861}, ETH:{USD: 22.59}, ... }
     };
 
     this.onTextChange = this.onTextChange.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+
+  componentDidMount() {
+    debugger
+    // If local state doesn't have any price data, get them
+    if (this.state.prices['BTC'] === undefined) {
+
+      debugger
+
+      // Get batch current prices for all symbols- AJAX request
+      fetchCurrentPrices(...SYMBOLS).then(
+        (response) => {
+          debugger
+          return this.setState({
+            prices: response
+          });
+        }
+      );
+    }
+
+    // prices = fetchPrices('BTC', 'ETH', 'XRP');
+    // prices.responseJSON //=> 
+    // { 
+    //     BTC: { USD: 10861.65 }
+    //     ETH: { USD: 222.59 }
+    //     XRP: { USD: 0.3163 }
+    // }
+
   }
 
 
@@ -62,8 +95,6 @@ class PricesPage extends React.Component {
       let inputSymbolMatches = symbol.substr(0, value.length).toUpperCase() == value.toUpperCase();
       let inputNameMatches = name.substr(0, value.length).toUpperCase() == value.toUpperCase();
 
-      // debugger
-
       // if we have a match
       if (inputSymbolMatches || inputNameMatches) {
 
@@ -72,9 +103,7 @@ class PricesPage extends React.Component {
         nameMatches.push(name);
       }
     }
-    // debugger
 
-    // debugger
     // Alter local state with matches arrays
     this.setState({ 
       symbolSuggestions: symbolMatches,
@@ -95,7 +124,7 @@ class PricesPage extends React.Component {
   // renderMatches() {
   renderSuggestions() {
     // Const { matches } = this.state;
-    const { symbolSuggestions, nameSuggestions, userInput } = this.state;
+    const { symbolSuggestions, nameSuggestions, userInput, prices } = this.state;
     let whatToMap, nameToMap;
 
     // This is so we don't repeat code below
@@ -109,7 +138,7 @@ class PricesPage extends React.Component {
 
     // Return null if there are no search matches (suggestions) AND search input field is NOT empty
     if (symbolSuggestions.length === 0 && userInput !== "") {
-      return null;
+      return null;  // No search results found
     } else {    
       return (
         <ul className="search-ul">
@@ -123,19 +152,28 @@ class PricesPage extends React.Component {
               <span className="search-trade-header">Trade</span>
             </div>
           </li>
-          {whatToMap.map( (currency, i) => {
+          {whatToMap.map( (symbol, i) => {
+            let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
+            let price;
+
+            if (prices[symbol] === undefined) {
+              price = null;
+            } else {
+              debugger
+              price = prices[symbol]['USD'];
+            }
+
             return (
             <li key={i} className="search-li">
-                {/* <div id="search-results-container"> */}
-                <Link to={`/price/${nameToMap[i].toLowerCase()}`} className="search-li-link">
-                  <span key={i + 1} className="search-ticker">{currency}</span>
+                <Link to={`/price/${name}`} className="search-li-link">
+                  {/* <span key={i + 1} className="search-ticker">{symbol}</span>
                   <span className="search-name">{nameToMap[i]}</span>
                   <span className="search-price">Price</span>
                   <span className="search-change24">Change 24HR</span>
-                  <span className="search-marketCap">Market Cap</span>
+                  <span className="search-marketCap">Market Cap</span> */}
+                  <PricesRow key={i + 1} price={price} nameToMap={nameToMap[i]} symbol={symbol}/>
                 </Link>
                   <span className="search-trade">Trade</span>
-                {/* </div> */}
             </li>
             );
           })}
