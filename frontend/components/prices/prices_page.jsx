@@ -117,11 +117,28 @@ class PricesPage extends React.Component {
       return null;
     } else {    
       return (
-        <ul>
+        <ul className="search-ul">
+          <li className="search-li">
+            <div id="search-results-header">
+              <span className="search-ticker-header">Symbol</span>
+              <span className="search-name-header">Name</span>
+              <span className="search-price-header">Price</span>
+              <span className="search-change24-header">Change 24HR</span>
+              <span className="search-marketCap-header">Market Cap</span>
+              <span className="search-trade-header">Trade</span>
+            </div>
+          </li>
           {whatToMap.map( (currency, i) => {
             return (
-            <li key={i}>
-                <div><span key={i + 1} className="search-ticker">{currency}</span><span className="search-name">{nameToMap[i]}</span></div>
+            <li key={i} className="search-li">
+                <div id="search-results-container">
+                  <span key={i + 1} className="search-ticker">{currency}</span>
+                  <span className="search-name">{nameToMap[i]}</span>
+                  <span className="search-price">Price</span>
+                  <span className="search-change24">Change 24HR</span>
+                  <span className="search-marketCap">Market Cap</span>
+                  <span className="search-trade">Trade</span>
+                </div>
             </li>
             );
           })}
