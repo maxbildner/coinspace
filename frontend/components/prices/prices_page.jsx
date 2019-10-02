@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
 // Render matches function- returned from main component that displays input and search results
@@ -43,6 +44,7 @@ class PricesPage extends React.Component {
 
     this.onTextChange = this.onTextChange.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
 
@@ -82,6 +84,14 @@ class PricesPage extends React.Component {
   }
 
 
+  handleOnClick() {
+    // let name = this.props.name.toLowerCase();
+
+    // if (name == 'xrapid') { name = 'xrp' };
+
+    // this.props.history.push(`/price/${name}`);
+  }
+
   // renderMatches() {
   renderSuggestions() {
     // Const { matches } = this.state;
@@ -97,28 +107,13 @@ class PricesPage extends React.Component {
       nameToMap = nameSuggestions;
     }
 
-    // if array of matches empty
-    // if user input
-    // if (userInput === "") {
-    //   return (
-    //     <ul>
-    //       {NAMES.map((currency, i) => {
-    //         return (
-    //           <li key={i}>
-    //             <span key={i + 1} className="search-ticker">{currency}</span>
-    //           </li>
-    //         );
-    //       })}
-    //     </ul>
-    //   );
-    // } else if (symbolSuggestions.length === 0) {
-
+    // Return null if there are no search matches (suggestions) AND search input field is NOT empty
     if (symbolSuggestions.length === 0 && userInput !== "") {
       return null;
     } else {    
       return (
         <ul className="search-ul">
-          <li className="search-li">
+          <li className="search-li-header">
             <div id="search-results-header">
               <span className="search-ticker-header">Symbol</span>
               <span className="search-name-header">Name</span>
@@ -131,14 +126,16 @@ class PricesPage extends React.Component {
           {whatToMap.map( (currency, i) => {
             return (
             <li key={i} className="search-li">
-                <div id="search-results-container">
+                {/* <div id="search-results-container"> */}
+                <Link to={`/price/${nameToMap[i].toLowerCase()}`} className="search-li-link">
                   <span key={i + 1} className="search-ticker">{currency}</span>
                   <span className="search-name">{nameToMap[i]}</span>
                   <span className="search-price">Price</span>
                   <span className="search-change24">Change 24HR</span>
                   <span className="search-marketCap">Market Cap</span>
+                </Link>
                   <span className="search-trade">Trade</span>
-                </div>
+                {/* </div> */}
             </li>
             );
           })}

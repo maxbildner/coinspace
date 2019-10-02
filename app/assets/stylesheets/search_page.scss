@@ -2,10 +2,6 @@
   color: white;
 }
 
-#search-results-container {
-  // background: grey;
-}
-
 .search-ul {
   list-style-type: none;
   background: grey;
@@ -41,8 +37,13 @@
     width: 90px;
     display: inline-block;
   } 
-    
+  
+  .search-li:hover {
+    background: darkgrey;
+  }
 }
+
+
 
 // <ul className="search-ul">
 //           <li className="search-li">
@@ -55,20 +56,19 @@
 //               <span className="search-trade-header">Trade</span>
 //             </div>
 //           </li>
-
-
-// <ul className="search-ul">
 //           {whatToMap.map( (currency, i) => {
 //             return (
 //             <li key={i} className="search-li">
-//                 <div id="search-results-container">
+//                 {/* <div id="search-results-container"> */}
+//                 <Link to={`/price/${currency.toLowerCase()}`} className="search-li-link">
 //                   <span key={i + 1} className="search-ticker">{currency}</span>
 //                   <span className="search-name">{nameToMap[i]}</span>
 //                   <span className="search-price">Price</span>
 //                   <span className="search-change24">Change 24HR</span>
 //                   <span className="search-marketCap">Market Cap</span>
+//                 </Link>
 //                   <span className="search-trade">Trade</span>
-//                 </div>
+//                 {/* </div> */}
 //             </li>
 //             );
 //           })}

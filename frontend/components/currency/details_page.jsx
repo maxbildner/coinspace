@@ -33,7 +33,9 @@ const CURRENCYNAMES = {
 
 const mapStateToProps = (state, ownProps) => {
 	const currencyName = ownProps.match.params.currencyName || {};
+	// debugger
 	const { sym, high, site, paper } = CURRENCYNAMES[currencyName];
+	// coming from price search page, currencyName = "btc"
 
 	return ({
 		currencyName,
