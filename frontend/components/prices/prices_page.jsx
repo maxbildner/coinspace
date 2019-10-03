@@ -170,6 +170,7 @@ class PricesPage extends React.Component {
               percentChange = rowData[symbol]['CHANGEPCT24HOUR'];
               marketCap = rowData[symbol]['MKTCAP'];
             }
+            if (name == 'xrapid') name = 'xrp';
 
             return (
             <li key={i} className="search-li">
@@ -183,7 +184,7 @@ class PricesPage extends React.Component {
                     symbol={symbol}
                   />
                 </Link>
-                  <span className="search-trade">Trade</span>
+                <span className="search-trade"><button className="currency-trade">TRADE</button></span>
             </li>
             );
           })}
