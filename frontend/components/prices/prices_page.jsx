@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PricesRow from './prices_row';
-import { fetchCurrentPrices } from '../../util/prices_util';
+import { fetchCurrencyInfo } from '../../util/prices_util';
 
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
@@ -43,41 +43,51 @@ class PricesPage extends React.Component {
       symbolSuggestions: [],
       nameSuggestions: [],
       userInput: "",
-      prices: {}          // ex. { BTC:{USD: 10861}, ETH:{USD: 22.59}, ... }
+      rowData: {},               // ex. { BTC: { PRICE:10861, CHANGEPCT24HOUR:4%, MKTCAP:2.5B}, ETH: {...}... }
     };
 
     this.onTextChange = this.onTextChange.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
 
+
   componentDidMount() {
-    debugger
-    // If local state doesn't have any price data, get them
-    if (this.state.prices['BTC'] === undefined) {
+    // If local state doesn't have any row data, get the data for all currencies
+    if (Object.keys(this.state.rowData).length === 0) {
+      
+      // Get batch data (price, %change, marketcap) for all currencies
+      fetchCurrencyInfo(SYMBOLS).then(
+        response => {
+          let newRowData = {};
+          // Loop through all symbols array, and populate newRowData object with price, %change, marketcap for each currency
+          for (let i = 0; i < SYMBOLS.length; i++) {
+            let symbol = SYMBOLS[i];
+            newRowData[symbol] = {};
+            newRowData[symbol]['PRICE'] = response.DISPLAY[symbol].USD.PRICE;
+            newRowData[symbol]['CHANGEPCT24HOUR'] = response.DISPLAY[symbol].USD.CHANGEPCTDAY;
+            newRowData[symbol]['MKTCAP'] = response.DISPLAY[symbol].USD.MKTCAP;
+          }
 
-      debugger
-
-      // Get batch current prices for all symbols- AJAX request
-      fetchCurrentPrices(...SYMBOLS).then(
-        (response) => {
-          debugger
+          // Set state of each currency's PRICE, CHANGEPCT24HOUR, MKTCAP
           return this.setState({
-            prices: response
+            rowData: newRowData // MIGHT NEED TO COPY OTHER STATE KEY/VAL ITEMS!!!!!?????
           });
+
+          //   response == 
+          //   { 
+          //     RAW: {
+          //     },
+          //     DISPLAY: {
+          //       BTC: { USD: { ...} },
+          //       BTH: { USD: { ...} },
+          //       ETH: { USD: { ...} }
+          //     }
+          //   }
+          // response.DISPLAY.BTC.USD == {CHANGE24HOUR: , CHANGEDAY:, ...}
         }
       );
     }
-
-    // prices = fetchPrices('BTC', 'ETH', 'XRP');
-    // prices.responseJSON //=> 
-    // { 
-    //     BTC: { USD: 10861.65 }
-    //     ETH: { USD: 222.59 }
-    //     XRP: { USD: 0.3163 }
-    // }
-
   }
 
 
@@ -113,18 +123,11 @@ class PricesPage extends React.Component {
   }
 
 
-  handleOnClick() {
-    // let name = this.props.name.toLowerCase();
-
-    // if (name == 'xrapid') { name = 'xrp' };
-
-    // this.props.history.push(`/price/${name}`);
-  }
 
   // renderMatches() {
   renderSuggestions() {
     // Const { matches } = this.state;
-    const { symbolSuggestions, nameSuggestions, userInput, prices } = this.state;
+    const { symbolSuggestions, nameSuggestions, userInput, rowData } = this.state;
     let whatToMap, nameToMap;
 
     // This is so we don't repeat code below
@@ -154,24 +157,31 @@ class PricesPage extends React.Component {
           </li>
           {whatToMap.map( (symbol, i) => {
             let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
-            let price;
+            let price, percentChange, marketCap;
 
-            if (prices[symbol] === undefined) {
+            // On initial page load, local state will be empty, so return null
+            if (rowData[symbol] === undefined) {
               price = null;
+              percentChange = null;
+              marketCap = null;
             } else {
-              debugger
-              price = prices[symbol]['USD'];
+              // set price, %change, and mktcap for each currency so we can pass as props to subcomponent row
+              price = rowData[symbol]['PRICE'];
+              percentChange = rowData[symbol]['CHANGEPCT24HOUR'];
+              marketCap = rowData[symbol]['MKTCAP'];
             }
 
             return (
             <li key={i} className="search-li">
                 <Link to={`/price/${name}`} className="search-li-link">
-                  {/* <span key={i + 1} className="search-ticker">{symbol}</span>
-                  <span className="search-name">{nameToMap[i]}</span>
-                  <span className="search-price">Price</span>
-                  <span className="search-change24">Change 24HR</span>
-                  <span className="search-marketCap">Market Cap</span> */}
-                  <PricesRow key={i + 1} price={price} nameToMap={nameToMap[i]} symbol={symbol}/>
+                  <PricesRow 
+                    key={i + 1} 
+                    price={price} 
+                    percentChange={percentChange}
+                    marketCap={marketCap}
+                    nameToMap={nameToMap[i]} 
+                    symbol={symbol}
+                  />
                 </Link>
                   <span className="search-trade">Trade</span>
             </li>
