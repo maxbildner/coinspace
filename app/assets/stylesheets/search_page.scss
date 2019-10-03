@@ -14,7 +14,7 @@
   }
 
   .search-name, .search-name-header {
-    width: 90px;
+    width: 120px;
     display: inline-block;
   }
 
@@ -23,10 +23,18 @@
     display: inline-block;
   }    
 
-  .search-change24, .search-change24-header {
-    width: 120px;
+  .search-change24-negative, .search-change24-positive, .search-change24-header {
+    width: 100px;
     display: inline-block;
   } 
+
+  .search-change24-negative {
+    color: red;
+  }
+
+  .search-change24-positive {
+    color: green;
+  }
 
   .search-marketCap, .search-marketCap-header {
     width: 90px;
@@ -42,6 +50,14 @@
     background: darkgrey;
   }
 }
+
+
+button.currency-trade-prices {
+  margin: 0;
+  padding: 0 .8rem;
+  border-radius: 3px;
+}
+
 
 
 
@@ -73,3 +89,4 @@
 //             );
 //           })}
 //         </ul>
+

@@ -2,40 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PricesRow from './prices_row';
 import { fetchCurrencyInfo } from '../../util/prices_util';
-
+import { SYMBOLS, NAMES } from './currencies';
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
 // Render matches function- returned from main component that displays input and search results
 // onTextChange function- 1) searches for all matches, and 2) changes matches results state -> 
 
-const SYMBOLS = [
-  'BTC',
-  'ETH',
-  'XRP',
-  'BCH',
-  'LTC'
-];
-
-const NAMES = [
-  'bitcoin',
-  'ethereum',
-  'xrapid',
-  'bitcoin cash',
-  'lite coin'
-];
 
 class PricesPage extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.items = [ ];
-    // this.currencyTickers = [
-    //   'BTC',
-    //   'ETH',
-    //   'XRP',
-    //   'BCH',
-    //   'LTC'
-    // ];
 
     // Matches array of string symbols
     this.state = {
@@ -65,7 +41,7 @@ class PricesPage extends React.Component {
             let symbol = SYMBOLS[i];
             newRowData[symbol] = {};
             newRowData[symbol]['PRICE'] = response.DISPLAY[symbol].USD.PRICE;
-            newRowData[symbol]['CHANGEPCT24HOUR'] = response.DISPLAY[symbol].USD.CHANGEPCTDAY;
+            newRowData[symbol]['CHANGEPCT24HOUR'] = response.DISPLAY[symbol].USD.CHANGEPCTDAY + '%';
             newRowData[symbol]['MKTCAP'] = response.DISPLAY[symbol].USD.MKTCAP;
           }
 
@@ -184,7 +160,7 @@ class PricesPage extends React.Component {
                     symbol={symbol}
                   />
                 </Link>
-                <span className="search-trade"><button className="currency-trade">TRADE</button></span>
+                <span className="search-trade"><button className="currency-trade-prices">TRADE</button></span>
             </li>
             );
           })}
