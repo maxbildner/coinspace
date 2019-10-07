@@ -24,10 +24,10 @@ const CURRENCYNAMES = {
 	chainlink: { sym: 'LINK', high: 4.54, site: 'https://chain.link/', paper: 'https://link.smartcontract.com/whitepaper' },
 	dash: { sym: 'DASH', high: 4.54, site: 'https://www.dash.org/', paper: 'https://github.com/dashpay/dash/wiki/Whitepaper' },
 	tezos: { sym: 'XTZ', high: 12.19, site: 'https://www.tezos.com/', paper: 'https://tezos.com/static/papers/position_paper.pdf' },
-	"ethereum-classic": { sym: 'ETC', high: 47.77, site: 'https://ethereumclassic.org/', paper: 'https://ethereumclassic.github.io/assets/etc-thesis.pdf' },
-	'usd-coin': { sym: 'USDC', high: 1, site: 'https://www.coinbase.com/usdc/', paper: 'https://www.centre.io/pdfs/centre-whitepaper.pdf' },
+	"ethereumclassic": { sym: 'ETC', high: 47.77, site: 'https://ethereumclassic.org/', paper: 'https://ethereumclassic.github.io/assets/etc-thesis.pdf' },
+	'usdcoin': { sym: 'USDC', high: 1, site: 'https://www.coinbase.com/usdc/', paper: 'https://www.centre.io/pdfs/centre-whitepaper.pdf' },
 	'zcash': { sym: 'ZEC', high: 124.3, site: 'https://z.cash/', paper: 'https://raw.githubusercontent.com/zcash/zips/master/protocol/protocol.pdf' },
-	'basic-attention-token': { sym: 'BAT', high: 0.88, site: 'https://basicattentiontoken.org/', paper: 'https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf' },
+	'basicattentiontoken': { sym: 'BAT', high: 0.88, site: 'https://basicattentiontoken.org/', paper: 'https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf' },
 	'ox': { sym: 'ZRX', high: 2.53, site: 'https://0x.org/', paper: 'https://0x.org/pdfs/0x_white_paper.pdf' },
 	'augur': { sym: 'REP', high: 123.24, site: 'http://www.augur.net/', paper: 'https://www.augur.net/whitepaper.pdf' },
 	'dai': { sym: 'DAI', high: 2.57, site: 'https://www.makerdao.com/', paper: 'https://makerdao.com/whitepaper/' },
@@ -159,7 +159,8 @@ class DetailsPage extends React.Component {
 			(response) => {
 				// debugger
 				return this.setState({
-					currentPrice: response.RAW.PRICE
+					// currentPrice: response.RAW.PRICE			// old for API that gets average price from multiple exchanges
+					currentPrice: response.USD					
 				});
 			}
 		);
