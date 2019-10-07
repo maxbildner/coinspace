@@ -34,7 +34,7 @@ export const NAMES = [
   'USD Coin',
   'Zcash',
   'Basic Attention Token',
-  'Ox',
+  '0x',
   'Augur',
   'Dai'
 ];

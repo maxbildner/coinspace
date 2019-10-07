@@ -132,8 +132,10 @@ class PricesPage extends React.Component {
             </div>
           </li>
           {whatToMap.map( (symbol, i) => {
-            let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
+            // let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
+            let name = nameToMap[i].toLowerCase().split(' ').join('-');      // remove space in string (if any)
             let price, percentChange, marketCap;
+            // debugger
 
             // On initial page load, local state will be empty, so return null
             if (rowData[symbol] === undefined) {
