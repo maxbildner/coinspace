@@ -7,10 +7,12 @@ export const RECEIVE_24HR_PRICES = 'RECEIVE_24HR_PRICES';
 // THUNK ACTION CREATORS
 export const fetchCurrentPrice = (symbol) => {                      // symbol ex. 'BTC'
     return (dispatch) => {
-        return CryptoCompare.fetchCurrentPrice(symbol).then(
-            (response) => {            
-                let resp = dispatch(receiveCurrentPrice(response));
+        // return CryptoCompare.fetchCurrentPrice(symbol).then(
+        return CryptoCompare.fetchCurrentPriceWithExtraInfo(symbol).then(
+            (response) => {       
+
                 // debugger
+                let resp = dispatch(receiveCurrentPrice(response));
 
                 return resp;
             },
@@ -35,11 +37,12 @@ const receiveCurrentPrice = (data) => {
     //     }
     // }
 
-
+    // debugger
     return {        // CORECT BELOW
         type: RECEIVE_PRICE,
         payload: { 
-            price: data.RAW.PRICE, 
+            price: data.RAW.PRICE,                       // OLD API ENDPOINT (gets a bunch of data)
+            // price: data.USD,                          // NEW (current price only)
             changePct24HR: data.RAW.CHANGEPCT24HOUR, 
             symbol: data.RAW.FROMSYMBOL 
         }
