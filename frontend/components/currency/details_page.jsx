@@ -16,7 +16,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from '
 const CURRENCYNAMES = {
 	bitcoin: { sym: 'BTC', high: 20089, site: 'https://bitcoin.org/en/', paper: 'https://bitcoin.org/bitcoin.pdf' },
 	ethereum: { sym: "ETH", high: 1432.88, site: 'https://ethereum.org/', paper: 'https://github.com/ethereum/wiki/wiki/White-Paper' },
-	bitcoincash: { sym: 'BCH', high: 4355.62, site: 'https://www.bitcoincash.org/', paper: 'https://www.bitcoincash.org/bitcoin.pdf' },
+	"bitcoin-cash": { sym: 'BCH', high: 4355.62, site: 'https://www.bitcoincash.org/', paper: 'https://www.bitcoincash.org/bitcoin.pdf' },
 	litecoin: { sym: 'LTC', high: 375.29, site: 'https://litecoin.org/', paper: 'https://github.com/litecoin-project/litecoin/blob/master/README.md'  },
 	xrp: { sym: 'XRP', high: 3.84, site: 'https://ripple.com/xrp/', paper: 'https://ripple.com/files/ripple_consensus_whitepaper.pdf' },
 	eos: { sym: 'EOS', high: 22.89, site: 'https://eos.io/', paper: 'https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md' },
