@@ -19,15 +19,26 @@ const CURRENCYNAMES = {
 	bitcoincash: { sym: 'BCH', high: 4355.62, site: 'https://www.bitcoincash.org/', paper: 'https://www.bitcoincash.org/bitcoin.pdf' },
 	litecoin: { sym: 'LTC', high: 375.29, site: 'https://litecoin.org/', paper: 'https://github.com/litecoin-project/litecoin/blob/master/README.md'  },
 	xrp: { sym: 'XRP', high: 3.84, site: 'https://ripple.com/xrp/', paper: 'https://ripple.com/files/ripple_consensus_whitepaper.pdf' },
-	eos: 'EOS',
-	stellar: 'XLM',
-	chainlink: 'LINK',
-	"ethereum-classic": 'ETC',
-	zcash: 'ZEC',
-	usdcoin: 'USDC',
-	tron: 'TRX',
-	monero: 'XMR',
-	cardano: 'ADA',
+	eos: { sym: 'EOS', high: 22.89, site: 'https://eos.io/', paper: 'https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md' },
+	stellar: { sym: 'XLM', high: .94, site: 'https://www.stellar.org/', paper: 'https://www.stellar.org/papers/stellar-consensus-protocol.pdf' },
+	chainlink: { sym: 'LINK', high: 4.54, site: 'https://chain.link/', paper: 'https://link.smartcontract.com/whitepaper' },
+	dash: { sym: 'DASH', high: 4.54, site: 'https://www.dash.org/', paper: 'https://github.com/dashpay/dash/wiki/Whitepaper' },
+	tezos: { sym: 'XTZ', high: 12.19, site: 'https://www.tezos.com/', paper: 'https://tezos.com/static/papers/position_paper.pdf' },
+	"ethereum-classic": { sym: 'ETC', high: 47.77, site: 'https://ethereumclassic.org/', paper: 'https://ethereumclassic.github.io/assets/etc-thesis.pdf' },
+	'usd-coin': { sym: 'USDC', high: 1, site: 'https://www.coinbase.com/usdc/', paper: 'https://www.centre.io/pdfs/centre-whitepaper.pdf' },
+	'zcash': { sym: 'ZEC', high: 124.3, site: 'https://z.cash/', paper: 'https://raw.githubusercontent.com/zcash/zips/master/protocol/protocol.pdf' },
+	'basic-attention-token': { sym: 'BAT', high: 0.88, site: 'https://basicattentiontoken.org/', paper: 'https://basicattentiontoken.org/BasicAttentionTokenWhitePaper-4.pdf' },
+	'ox': { sym: 'ZRX', high: 2.53, site: 'https://0x.org/', paper: 'https://0x.org/pdfs/0x_white_paper.pdf' },
+	'augur': { sym: 'REP', high: 123.24, site: 'http://www.augur.net/', paper: 'https://www.augur.net/whitepaper.pdf' },
+	'dai': { sym: 'DAI', high: 2.57, site: 'https://www.makerdao.com/', paper: 'https://makerdao.com/whitepaper/' },
+	'tether': { sym: 'USDT', high: 1.22, site: 'https://tether.to/', paper: 'https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf' },
+	'binance-coin': { sym: 'BNB', high: 39.57, site: 'https://www.binance.com/', paper: 'https://www.binance.com/resources/ico/Binance_WhitePaper_en.pdf' },
+	'bitcoin-sv': { sym: 'BSV', high: 255.88, site: 'https://bitcoinsv.io/', paper: 'https://bitcoinsv.io/bitcoin.pdf' },
+	'tron': { sym: 'TRX', high: 0.3, site: 'https://tron.network/', paper: 'https://tron.network/static/doc/white_paper_v_2_0.pdf' },
+	'cardano': { sym: 'ADA', high: 0.11, site: 'https://www.cardano.org/', paper: 'https://www.cardano.org/en/academic-papers/' },
+	'monero': { sym: 'XMR', high: 495.84, site: 'https://getmonero.org/', paper: 'https://getmonero.org/resources/research-lab/' },
+	'unus-sed-leo': { sym: 'LEO', high: 2, site: 'https://leo.bitfinex.com/', paper: 'https://www.bitfinex.com/wp-2019-05.pdf' },
+	'iota': { sym: 'MIOTA', high: 0.56, site: 'https://www.iota.org/', paper: 'http://iotatoken.com/IOTA_Whitepaper.pdf' },
 }
 
 
@@ -143,6 +154,7 @@ class DetailsPage extends React.Component {
 	}
 
 	getCurrentPrice(symbol) {
+		// debugger
 		fetchCurrentPrice(symbol).then(
 			(response) => {
 				// debugger

@@ -6,10 +6,10 @@ export const SYMBOLS = [
   'BCH',
   'LTC',
   'EOS',
-  'XLM',
   'LINK',
-  'DASH',
+  'XLM',
   'XTZ',
+  'DASH',
   'ETC',
   'USDC',
   'ZEC',
@@ -20,16 +20,16 @@ export const SYMBOLS = [
 ];
 
 export const NAMES = [
-  'bitcoin',
-  'ethereum',
-  'xrapid',
-  'bitcoin cash',
-  'lite coin',
+  'Bitcoin',
+  'Ethereum',
+  'Xrapid',
+  'Bitcoin Cash',
+  'Litecoin',
   'EOS',
-  'Stellar Lumens',
   'Chainlink',
-  'Dash',
+  'Stellar Lumens',
   'Tezos',
+  'Dash',
   'Ethereum Classic',
   'USD Coin',
   'Zcash',
@@ -37,4 +37,49 @@ export const NAMES = [
   'Ox',
   'Augur',
   'Dai'
+];
+
+
+
+// NON TRADABLE COINS ON COINBASE
+export const SYMBOLS2 = [
+  'USDT',
+  'BNB',
+  'BSV',
+  'LEO',
+  'ADA',
+  'XMR',
+  'TRX',
+  'HT',
+  'MIOTA',
+  'NEO',
+  'ATOM',
+  'MEXC',
+  'MKR',
+  'XEM',
+  'CRO',
+  'INO',
+  'ONT',
+  'DOGE'
+];
+
+export const NAMES2 =  [
+  'Tether',
+  'Binance Coin',
+  'Bitcoin SV',
+  'UNUS SED LEO',
+  'Cardano',
+  'Monero',
+  'TRON',
+  'Huobi Token',
+  'IOTA',
+  'NEO',
+  'Cosmos',
+  'MEXC TOken',
+  'Maker',
+  'NEM',
+  'Crypto.com Chain',
+  'INO COIN',
+  'Ontology',
+  'Dogecoin'
 ];

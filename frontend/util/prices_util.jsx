@@ -31,7 +31,8 @@ export const fetchCurrentPrices = (...symbols) => {        // takes in comma sep
 export const fetchCurrentPrice = (symbol) => {
     return $.ajax({
         method: "GET",
-        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`        // API key DELETED for push to heroku
+        // url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`        // API key DELETED for push to heroku
+        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`        // API key DELETED for push to heroku
     }); 
 }
 // response = fetchCurrentPrice('BTC');
@@ -117,7 +118,7 @@ export const fetchCurrencyNews = (symbol) => {
 
 //******************************************************************************
 //* CURRENCY SHOW DETAIL/SEARCH PAGE
-// GET 24HR VOL, SUPPLY, MKTCAP FOR MULTIPLE CURRENCIES
+// GET 24HR VOL, SUPPLY, MKTCAP,... FOR MULTIPLE CURRENCIES
 export const fetchCurrencyInfo = (...symbols) => {   // 360 days, daily prices
     return $.ajax({
         method: 'GET',

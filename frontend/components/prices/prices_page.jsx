@@ -81,10 +81,10 @@ class PricesPage extends React.Component {
       let inputSymbolMatches = symbol.substr(0, value.length).toUpperCase() == value.toUpperCase();
       let inputNameMatches = name.substr(0, value.length).toUpperCase() == value.toUpperCase();
 
-      // if we have a match
+      // If we have a match
       if (inputSymbolMatches || inputNameMatches) {
 
-        // add symbol and name to arrays
+        // Add symbol and name to arrays
         symbolMatches.push(symbol);
         nameMatches.push(name);
       }
@@ -173,9 +173,10 @@ class PricesPage extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.onTextChange} type="text" id="search-bar"/>
+        <input onChange={this.onTextChange} type="text" id="search-bar" placeholder="Search all assets..."/>
         <h2>Availble on Coinspace</h2>
         {this.renderSuggestions()}
+        {/* <h2>Not Availble on Coinspace</h2> */}
       </div>
     );
   }
