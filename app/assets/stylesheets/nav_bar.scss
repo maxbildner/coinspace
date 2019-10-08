@@ -1,25 +1,17 @@
 div#nav-container {
-    // padding: 13px;
     padding: 13px 0px;
-    // margin: 0px 20px;
     background: black;
-
-    // position: fixed;
-    // z-index: 5;
-    // left: 0;
-    // top: 0;
-    // right: 0;
 }
 
 a#nav-logo {
     height: fit-content;
-    margin: auto 1rem auto 7rem;           // top right bottom left
+    margin: auto 1rem auto 7rem;           
     img {
         width: 9rem;
     }
 }
 
-#nav-container {            // ? why have div#navcontainer AND this?
+#nav-container {           
     display: flex;
 }
 

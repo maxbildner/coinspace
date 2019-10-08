@@ -18,31 +18,26 @@
   width: 100%;
 
   .search-logo, .search-logo-header {
-    // width: 70px;
     width: 10%;
     display: inline-block;
   }
 
   .search-ticker, .search-ticker-header {
-    // width: 70px;
     width: 15%;
     display: inline-block;
   }
 
   .search-name, .search-name-header {
-    // width: 120px;
     width: 20%;
     display: inline-block;
   }
 
   .search-price, .search-price-header {
-    // width: 90px;
     width: 15%;
     display: inline-block;
   }    
 
   .search-change24-negative, .search-change24-positive, .search-change24-header {
-    // width: 100px;
     width: 15%;
     display: inline-block;
   } 
@@ -56,13 +51,11 @@
   }
 
   .search-marketCap, .search-marketCap-header {
-    // width: 90px;
     width: 15%;
     display: inline-block;
   } 
 
   .search-trade, .search-trade-header {
-    // width: 90px;
     width: 10%;
     display: inline-block;
   } 
@@ -90,34 +83,4 @@ img.search-currency-logo {
   width: 3rem;
 }
 
-
-
-// <ul className="search-ul">
-//           <li className="search-li">
-//             <div id="search-results-header">
-//               <span className="search-ticker-header">Symbol</span>
-//               <span className="search-name-header">Name</span>
-//               <span className="search-price-header">Price</span>
-//               <span className="search-change24-header">Change 24HR</span>
-//               <span className="search-marketCap-header">Market Cap</span>
-//               <span className="search-trade-header">Trade</span>
-//             </div>
-//           </li>
-//           {whatToMap.map( (currency, i) => {
-//             return (
-//             <li key={i} className="search-li">
-//                 {/* <div id="search-results-container"> */}
-//                 <Link to={`/price/${currency.toLowerCase()}`} className="search-li-link">
-//                   <span key={i + 1} className="search-ticker">{currency}</span>
-//                   <span className="search-name">{nameToMap[i]}</span>
-//                   <span className="search-price">Price</span>
-//                   <span className="search-change24">Change 24HR</span>
-//                   <span className="search-marketCap">Market Cap</span>
-//                 </Link>
-//                   <span className="search-trade">Trade</span>
-//                 {/* </div> */}
-//             </li>
-//             );
-//           })}
-//         </ul>
 
