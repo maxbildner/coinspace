@@ -12,7 +12,7 @@
 #
 
 class WalletTransaction < ApplicationRecord
-    validates :wallet_id
+    validates :wallet_id,  presence: true
 
     belongs_to :wallet,
         foreign_key: :wallet_id,

@@ -12,7 +12,7 @@
 #
 
 class Wallet < ApplicationRecord
-    validates :wallet_address, :currency_id, :user_id
+    validates :wallet_address, :currency_id, :user_id,  presence: true
 
     belongs_to :currency,
         foreign_key: :currency_id,
