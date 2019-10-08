@@ -198,7 +198,7 @@ class PricesPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="search-container">
         <input onChange={this.onTextChange} type="text" id="search-bar" placeholder="Search all assets..."/>
         <h2>Availble on Coinspace</h2>
         {this.renderSuggestions()}
