@@ -8,6 +8,11 @@
   color: white;
   display: inline-block;
 
+  .search-logo, .search-logo-header {
+    width: 70px;
+    display: inline-block;
+  }
+
   .search-ticker, .search-ticker-header {
     width: 70px;
     display: inline-block;
@@ -58,6 +63,10 @@ button.currency-trade-prices {
   border-radius: 3px;
 }
 
+
+img.search-currency-logo {
+  width: 3rem;
+}
 
 
 

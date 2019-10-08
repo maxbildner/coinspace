@@ -19,6 +19,7 @@ class CurrencyTableItem extends React.Component {
         this.props.fetchCurrentPrice(this.props.symbol);
         fetchDescription(this.props.symbol).then(
             (response) => {
+                
                 return this.setState({
                     logoPath: response.imageurl
                 })

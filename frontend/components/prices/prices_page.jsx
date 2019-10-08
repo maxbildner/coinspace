@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PricesRow from './prices_row';
 import { fetchCurrencyInfo } from '../../util/prices_util';
 import { SYMBOLS, NAMES } from './currencies';
+// import { fetchDescription } from '../../util/currency_api_util';    // For currency logos
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
 // Render matches function- returned from main component that displays input and search results
@@ -36,6 +37,7 @@ class PricesPage extends React.Component {
       fetchCurrencyInfo(SYMBOLS).then(
         response => {
           let newRowData = {};
+
           // Loop through all symbols array, and populate newRowData object with price, %change, marketcap for each currency
           for (let i = 0; i < SYMBOLS.length; i++) {
             let symbol = SYMBOLS[i];
@@ -43,6 +45,8 @@ class PricesPage extends React.Component {
             newRowData[symbol]['PRICE'] = response.DISPLAY[symbol].USD.PRICE;
             newRowData[symbol]['CHANGEPCT24HOUR'] = response.DISPLAY[symbol].USD.CHANGEPCTDAY + '%';
             newRowData[symbol]['MKTCAP'] = response.DISPLAY[symbol].USD.MKTCAP;
+            newRowData[symbol]['IMAGEURL'] = response.DISPLAY[symbol].USD.IMAGEURL;
+            // debugger
           }
 
           // Set state of each currency's PRICE, CHANGEPCT24HOUR, MKTCAP
@@ -65,6 +69,22 @@ class PricesPage extends React.Component {
       );
     }
   }
+
+  // FROM currency table item
+  // componentDidMount() {
+  //   this.props.fetchCurrentPrice(this.props.symbol);
+  //   fetchDescription(this.props.symbol).then(
+  //     (response) => {
+
+  //       return this.setState({
+  //         logoPath: response.imageurl
+  //       })
+  //     }
+  //   );
+  //   // debugger
+  // }
+
+
 
 
   onTextChange(e) {
@@ -123,8 +143,9 @@ class PricesPage extends React.Component {
         <ul className="search-ul">
           <li className="search-li-header">
             <div id="search-results-header">
-              <span className="search-ticker-header">Symbol</span>
+              <span className="search-logo-header"></span>
               <span className="search-name-header">Name</span>
+              <span className="search-ticker-header">Symbol</span>
               <span className="search-price-header">Price</span>
               <span className="search-change24-header">Change 24HR</span>
               <span className="search-marketCap-header">Market Cap</span>
@@ -134,7 +155,7 @@ class PricesPage extends React.Component {
           {whatToMap.map( (symbol, i) => {
             // let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
             let name = nameToMap[i].toLowerCase().split(' ').join('-');      // remove space in string (if any)
-            let price, percentChange, marketCap;
+            let price, percentChange, marketCap, logoPath;
             // debugger
 
             // On initial page load, local state will be empty, so return null
@@ -142,11 +163,13 @@ class PricesPage extends React.Component {
               price = null;
               percentChange = null;
               marketCap = null;
+              logoPath = null;
             } else {
-              // set price, %change, and mktcap for each currency so we can pass as props to subcomponent row
+              // Access local state and Set price, %change, and mktcap for each currency so we can pass as props to subcomponent row
               price = rowData[symbol]['PRICE'];
               percentChange = rowData[symbol]['CHANGEPCT24HOUR'];
               marketCap = rowData[symbol]['MKTCAP'];
+              logoPath = rowData[symbol]['IMAGEURL'];
             }
             if (name == 'xrapid') name = 'xrp';
 
@@ -160,6 +183,7 @@ class PricesPage extends React.Component {
                     marketCap={marketCap}
                     nameToMap={nameToMap[i]} 
                     symbol={symbol}
+                    logoPath={logoPath}
                   />
                 </Link>
                 <span className="search-trade"><button className="currency-trade-prices">TRADE</button></span>
