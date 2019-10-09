@@ -15,16 +15,28 @@ class PricesRow extends React.Component {
       isNegative = 'search-change24-positive';
     }
 
+    // return(
+    //   <>
+    //     <span className="search-logo">
+    //       <img src={'https://www.cryptocompare.com' + logoPath} alt={nameToMap} className="search-currency-logo"/>
+    //     </span>
+    //     <span className="search-name">{nameToMap}</span>
+    //     <span className="search-ticker">{symbol}</span>
+    //     <span className="search-price">{price}</span>
+    //     <span className={isNegative}>{percentChange}</span>
+    //     <span className="search-marketCap">{marketCap}</span>
+    //   </>
+    // );
     return(
       <>
-        <span className="search-logo">
+        <td className="search-logo">
           <img src={'https://www.cryptocompare.com' + logoPath} alt={nameToMap} className="search-currency-logo"/>
-        </span>
-        <span className="search-name">{nameToMap}</span>
-        <span className="search-ticker">{symbol}</span>
-        <span className="search-price">{price}</span>
-        <span className={isNegative}>{percentChange}</span>
-        <span className="search-marketCap">{marketCap}</span>
+        </td>
+        <td className="search-name">{nameToMap}</td>
+        <td className="search-ticker">{symbol}</td>
+        <td className="search-price">{price}</td>
+        <td className={isNegative}>{percentChange}</td>
+        <td className="search-marketCap">{marketCap}</td>
       </>
     );
   }

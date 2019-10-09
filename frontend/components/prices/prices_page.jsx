@@ -120,7 +120,83 @@ class PricesPage extends React.Component {
 
 
 
+
+
   // renderMatches() {
+  // renderSuggestions() {
+  //   // Const { matches } = this.state;
+  //   const { symbolSuggestions, nameSuggestions, userInput, rowData } = this.state;
+  //   let whatToMap, nameToMap;
+
+  //   // This is so we don't repeat code below
+  //   if (userInput === "") {
+  //     whatToMap = SYMBOLS;
+  //     nameToMap = NAMES;
+  //   } else {
+  //     whatToMap = symbolSuggestions;
+  //     nameToMap = nameSuggestions;
+  //   }
+
+  //   // Return null if there are no search matches (suggestions) AND search input field is NOT empty
+  //   if (symbolSuggestions.length === 0 && userInput !== "") {
+  //     return null;  // No search results found
+  //   } else {    
+  //     return (
+  //       <ul className="search-ul">
+  //         <li className="search-li-header">
+  //           <div id="search-results-header">
+  //             <span className="search-logo-header"></span>
+  //             <span className="search-name-header">Name</span>
+  //             <span className="search-ticker-header">Symbol</span>
+  //             <span className="search-price-header">Price</span>
+  //             <span className="search-change24-header">Change 24HR</span>
+  //             <span className="search-marketCap-header">Market Cap</span>
+  //             <span className="search-trade-header">Trade</span>
+  //           </div>
+  //         </li>
+  //         {whatToMap.map( (symbol, i) => {
+  //           // let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
+  //           let name = nameToMap[i].toLowerCase().split(' ').join('-');      // remove space in string (if any)
+  //           let price, percentChange, marketCap, logoPath;
+  //           // debugger
+
+  //           // On initial page load, local state will be empty, so return null
+  //           if (rowData[symbol] === undefined) {
+  //             price = null;
+  //             percentChange = null;
+  //             marketCap = null;
+  //             logoPath = null;
+  //           } else {
+  //             // Access local state and Set price, %change, and mktcap for each currency so we can pass as props to subcomponent row
+  //             price = rowData[symbol]['PRICE'];
+  //             percentChange = rowData[symbol]['CHANGEPCT24HOUR'];
+  //             marketCap = rowData[symbol]['MKTCAP'];
+  //             logoPath = rowData[symbol]['IMAGEURL'];
+  //           }
+  //           if (name == 'xrapid') name = 'xrp';
+
+  //           return (
+  //           <li key={i} className="search-li">
+  //               <Link to={`/price/${name}`} className="search-li-link">
+  //                 <PricesRow 
+  //                   key={i + 1} 
+  //                   price={price} 
+  //                   percentChange={percentChange}
+  //                   marketCap={marketCap}
+  //                   nameToMap={nameToMap[i]} 
+  //                   symbol={symbol}
+  //                   logoPath={logoPath}
+  //                 />
+  //               </Link>
+  //               <span className="search-trade"><button className="currency-trade-prices">TRADE</button></span>
+  //           </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     );
+  //   }
+  // }
+
   renderSuggestions() {
     // Const { matches } = this.state;
     const { symbolSuggestions, nameSuggestions, userInput, rowData } = this.state;
@@ -140,18 +216,18 @@ class PricesPage extends React.Component {
       return null;  // No search results found
     } else {    
       return (
-        <ul className="search-ul">
-          <li className="search-li-header">
-            <div id="search-results-header">
-              <span className="search-logo-header"></span>
-              <span className="search-name-header">Name</span>
-              <span className="search-ticker-header">Symbol</span>
-              <span className="search-price-header">Price</span>
-              <span className="search-change24-header">Change 24HR</span>
-              <span className="search-marketCap-header">Market Cap</span>
-              <span className="search-trade-header">Trade</span>
-            </div>
-          </li>
+        <table className="search-table">
+          <tr className="search-tr-header">
+            {/* <div id="search-results-header"> */}
+              <td className="search-logo-header"></td>
+              <td className="search-name-header">Name</td>
+              <td className="search-ticker-header">Symbol</td>
+              <td className="search-price-header">Price</td>
+              <td className="search-change24-header">Change 24HR</td>
+              <td className="search-marketCap-header">Market Cap</td>
+              <td className="search-trade-header">Trade</td>
+            {/* </div> */}
+          </tr>
           {whatToMap.map( (symbol, i) => {
             // let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
             let name = nameToMap[i].toLowerCase().split(' ').join('-');      // remove space in string (if any)
@@ -174,8 +250,8 @@ class PricesPage extends React.Component {
             if (name == 'xrapid') name = 'xrp';
 
             return (
-            <li key={i} className="search-li">
-                <Link to={`/price/${name}`} className="search-li-link">
+            <tr key={i} className="search-tr">
+                <Link to={`/price/${name}`} className="search-tr-link">
                   <PricesRow 
                     key={i + 1} 
                     price={price} 
@@ -186,11 +262,11 @@ class PricesPage extends React.Component {
                     logoPath={logoPath}
                   />
                 </Link>
-                <span className="search-trade"><button className="currency-trade-prices">TRADE</button></span>
-            </li>
+                <td className="search-trade"><button className="currency-trade-prices">TRADE</button></td>
+            </tr>
             );
           })}
-        </ul>
+        </table>
       );
     }
   }

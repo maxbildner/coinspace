@@ -9,17 +9,19 @@
   padding: 0 7rem;
 }
 
-.search-ul {
+.search-table {
   list-style-type: none;
-  background: grey;
+  // background: grey;
   color: white;
-  display: inline-block;
+  // display: inline-block;
   padding: 0;
   width: 100%;
+  vertical-align: middle;
 
   .search-logo, .search-logo-header {
     width: 10%;
     display: inline-block;
+    vertical-align: middle;
   }
 
   .search-ticker, .search-ticker-header {
@@ -35,6 +37,7 @@
   .search-price, .search-price-header {
     width: 15%;
     display: inline-block;
+    color: white;
   }    
 
   .search-change24-negative, .search-change24-positive, .search-change24-header {
@@ -53,20 +56,21 @@
   .search-marketCap, .search-marketCap-header {
     width: 15%;
     display: inline-block;
+    color: white;
   } 
 
   .search-trade, .search-trade-header {
     width: 10%;
-    display: inline-block;
+    // display: inline-block;
   } 
 
-  .search-li {
+  .search-tr {
     border-bottom: 1px solid white;
     box-sizing: border-box;
     padding: 1rem 0;
   }
 
-  .search-li:hover {
+  .search-tr:hover {
     background: darkgrey;
   }
 }
@@ -83,4 +87,8 @@ img.search-currency-logo {
   width: 3rem;
 }
 
-
+.search-tr-link {
+  a:visited {
+    color: white;
+  }
+}
