@@ -64,14 +64,27 @@
     // display: inline-block;
   } 
 
+  .search-tr-header {
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+    padding: .5rem 0;
+    display: table;
+    width: 100%;
+    font-weight: bold;
+  }
+
   .search-tr {
     border-bottom: 1px solid white;
     box-sizing: border-box;
     padding: 1rem 0;
+    height: 5rem;
+    display: table;
+    width: 100%;
   }
 
   .search-tr:hover {
-    background: darkgrey;
+    background: #1d2329;
+    // background: darkgrey;
   }
 }
 
