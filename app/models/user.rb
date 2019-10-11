@@ -11,6 +11,7 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  cash_balance    :float
 #
 
 class User < ApplicationRecord

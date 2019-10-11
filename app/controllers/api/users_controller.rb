@@ -1,6 +1,10 @@
 class Api::UsersController < ApplicationController              # ? :: Api namespace
     def create                                                  # signup
-        @user = User.new(user_params)
+        @user = User.new(user_params)                           # create new user
+        
+        # Give user starting cash balance of 10000
+        @user.cash_balance = 10000
+
         if @user.save                                           # ? save! or no ! 
             login!(@user)
             render :show
@@ -10,6 +14,8 @@ class Api::UsersController < ApplicationController              # ? :: Api names
             render json: @user.errors.full_messages, status: 422     # ? json is method, takes in two args here
         end
     end
+
+
 
     private
     def user_params
