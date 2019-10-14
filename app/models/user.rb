@@ -22,6 +22,7 @@ class User < ApplicationRecord
     attr_reader :password
 
     after_initialize :ensure_session_token
+    after_create :generate_wallets
 
     has_many :wallets,
         foreign_key: :user_id,
@@ -45,6 +46,10 @@ class User < ApplicationRecord
         self.session_token = self.class.generate_session_token
         save!
         session_token
+    end
+
+    def generate_wallets
+        # btc = Wallet.new(:currency_id => ,:user_id => self.id, )
     end
 
     private

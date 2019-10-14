@@ -2,21 +2,22 @@
 #
 # Table name: wallets
 #
-#  id             :bigint           not null, primary key
-#  currency_id    :integer          not null
-#  user_id        :integer          not null
-#  wallet_address :string           not null
-#  total_value    :float
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :bigint           not null, primary key
+#  currency_symbol :string           not null
+#  user_id         :integer          not null
+#  wallet_address  :string           not null
+#  total_value     :float
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class Wallet < ApplicationRecord
-    validates :wallet_address, :currency_id, :user_id,  presence: true
+    validates :wallet_address, :user_id,  presence: true
 
-    belongs_to :currency,
-        foreign_key: :currency_id,
-        class_name: :Currency
+    # OLD Table:
+    # belongs_to :currency,
+    #     foreign_key: :currency_id,
+    #     class_name: :Currency
     
     belongs_to :user,
         foreign_key: :user_id,
