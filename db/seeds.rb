@@ -8,6 +8,7 @@
 
 User.destroy_all
 Currency.destroy_all
+Wallet.destroy_all
 
 
 # USERS
@@ -17,7 +18,7 @@ harry = User.create({
     state: 'New York',
     email: 'harry@gmail.com',
     password: '12345678',
-    cash_balance: 10000
+    cash_balance: 10000.00
 })
 
 demo_user = User.create({
@@ -26,11 +27,19 @@ demo_user = User.create({
     state: 'New York',
     email: 'demo_user@gmail.com',
     password: '12345678',
-    cash_balance: 10000
+    cash_balance: 10000.00
 })
 
+# WALLETS
+supported_currencies = [
+    'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
+    'EOS', 'XLM']
+    
+# Find users id by name
+# Create 7 walllets for each user
 
-# CURRENCIES
+
+# SUPPORTED CURRENCIES
 bitcoin = Currency.create({
     symbol: 'BTC',
     name: 'Bitcoin',
@@ -80,6 +89,8 @@ stellar = Currency.create({
     high: 0.94
 })
 
+
+# NOT SUPPORTED CURRENCIES
 chainlink = Currency.create({
     symbol: 'LINK',
     name: 'Chainlink',

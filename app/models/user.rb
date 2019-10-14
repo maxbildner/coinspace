@@ -49,7 +49,17 @@ class User < ApplicationRecord
     end
 
     def generate_wallets
-        # btc = Wallet.new(:currency_id => ,:user_id => self.id, )
+        supported_currencies = [
+            'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
+            'EOS', 'XLM']
+
+        supported_currencies.each do |symbol|
+            Wallet.create(
+                :currency_symbol => symbol, 
+                :user_id => self.id, 
+                :total_value => 0.00,
+                :wallet_address => SecureRandom.hex(16))
+        end
     end
 
     private
@@ -60,12 +70,5 @@ class User < ApplicationRecord
 
     def ensure_session_token
         self.session_token ||= self.class.generate_session_token
-    end
-
-    def create_wallets 
-        # supported_currencies = ['BTC', 'BCH', 'ETH', 'LTC', 'XRP', 'ETC', 'DAI']
-        # supported_currencies.each do |currency|
-        #     curr = Wallet.new()
-        # end
     end
 end
