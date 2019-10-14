@@ -3,7 +3,8 @@ import ChartMini from './chart_mini';
 import roundTo from 'round-to'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import { fetchDescription } from '../../util/currency_api_util';
-import { handleTradeClick } from '../trading/handle_trade_click';
+// import { handleTradeClick } from '../trading/handle_trade_click';
+// import handleTradeClick from '../trading/handle_trade_click';
 
 class CurrencyTableItem extends React.Component {
 	constructor(props) {
@@ -13,6 +14,7 @@ class CurrencyTableItem extends React.Component {
 			logoPath: ''
 		}
 		this.handleOnClick = this.handleOnClick.bind(this);
+		this.handleTradeClick = this.handleTradeClick.bind(this);
 	}
 
 
@@ -39,6 +41,16 @@ class CurrencyTableItem extends React.Component {
 			if (name == 'xrapid') { name = 'xrp' };
 	
 			this.props.history.push(`/price/${name}`);
+		}
+	}
+
+	handleTradeClick(symbol) {
+		// If user is NOT logged in, redirect to Sign Up Page
+		if (this.props.sessionId === null) {
+			alert('You must be signed in to trade');
+			this.props.history.push('/signup');
+		} else {
+			console.log('test');
 		}
 	}
 
@@ -70,7 +82,7 @@ class CurrencyTableItem extends React.Component {
 					<td>{price}</td>
 					<td>{changePctRounded}%</td>
 					<td><ChartMini symbol={symbol}/></td>
-					<td><button className="currency-trade" onClick={() => handleTradeClick(symbol)}>TRADE</button></td>
+					<td><button className="currency-trade" onClick={() => this.handleTradeClick(symbol)}>TRADE</button></td>
 				</tr>
 
 			</>
