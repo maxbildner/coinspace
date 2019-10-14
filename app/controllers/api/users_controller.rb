@@ -9,8 +9,7 @@ class Api::UsersController < ApplicationController              # ? :: Api names
             login!(@user)
             render :show
             # render 'api/users/show'                           # ? DOESN'T WORK!!
-        else 
-            
+        else  
             render json: @user.errors.full_messages, status: 422     # ? json is method, takes in two args here
         end
     end

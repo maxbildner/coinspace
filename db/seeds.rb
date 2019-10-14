@@ -16,7 +16,8 @@ harry = User.create({
     last_name: 'hobart',
     state: 'New York',
     email: 'harry@gmail.com',
-    password: '12345678'
+    password: '12345678',
+    cash_balance: 10000
 })
 
 demo_user = User.create({
@@ -24,7 +25,8 @@ demo_user = User.create({
     last_name: 'henry',
     state: 'New York',
     email: 'demo_user@gmail.com',
-    password: '12345678'
+    password: '12345678',
+    cash_balance: 10000
 })
 
 
