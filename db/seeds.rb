@@ -30,13 +30,22 @@ demo_user = User.create({
     cash_balance: 10000.00
 })
 
+
 # WALLETS
 supported_currencies = [
     'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
     'EOS', 'XLM']
-    
-# Find users id by name
+
 # Create 7 walllets for each user
+supported_currencies.each do |symbol|
+    Wallet.create(
+        :currency_symbol => symbol,
+        :user_id => harry.id,
+        :total_value => 0.00,
+        :wallet_address => SecureRandom.hex(16)
+    )
+end
+
 
 
 # SUPPORTED CURRENCIES
