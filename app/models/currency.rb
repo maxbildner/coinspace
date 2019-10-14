@@ -16,7 +16,8 @@ class Currency < ApplicationRecord
     validates :symbol, uniqueness: true
     validates :symbol, :name, presence: true
     
-    has_many :wallets,
-        foreign_key: :currency_id,
-        class_name: :Wallet
+    # OLD Table:
+    # has_many :wallets,
+    #     foreign_key: :currency_id,
+    #     class_name: :Wallet
 end

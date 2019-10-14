@@ -3,74 +3,79 @@ import ChartMini from './chart_mini';
 import roundTo from 'round-to'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import { fetchDescription } from '../../util/currency_api_util';
+import { handleTradeClick } from '../trading/handle_trade_click';
 
 class CurrencyTableItem extends React.Component {
-    constructor(props) {
-        super(props); 
+	constructor(props) {
+		super(props); 
 
-        this.state = {
-            logoPath: ''
-        }
-        this.handleOnClick = this.handleOnClick.bind(this);
-    }
-
-
-    componentDidMount() {
-        this.props.fetchCurrentPrice(this.props.symbol);
-        fetchDescription(this.props.symbol).then(
-            (response) => {
-                
-                return this.setState({
-                    logoPath: response.imageurl
-                })
-            }
-        );
-        // debugger
-    }
-
-    handleOnClick() {
-        // debugger
-        let name = this.props.name.toLowerCase();
-
-        if (name == 'xrapid') { name = 'xrp' };
-
-        this.props.history.push(`/price/${name}`);
-    }
-
-    render() {                      
-        // const { price, changePct24HR } = this.state;         // DOESN'T WORK
-        // const { price, changePct24HR } = this.props;         // DOESN'T WORK IF 
-        // // REDUCER/MAP STATE TO PROPS NOT SET UP RIGHT
+		this.state = {
+			logoPath: ''
+		}
+		this.handleOnClick = this.handleOnClick.bind(this);
+	}
 
 
-        // const { price, changePct24HR, symbol } = this.props;         // WORKS
-        let { price, changePct24HR, symbol, name } = this.props;    
-        const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
-        // const logoPath = `/assets/${symbol.toLowerCase()}.png`;
-        // if (name == 'XRapid') name = 'xrp';
-        // name = name.toLowerCase();
+	componentDidMount() {
+		this.props.fetchCurrentPrice(this.props.symbol);
+		fetchDescription(this.props.symbol).then(
+			(response) => {
+					
+				return this.setState({
+					logoPath: response.imageurl
+				})
+			}
+		);
+		// debugger
+	}
 
-        return (            
-            <> 
-                <tr className="mini-table-row" onClick={this.handleOnClick}> 
-                    <td>{this.props.idx + 1}</td>
-                    <td>
-                        <Link to={`/price/${name.toLowerCase()}`} className="chart-mini-currency-name">
-                            <img src={this.state.logoPath} alt={this.props.name} className="currency-logo"/>
-                            
-                            <span className="currency-name">{name} </span>    
-                            <span className="currency-symbol">{symbol}</span>    
-                        </Link>
-                    </td>
-                    <td>{price}</td>
-                    <td>{changePctRounded}%</td>
-                    <td><ChartMini symbol={symbol}/></td>
-                    <td><button className="currency-trade">TRADE</button></td>
-                </tr>
+	handleOnClick(e) {
+		// debugger
 
-            </>
-        );
-    }
+		// Go to show/detail page only if user does NOT click on trade button
+		if (e.target.innerText !== 'TRADE') {
+			let name = this.props.name.toLowerCase();
+	
+			if (name == 'xrapid') { name = 'xrp' };
+	
+			this.props.history.push(`/price/${name}`);
+		}
+	}
+
+	render() {                      
+		// const { price, changePct24HR } = this.state;         // DOESN'T WORK
+		// const { price, changePct24HR } = this.props;         // DOESN'T WORK IF 
+		// // REDUCER/MAP STATE TO PROPS NOT SET UP RIGHT
+
+
+		// const { price, changePct24HR, symbol } = this.props;         // WORKS
+		let { price, changePct24HR, symbol, name } = this.props;    
+		const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
+		// const logoPath = `/assets/${symbol.toLowerCase()}.png`;
+		// if (name == 'XRapid') name = 'xrp';
+		// name = name.toLowerCase();
+
+		return (            
+			<> 
+				<tr className="mini-table-row" onClick={this.handleOnClick}> 
+					<td>{this.props.idx + 1}</td>
+					<td>
+						<Link to={`/price/${name.toLowerCase()}`} className="chart-mini-currency-name">
+							<img src={this.state.logoPath} alt={this.props.name} className="currency-logo"/>
+							
+							<span className="currency-name">{name} </span>    
+							<span className="currency-symbol">{symbol}</span>    
+						</Link>
+					</td>
+					<td>{price}</td>
+					<td>{changePctRounded}%</td>
+					<td><ChartMini symbol={symbol}/></td>
+					<td><button className="currency-trade" onClick={() => handleTradeClick(symbol)}>TRADE</button></td>
+				</tr>
+
+			</>
+		);
+	}
 }
 
 export default withRouter(CurrencyTableItem);

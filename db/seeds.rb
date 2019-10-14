@@ -31,12 +31,13 @@ demo_user = User.create({
 })
 
 
+
 # WALLETS
 supported_currencies = [
     'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
     'EOS', 'XLM']
 
-# Create 7 walllets for each user
+# Create 7 wallets for each user
 supported_currencies.each do |symbol|
     Wallet.create(
         :currency_symbol => symbol,
