@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
-
+import TradeModal from './trading/tradeModal';
 
 const CURRENCIES = [
 		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 
@@ -16,6 +16,14 @@ class HomePage extends React.Component {
 		this.carousel = React.createRef();
 		this.currencyTable = React.createRef();
 		this.interval = false;
+		this.triggerModal = this.triggerModal.bind(this);
+		this.renderModal = this.renderModal.bind(this);
+
+		// set local state of buy/sell modal form
+		this.state = {
+			modalOn: false,
+			symbolClicked: 'test'
+		};
 	}
 	
 
@@ -57,6 +65,30 @@ class HomePage extends React.Component {
 	}
 
 
+	triggerModal(symbol) {
+		// debugger
+
+		// Toggle local state of modal to true
+		this.setState({
+			modalOn: true,
+			symbolClicked: symbol
+		});
+	}
+
+
+	renderModal() {
+		let symbol = this.state.symbolClicked;
+		// debugger
+
+		// If modal toggle true, display modal
+		if (this.state.modalOn) {
+			return <TradeModal symbol={symbol}/>
+		} else {
+			return null;
+		}
+	}
+
+
 	render() {
 		
 		return (
@@ -64,7 +96,6 @@ class HomePage extends React.Component {
 				<div className="carousel" ref={this.carousel}> 
 					<div className="slide" id="slide1" data-description="Buy and sell cryptocurrency"><img src="https://www.spacex.com/sites/spacex/files/bfrlunar_v2.jpg" className="background-img" alt="outer space"/></div>
 					<div className="slide" id="slide2" data-description="Vault Protection"><img src="https://i.imgur.com/LxGUNGt.png" className="background-img" alt="new york"/></div>
-					{/* <div className="slide" id="slide3" data-description="The most trusted cryptocurrency platform"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div> */}
 					<div className="slide" id="slide3" data-description="Insurance coverage"><img src="https://i.imgur.com/wLrUncM.jpg" className="background-img" alt="bank vault"/></div>
 
 					<div className="carousel-bottom">
@@ -72,34 +103,21 @@ class HomePage extends React.Component {
 							<div className="carousel-slide-labels">
 							</div>
 							<div className="carousel-bottom-action">
-								{/* <button className="sign-up-home">Sign Up</button> */}
 								<NavLink to='/signup' className="sign-up-home">Sign Up</NavLink>
 							</div>
 						</div>
 
 						<ul className="carousel-tabs">
-							{/* <li className="left-tab" id="animation1">Buy and sell cryptocurrency</li>
-							<li id="animation2">Vault Protection</li>
-							<li className="right-tab" id="animation3">The most trusted cryptocurrency platform</li> */}
 						</ul>
 					</div>
 				</div>
 				<div className="gradient-homepage"></div>
 				<div className="description-homepage">Coinbase is the easiest place to buy, sell, and manage, your cryptocurrency portfolio</div>
 
-				{/* <CurrencyTable/> */}
-
-				{/* <div id="table">
-					<CurrencyTable>
-						<CurrencyTableItemContainer name="Bitcoin" symbol="BTC" price="11,779.80" change="+7.69%"/>		
-						<CurrencyTableItemContainer name="Ethereum" symbol="ETH" price="232.65" change="+5.08%"/>
-						<CurrencyTableItemContainer name="XRapid" symbol="XRP" price="0.32" change="+.91%"/>
-						<CurrencyTableItemContainer name="Litecoin" symbol="LTC" price="98.39" change="+5.96%"/>
-					</CurrencyTable>
-				</div> */}
+				{this.renderModal()}
 
 				<div id="table">
-					<CurrencyTable currencies={CURRENCIES}/>
+					<CurrencyTable currencies={CURRENCIES} triggerModal={(symbol) => this.triggerModal(symbol)}/>
 				</div>
 
 				<div id="footer-wrapper">

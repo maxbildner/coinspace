@@ -7,12 +7,17 @@ class CurrencyTable extends React.Component {
         super(props);
         // debugger
         
+        this.triggerModalGrandparent = this.triggerModalGrandparent.bind(this);
     }
 
     componentDidMount() {       // ? why dispatch here and not in child component?
         // fetch currencies from database to get ID's and corresonding symbols
 
         // write fetch all currencies action to go to DB (in actions folder)
+    }
+
+    triggerModalGrandparent(symbol) {
+        this.props.triggerModal(symbol);
     }
 
     render() {
@@ -62,7 +67,13 @@ class CurrencyTable extends React.Component {
                     </thead>
                     <tbody>
             
-                        {this.props.currencies.map((currency, idx) => <CurrencyTableItemContainer idx={idx} {...currency}/>)}
+                        {this.props.currencies.map((currency, idx) => { 
+                            return <CurrencyTableItemContainer 
+                                idx={idx} 
+                                {...currency}
+                                triggerModalParent={(symbol) => this.triggerModalGrandparent(symbol)}
+                                />
+                        })}
 
                     </tbody>
                 </table>

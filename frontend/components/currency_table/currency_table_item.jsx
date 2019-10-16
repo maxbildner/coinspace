@@ -3,7 +3,6 @@ import ChartMini from './chart_mini';
 import roundTo from 'round-to'
 import { Link, Route, Switch, withRouter } from 'react-router-dom';
 import { fetchDescription } from '../../util/currency_api_util';
-// import { handleTradeClick } from '../trading/handle_trade_click';
 // import handleTradeClick from '../trading/handle_trade_click';
 
 class CurrencyTableItem extends React.Component {
@@ -31,6 +30,7 @@ class CurrencyTableItem extends React.Component {
 		// debugger
 	}
 
+
 	handleOnClick(e) {
 		// debugger
 
@@ -44,15 +44,18 @@ class CurrencyTableItem extends React.Component {
 		}
 	}
 
+
 	handleTradeClick(symbol) {
 		// If user is NOT logged in, redirect to Sign Up Page
 		if (this.props.sessionId === null) {
 			alert('You must be signed in to trade');
 			this.props.history.push('/signup');
-		} else {
-			console.log('test');
+		} else {																						// If user IS logged in, 
+			// Call function passed in through props
+			this.props.triggerModalParent(symbol);
 		}
 	}
+
 
 	render() {                      
 		// const { price, changePct24HR } = this.state;         // DOESN'T WORK
