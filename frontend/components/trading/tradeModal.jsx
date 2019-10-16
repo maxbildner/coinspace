@@ -21,8 +21,10 @@ class TradeModal extends React.Component {
 
     return (
       <div id="modal-container">
-        <button onClick={toggleModal}>CLOSE</button>
-        MODAL FORM!!!! {symbol}
+        <span id="trading-modal-close-button" onClick={toggleModal}>&times;</span>
+        <input type="text" placeholder={symbol}/>
+        <input type="text" placeholder="Quantity"/>
+        <button>BUY</button> <button>SELL</button>
       </div>
     );
   }

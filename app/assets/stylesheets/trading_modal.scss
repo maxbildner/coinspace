@@ -1,0 +1,31 @@
+// <div id="modal-container">
+//   <span id="trading-modal-close-button" onClick={toggleModal}>&times;</span>
+//   <input type="text" placeholder={symbol}/>
+//   <input type="text" placeholder="Quantity"/>
+//   <button>BUY</button> <button>SELL</button>
+// </div>
+
+
+
+
+#modal-container {
+ position:fixed;
+  background: white;
+  z-index: 1000;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+
+// Close Button
+#trading-modal-close-button {
+  font-size: 2rem;
+}
+#trading-modal-close-button:hover {
+  cursor: pointer;
+}
