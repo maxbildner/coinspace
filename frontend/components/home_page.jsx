@@ -18,6 +18,7 @@ class HomePage extends React.Component {
 		this.interval = false;
 		this.triggerModal = this.triggerModal.bind(this);
 		this.renderModal = this.renderModal.bind(this);
+		this.hideModal = this.hideModal.bind(this);
 
 		// set local state of buy/sell modal form
 		this.state = {
@@ -82,10 +83,17 @@ class HomePage extends React.Component {
 
 		// If modal toggle true, display modal
 		if (this.state.modalOn) {
-			return <TradeModal symbol={symbol}/>
+			return <TradeModal symbol={symbol} toggleModal={this.hideModal}/>
 		} else {
 			return null;
 		}
+	}
+
+	hideModal() {
+		this.setState({
+			modalOn: false,
+			symbolClicked: 'test'
+		});
 	}
 
 

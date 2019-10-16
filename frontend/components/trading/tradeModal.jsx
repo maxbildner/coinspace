@@ -17,10 +17,11 @@ class TradeModal extends React.Component {
 
   render() {
     // debugger
-    const { symbol } = this.props || {};
+    const { symbol, toggleModal } = this.props || {};
 
     return (
-      <div>
+      <div id="modal-container">
+        <button onClick={toggleModal}>CLOSE</button>
         MODAL FORM!!!! {symbol}
       </div>
     );
