@@ -62,6 +62,12 @@ class User < ApplicationRecord
         end
     end
 
+    def get_wallet_transactions
+        # Get all wallets for a current user
+        
+    end
+
+
     private
 
     def self.generate_session_token

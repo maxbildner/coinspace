@@ -32,20 +32,28 @@ demo_user = User.create({
 
 
 
-# WALLETS
-supported_currencies = [
-    'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
-    'EOS', 'XLM']
+# WALLETS- NOT Needed bec. Wallets are automatically created when a user is created
+# supported_currencies = [
+#     'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
+#     'EOS', 'XLM']
 
-# Create 7 wallets for each user
-supported_currencies.each do |symbol|
-    Wallet.create(
-        :currency_symbol => symbol,
-        :user_id => harry.id,
-        :total_value => 0.00,
-        :wallet_address => SecureRandom.hex(16)
-    )
-end
+# # Create 7 wallets for each user
+# supported_currencies.each do |symbol|
+#     Wallet.create(
+#         :currency_symbol => symbol,
+#         :user_id => harry.id,
+#         :total_value => 0.00,
+#         :wallet_address => SecureRandom.hex(16)
+#     )
+# end
+
+
+
+# WALLET TRANSACTIONS
+
+
+
+
 
 
 

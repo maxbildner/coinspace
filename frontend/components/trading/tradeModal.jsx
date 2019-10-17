@@ -42,12 +42,12 @@ class TradeModal extends React.Component {
 
 
   handleBuy() {
-    debugger
+    // debugger
   }
 
 
   handleSell() {
-    debugger
+    // debugger
   }
 
 

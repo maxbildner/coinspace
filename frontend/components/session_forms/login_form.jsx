@@ -21,7 +21,6 @@ class LoginForm extends React.Component {
 
 	componentDidMount() {
 		$('html').attr('data-page', this.props.formType);
-		// $('html').attr('data-location', this.props.location.pathname);
 	}
 
 	componentWillUnmount() {								// ? last lifecycle method?
@@ -34,7 +33,6 @@ class LoginForm extends React.Component {
 		this.props.processForm(user).then(						// triggering submit new user/login session action
 			() => this.props.history.push('/dashboard')
 			);
-		// this.props.action(this.state).then(() => this.props.history.push('/'));	// from A06
 	}
 
 	update(field) {
@@ -52,25 +50,11 @@ class LoginForm extends React.Component {
 			password: '12345678'
 		};
 
-		this.props.demoLogin(demoUser) //.then(						// triggering submit new user/login session action
-		// 	() => this.props.history.push('/dashboard')
-		// );
+		this.props.demoLogin(demoUser); 					// triggering submit new user/login session action
 	}
 
 
 	renderErrors() {
-		// let errors = this.props.errors.map( (error, idx) => {
-		// 	return (
-		// 		<li key={`error-${idx}`}>
-		// 			{error}
-		// 		</li>
-		// 	)
-		// });
-
-		// for blank fields (can be taken care of on front end)
-		// need new parameter in state for errors 
-		// 
-
 		let errors = this.props.errors.join('.');
 
 		if (errors.length == 0) return null;

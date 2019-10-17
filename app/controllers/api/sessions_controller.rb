@@ -5,10 +5,16 @@ class Api::SessionsController < ApplicationController
             session_params[:password]
         )
 
-        if user
+        if user                                                                 # if user exists
             login!(user)
+
             # render 'api/users/show'
-            render json:  { id: user.id, email: user.email }                    # ? args or hash w/ key/vals?
+            render json:  { 
+                id: user.id, 
+                email: user.email,  
+                cash_balance: user.cash_balance
+                transactions: user.get_wallet_transactions
+            }                    
         else
             render json: ["Invalid email or password. Try clicking 'Forgot Password' if you're having trouble signing in."], status: 401       # ? could also be 422
         end
