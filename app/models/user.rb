@@ -62,9 +62,32 @@ class User < ApplicationRecord
         end
     end
 
+    def get_portfolio                                   # returns ex. # { 'BTC': 1, 'LTC': .5 } 
+        # Get all wallets for a current user (array of wallet objects)
+        # wallets = self.get_wallets                    # ? Works?
+        wallets = Wallet.where(user_id: self.id)        # array of wallets that belong to user
+        # wallets = [ {id: 23, currency_symbol: 'ETH', 'total_value': 0.0... }, {}, ... ]
+
+        portfolio = {}                                  # to return
+
+        # loop through wallets, grab symbol and total value
+        wallets.each do |wallet|
+            symbol = wallet.currency_symbol
+            
+            if wallet.total_value > 0                  # only populate portfolio if user owns that currency
+                portfolio[symbol] = wallet.total_value
+            end
+        end
+
+        portfolio                                       # ex. # { 'BTC': 1, 'LTC': .5 } 
+    end
+
     def get_wallet_transactions
-        # Get all wallets for a current user
-        
+        # WalletTransaction.where()
+    end
+
+    def get_wallets 
+        Wallet.where(user_id: self.id)                 # return array of wallets that belong to user
     end
 
 

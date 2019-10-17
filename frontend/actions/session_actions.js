@@ -51,6 +51,7 @@ export const signup = (user) => {
 
 // ACTION CREATORS
 const receiveCurrentUser = (user) => {   // takes in object
+    debugger
     return ({
         type: RECEIVE_CURRENT_USER,
         user
