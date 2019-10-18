@@ -34,13 +34,13 @@ class TradeModal extends React.Component {
 
   handleBuy() {
     let quantity = this.state.quantity;
-    debugger
-    
+    // debugger
+
     // Display error if quantity is not a number or negative
     if (isNaN(quantity) || Number(quantity) <= 0) {
       alert('Please enter a valid quantity');
     } else if (this.hasEnoughCash()) {                       // Validate that user cash balance is sufficient 
-
+      console.log('YAY!!');
     } else {
       alert('You do not have enough buying power!');
     }
@@ -48,7 +48,15 @@ class TradeModal extends React.Component {
 
 
   hasEnoughCash() {
-    debugger
+    // debugger
+    const { symbol, price, cashBalance, portfolio, userId } = this.props;
+    const quantity = Number(this.state.quantity);
+    
+    // Compute total purchase value = price * quantity
+    const totalPurchaseValue = price * quantity;
+
+    // Check if user has enough cash to cover totalPurchaseValue
+    return (cashBalance >= totalPurchaseValue);
   }
 
 
@@ -60,7 +68,7 @@ class TradeModal extends React.Component {
 
   render() {
     // debugger
-    const { toggleModal } = this.props || {};
+    const { toggleModal, price } = this.props || {};
 
     return (
       <div id="modal-container">
@@ -70,6 +78,7 @@ class TradeModal extends React.Component {
             type="text" 
             placeholder={this.state.symbol}
             onChange={this.onChangeSymbol}/>
+          <span>Current Price: <span>{price}</span> </span>
           <input id="trading-input-quantity" 
             type="text" 
             placeholder={this.state.quantity}
