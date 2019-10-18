@@ -16,8 +16,8 @@ class CurrencyTable extends React.Component {
         // write fetch all currencies action to go to DB (in actions folder)
     }
 
-    triggerModalGrandparent(symbol) {
-        this.props.triggerModal(symbol);
+    triggerModalGrandparent(symbol, price) {
+        this.props.triggerModal(symbol, price);
     }
 
     render() {
@@ -71,7 +71,7 @@ class CurrencyTable extends React.Component {
                             return <CurrencyTableItemContainer 
                                 idx={idx} 
                                 {...currency}
-                                triggerModalParent={(symbol) => this.triggerModalGrandparent(symbol)}
+                                triggerModalParent={(symbol, price) => this.triggerModalGrandparent(symbol, price)}
                                 />
                         })}
 

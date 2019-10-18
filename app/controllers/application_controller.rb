@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
-    helper_method :current_user, :logged_in?
+    helper_method :current_user, :logged_in?, :get_portfolio
+    # helper_method :current_user, :logged_in?          # OLD
 
     def current_user
         @current_user ||= User.find_by(session_token: session[:session_token])
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
 
     def ensure_logged_in
         # redirect_to new_session_url unless logged_in?
+    end
+
+    def get_portfolio
+        current_user.get_portfolio
     end
 end
 

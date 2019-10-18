@@ -10,10 +10,10 @@ class Api::SessionsController < ApplicationController
 
             # render 'api/users/show'
             render json:  { 
-                id: user.id, 
-                email: user.email,  
-                cash_balance: user.cash_balance,            # float
-                portfolio: user.get_portfolio               # object { 'BTC': 1, 'LTC': .5 } 
+                id: current_user.id, 
+                email: current_user.email,  
+                cash_balance: current_user.cash_balance,            # float
+                portfolio: current_user.get_portfolio               # object { 'BTC': 1, 'LTC': .5 } 
             }                    
         else
             render json: ["Invalid email or password. Try clicking 'Forgot Password' if you're having trouble signing in."], status: 401       # ? could also be 422

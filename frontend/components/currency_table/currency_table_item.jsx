@@ -45,14 +45,14 @@ class CurrencyTableItem extends React.Component {
 	}
 
 
-	handleTradeClick(symbol) {
+	handleTradeClick(symbol, price) {
 		// If user is NOT logged in, redirect to Sign Up Page
 		if (this.props.sessionId === null) {
 			alert('You must be signed in to trade');
 			this.props.history.push('/signup');
 		} else {																						// If user IS logged in, 
 			// Call function passed in through props
-			this.props.triggerModalParent(symbol);
+			this.props.triggerModalParent(symbol, price);
 		}
 	}
 
@@ -85,7 +85,7 @@ class CurrencyTableItem extends React.Component {
 					<td>{price}</td>
 					<td>{changePctRounded}%</td>
 					<td><ChartMini symbol={symbol}/></td>
-					<td><button className="currency-trade" onClick={() => this.handleTradeClick(symbol)}>TRADE</button></td>
+					<td><button className="currency-trade" onClick={() => this.handleTradeClick(symbol, price)}>TRADE</button></td>
 				</tr>
 
 			</>

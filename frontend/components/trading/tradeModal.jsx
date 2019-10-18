@@ -1,14 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-// const mapStateToProps = (state) => {
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-// }
-
-// connect(mapStateToProps, null)(TradeModal)
-
 
 // THIS COMPONENT IS A SUBCOMPONENT OF THE HOMEPAGE COMPONENT
 class TradeModal extends React.Component {
@@ -24,6 +14,7 @@ class TradeModal extends React.Component {
     this.handleSell = this.handleSell.bind(this);
     this.onChangeSymbol = this.onChangeSymbol.bind(this);
     this.onChangeQuantity = this.onChangeQuantity.bind(this);
+    this.hasEnoughCash = this.hasEnoughCash.bind(this);
   }
 
 
@@ -42,8 +33,24 @@ class TradeModal extends React.Component {
 
 
   handleBuy() {
-    // debugger
+    let quantity = this.state.quantity;
+    debugger
+    
+    // Display error if quantity is not a number or negative
+    if (isNaN(quantity) || Number(quantity) <= 0) {
+      alert('Please enter a valid quantity');
+    } else if (this.hasEnoughCash()) {                       // Validate that user cash balance is sufficient 
+
+    } else {
+      alert('You do not have enough buying power!');
+    }
   }
+
+
+  hasEnoughCash() {
+    debugger
+  }
+
 
 
   handleSell() {

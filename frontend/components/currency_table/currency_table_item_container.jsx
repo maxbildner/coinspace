@@ -28,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
     });
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrencyTableItem)
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyTableItem);

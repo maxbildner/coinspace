@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
-import TradeModal from './trading/tradeModal';
+import TradeModal from './trading/tradeModalContainer';
 
 const CURRENCIES = [
 		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 
@@ -23,7 +23,8 @@ class HomePage extends React.Component {
 		// set local state of buy/sell modal form
 		this.state = {
 			modalOn: false,
-			symbolClicked: 'test'
+			symbolClicked: 'test',
+			priceClicked: 'test'
 		};
 	}
 	
@@ -66,24 +67,27 @@ class HomePage extends React.Component {
 	}
 
 
-	triggerModal(symbol) {
+	triggerModal(symbol, price) {
 		// debugger
 
 		// Toggle local state of modal to true
 		this.setState({
 			modalOn: true,
-			symbolClicked: symbol
+			symbolClicked: symbol,
+			priceClicked: price
 		});
 	}
 
 
 	renderModal() {
-		let symbol = this.state.symbolClicked;
+		// let symbol = this.state.symbolClicked;
+		const { symbolClicked, priceClicked } = this.state;
 		// debugger
+		
 
 		// If modal toggle true, display modal
 		if (this.state.modalOn) {
-			return <TradeModal symbol={symbol} toggleModal={this.hideModal}/>
+			return <TradeModal symbol={symbolClicked} toggleModal={this.hideModal} price={priceClicked}/>
 		} else {
 			return null;
 		}
@@ -125,7 +129,7 @@ class HomePage extends React.Component {
 				{this.renderModal()}
 
 				<div id="table">
-					<CurrencyTable currencies={CURRENCIES} triggerModal={(symbol) => this.triggerModal(symbol)}/>
+					<CurrencyTable currencies={CURRENCIES} triggerModal={(symbol, price) => this.triggerModal(symbol, price)}/>
 				</div>
 
 				<div id="footer-wrapper">

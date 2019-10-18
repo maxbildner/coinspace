@@ -13,7 +13,8 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const login = (user) => {                    // user == { email: 'harry@gmail.com', password: '12345678' }
     return (dispatch) => {
         return SessionAPIUtil.login(user).then(
-            (response) => {                         // ? response == user?
+            (response) => {                         
+                debugger                            // response == {id: 11, email: "demo_user@gmail.com", cash_balance: 10000, portfolio: {…}}
                 return dispatch(receiveCurrentUser(response));
             }, 
             (error) => {

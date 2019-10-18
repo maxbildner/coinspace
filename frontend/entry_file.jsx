@@ -12,14 +12,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
 	let store;
 	
 	if (window.currentUser) {               // if someone's logged in?
+		debugger
 		const preloadedState = {            
 			entities: {
 				users: { [window.currentUser.id]: window.currentUser }
 			},
 			session: { id: window.currentUser.id }
 		};
-    
-    	store = configureStore(preloadedState);
+		debugger
+		store = configureStore(preloadedState);
+    debugger
     	delete window.currentUser;
    } else {
 		store = configureStore();
