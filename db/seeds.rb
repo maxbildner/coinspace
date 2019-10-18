@@ -9,7 +9,7 @@
 User.destroy_all
 Currency.destroy_all
 Wallet.destroy_all
-
+WalletTransaction.destroy_all
 
 # USERS
 harry = User.create({

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     # GET api/currency/:id (show currency information)
     resources :currencies, only: [ :index, :show ]
 
-    # POST api/trade (create new wallet transaction AND update wallet value, AND user cash balance)
+    # POST api/wallet_transactions (create new wallet transaction AND update wallet value, AND user cash balance)
+    # 1st argument after resources needs to match front end ajax request url?
     resources :wallet_transactions, only: [ :create ]
   end
 

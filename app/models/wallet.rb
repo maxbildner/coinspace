@@ -12,20 +12,31 @@
 #
 
 class Wallet < ApplicationRecord
-    validates :wallet_address, :user_id,  presence: true
+	validates :wallet_address, :user_id,  presence: true
 
-    # OLD Table:
-    # belongs_to :currency,
-    #     foreign_key: :currency_id,
-    #     class_name: :Currency
-    
-    belongs_to :user,
-        foreign_key: :user_id,
-        class_name: :User
+	# OLD Table:
+	# belongs_to :currency,
+	#     foreign_key: :currency_id,
+	#     class_name: :Currency
+	
+	belongs_to :user,
+		foreign_key: :user_id,
+		class_name: :User
 
-    has_many :wallet_transactions,
-        foreign_key: :wallet_id,
-        class_name: :WalletTransaction
+	has_many :wallet_transactions,
+		foreign_key: :wallet_id,
+		class_name: :WalletTransaction
 
-       
+	
+	# Find appropriate wallet to update
+	def self.get_wallet(user_id, symbol)
+		# find wallets, given by a user_id and symbol
+		wallet = Wallet.find_by(user_id: user_id, currency_symbol: symbol)					
+	end
+
+	# Increment wallets total value
+	def update_value(quantity)															# quantity == crypto value NOT USD
+		self.total_value = self.total_value + quantity				# increment wallet value by quantity
+		save!
+	end
 end

@@ -14,7 +14,7 @@ export const login = (user) => {                    // user == { email: 'harry@g
     return (dispatch) => {
         return SessionAPIUtil.login(user).then(
             (response) => {                         
-                debugger                            // response == {id: 11, email: "demo_user@gmail.com", cash_balance: 10000, portfolio: {…}}
+                // debugger                            // response == {id: 11, email: "demo_user@gmail.com", cash_balance: 10000, portfolio: {…}}
                 return dispatch(receiveCurrentUser(response));
             }, 
             (error) => {
@@ -52,7 +52,7 @@ export const signup = (user) => {
 
 // ACTION CREATORS
 const receiveCurrentUser = (user) => {   // takes in object
-    debugger
+    // debugger
     return ({
         type: RECEIVE_CURRENT_USER,
         user

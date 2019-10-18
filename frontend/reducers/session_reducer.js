@@ -8,8 +8,8 @@ const predefinedState = { id: null }
 
 const sessionReducer = (oldState = predefinedState, action) => {
     Object.freeze(oldState);
-    debugger
-    
+    // debugger
+
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             return { id: action.user.id }
