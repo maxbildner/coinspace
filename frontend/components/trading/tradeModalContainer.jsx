@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import TradeModal from './tradeModal';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
+  // debugger
   const userId = state.session.id;
-  const cashBalance = state.entities.users[userId].cash_balance || null;
-  const portfolio = state.entities.users[userId].portfolio || null;
+  const cashBalance = state.entities.users[userId].cash_balance || {};
+  const portfolio = state.entities.users[userId].portfolio || {};
   
 
   return ({

@@ -33,14 +33,15 @@ class TradeModal extends React.Component {
 
 
   handleBuy() {
-    let quantity = this.state.quantity;
-    // debugger
+    const { symbol, quantity } = this.state;
 
     // Display error if quantity is not a number or negative
     if (isNaN(quantity) || Number(quantity) <= 0) {
       alert('Please enter a valid quantity');
     } else if (this.hasEnoughCash()) {                       // Validate that user cash balance is sufficient 
-      console.log('YAY!!');
+      // Send POST (create new wallet transaction) to backend
+      
+      alert(`${quantity} ${symbol} was added to your account!`);
     } else {
       alert('You do not have enough buying power!');
     }
@@ -48,7 +49,6 @@ class TradeModal extends React.Component {
 
 
   hasEnoughCash() {
-    // debugger
     const { symbol, price, cashBalance, portfolio, userId } = this.props;
     const quantity = Number(this.state.quantity);
     
