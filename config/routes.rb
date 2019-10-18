@@ -4,16 +4,19 @@ Rails.application.routes.draw do
   root to: 'static_pages#root'
 
   namespace :api, defaults: { format: :json } do
-    # POST /user (create user)
+    # POST api/user (create user)
     resources :users, only: [:create]
 
-    # POST /session (log in)
-    # DELETE /session (logout)
+    # POST api/session (log in)
+    # DELETE api/session (logout)
     resource :session, only: [:create, :destroy]
 
-    # GET /currencies (list all currencies)
-    # GET /currency/:id (show currency information)
+    # GET api/currencies (list all currencies)
+    # GET api/currency/:id (show currency information)
     resources :currencies, only: [ :index, :show ]
+
+    # POST api/trade (create new wallet transaction AND update wallet value, AND user cash balance)
+    resources :wallet_transactions, only: [ :create ]
   end
 
 end
