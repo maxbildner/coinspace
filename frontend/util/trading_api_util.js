@@ -19,3 +19,12 @@ export const buyCurrency = (purchaseInfo) => {      // ex. purchaseInfo == { use
 // ex. 
 // promise = buyCurrency(purchaseInfo)
 // promise.responseJSON == { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
+
+
+export const sellCurrency = (saleInfo) => {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/wallet_transactions',
+    data: { saleInfo }
+  });
+}

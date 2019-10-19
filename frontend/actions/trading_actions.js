@@ -19,10 +19,35 @@ export const buyCurrency = (purchaseInfo) => {              // called in Trading
 
 
 
+
+export const sellCurrency = (saleInfo) => {
+
+  return (dispatch) => {
+
+    return TradingAPIUtil.sellCurrency(saleInfo).then(
+
+      (response) => {
+        return dispatch(receiveSellData(response))
+      }
+    );
+  };
+};
+
+
+
+
+
 // ACTION CREATORS - will hit users reducer!! 
 const receieveBuyData = (userData) => {                     // ? userData == { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
   return ({
     type: RECEIVE_BUY_DATA,
+    userData
+  });
+}
+
+const receiveSellData = (userData) => {
+  return({
+    type: RECEIVE_SELL_DATA,
     userData
   });
 }
