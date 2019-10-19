@@ -34,16 +34,18 @@ class TradeModal extends React.Component {
 
   handleBuy() {
     const { symbol, quantity } = this.state;
+    const { userId, price } = this.props;
+    
     const purchaseData = { 
       user_id: userId, 
       symbol: symbol, 
       quantity: quantity, 
-      price: this.props.price };
+      price: price };
 
     // Display error if quantity is not a number or negative
     if (isNaN(quantity) || Number(quantity) <= 0) {
       alert('Please enter a valid quantity');
-      
+
     } else if (this.hasEnoughCash()) {                            // Validate that user cash balance is sufficient 
       this.props.buyCurrency(purchaseData);                       // Send POST (create new wallet transaction) to backend
       alert(`${quantity} ${symbol} was added to your account!`);

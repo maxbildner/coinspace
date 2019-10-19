@@ -22,7 +22,8 @@ class Api::WalletTransactionsController < ApplicationController
 
       # decrease cash balance by total price
       current_user.cash_balance = current_user.cash_balance - total_price
-      
+      current_user.save
+
       # 2) Create new wallet transaction
       @wallet_transaction = WalletTransaction.new(
         wallet_id: wallet.id,
