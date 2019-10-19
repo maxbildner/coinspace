@@ -15,6 +15,7 @@ class TradeModal extends React.Component {
     this.onChangeSymbol = this.onChangeSymbol.bind(this);
     this.onChangeQuantity = this.onChangeQuantity.bind(this);
     this.hasEnoughCash = this.hasEnoughCash.bind(this);
+    this.hasEnoughQuantity = this.hasEnoughQuantity.bind(this);
   }
 
 
@@ -35,7 +36,7 @@ class TradeModal extends React.Component {
   handleBuy() {
     const { symbol, quantity } = this.state;
     const { userId, price } = this.props;
-    
+
     const purchaseData = { 
       user_id: userId, 
       symbol: symbol, 
@@ -70,8 +71,38 @@ class TradeModal extends React.Component {
 
 
   handleSell() {
-    // debugger
+    const { symbol, quantity } = this.state;
+    const { userId, price } = this.props;
+
+    const saleData = {
+      user_id: userId,
+      symbol: symbol,
+      quantity: quantity,
+      price: price
+    };
+
+    // Display error if quantity is not a number or negative
+    if (isNaN(quantity) || Number(quantity) <= 0) {
+      alert('Please enter a valid quantity');
+
+    } else if (this.hasEnoughQuantity()) {                            // Validate that user has enough crypto to sell
+      this.props.sellCurrency(saleData);                              // Send POST (create new wallet transaction) to backend
+      alert(`${quantity} ${symbol} was sold from your account!`);
+    } else {
+      alert('You do not have enough to sell!');
+    }
   }
+
+
+
+  hasEnoughQuantity() {
+    const { symbol, portfolio } = this.props;
+    const quantity = Number(this.state.quantity);
+    
+    // check if user has enough quantity to sell
+    return portfolio[symbol] >= quantity;
+  }
+
 
 
   render() {

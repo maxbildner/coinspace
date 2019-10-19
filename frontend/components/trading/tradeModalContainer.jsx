@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';  
 import TradeModal from './tradeModal';
-import { buyCurrency } from '../../actions/trading_actions';
+import { buyCurrency, sellCurrency } from '../../actions/trading_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
@@ -8,7 +9,6 @@ const mapStateToProps = (state, ownProps) => {
   const cashBalance = state.entities.users[userId].cash_balance || {};
   const portfolio = state.entities.users[userId].portfolio || {};
   
-
   return ({
     cashBalance,
     portfolio,
@@ -19,7 +19,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    buyCurrency: (purchaseInfo) => dispatch(buyCurrency(purchaseInfo))
+    buyCurrency: (purchaseInfo) => dispatch(buyCurrency(purchaseInfo)),
+    sellCurrency: (saleInfo) => dispatch(sellCurrency(saleInfo))
   });
 };
 
