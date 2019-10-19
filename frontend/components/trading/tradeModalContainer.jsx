@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';  
 import TradeModal from './tradeModal';
+import { buyCurrency } from '../../actions/trading_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // debugger
@@ -17,8 +18,10 @@ const mapStateToProps = (state, ownProps) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-
+  return ({
+    buyCurrency: (purchaseInfo) => dispatch(buyCurrency(purchaseInfo))
+  });
 };
 
 
-export default connect(mapStateToProps, null)(TradeModal);
+export default connect(mapStateToProps, mapDispatchToProps)(TradeModal);
