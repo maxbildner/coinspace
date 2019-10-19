@@ -15,3 +15,7 @@ export const buyCurrency = (purchaseInfo) => {      // ex. purchaseInfo = { user
     // }
   });
 }
+
+// ex. 
+// promise = buyCurrency(purchaseInfo)
+// promise.responseJSON == { cash_balance: 3000, portfolio: {'BTC': 1} }

@@ -1,0 +1,28 @@
+import * as TradingAPIUtil from '../util/trading_api_util';
+
+export const RECEIVE_BUY_DATA = 'RECEIVE_BUY_DATA';
+export const RECEIVE_SELL_DATA = 'RECEIVE_SELL_DATA';
+
+
+// THUNK ACTION CREATORS
+export const buyCurrency = (purchaseInfo) => {              // called in Trading Component (given access by MDP in container)
+
+  return (dispatch) => {
+
+    return TradingAPIUtil.buyCurrency(purchaseInfo).then(
+
+      (response) => {
+        return dispatch(receieveBuyData(response))          // ? response == { cash_balance: 3000, portfolio: {'BTC': 1} }
+      }
+    );
+  };
+};
+
+
+// ACTION CREATORS
+const receieveBuyData = (buyData) => {                      // ? buyData == { cash_balance: 3000, portfolio: {'BTC': 1} }
+  return ({
+    type: RECEIVE_BUY_DATA,
+    buyData
+  });
+}
