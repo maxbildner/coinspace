@@ -106,6 +106,20 @@ class User < ApplicationRecord
 	end
 
 
+	def has_enough_currency(symbol, negativeQuantity)
+		portfolio = self.get_portfolio
+
+		quantity = negativeQuantity * -1
+
+		# return false if user doesn't have any or enough of the currency in their wallet
+		if ( (portfolio[symbol] == nil) || (portfolio[symbol] < quantity) )
+			return false
+		end
+
+		true
+	end
+
+
 	private
 
 	def self.generate_session_token

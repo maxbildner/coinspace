@@ -77,7 +77,7 @@ class TradeModal extends React.Component {
     const saleData = {
       user_id: userId,
       symbol: symbol,
-      quantity: quantity,
+      quantity: Number(quantity) * -1.0,
       price: price
     };
 
@@ -100,7 +100,7 @@ class TradeModal extends React.Component {
     const quantity = Number(this.state.quantity);
     
     // check if user has enough quantity to sell
-    return portfolio[symbol] >= quantity;
+    return Number(portfolio[symbol]) >= quantity;
   }
 
 
