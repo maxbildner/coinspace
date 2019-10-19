@@ -10,7 +10,7 @@ class Api::WalletTransactionsController < ApplicationController
     # Make sure correct user is logged in 
     # Check if user_id matches user_id in DB by session cookie 
     correct_user = logged_in? && (user_id == trade_params[:user_id].to_i)
-    debugger
+    # debugger
 
     # Validate user has enough cash
     if correct_user && (current_user.cash_balance >= total_price)
@@ -18,8 +18,8 @@ class Api::WalletTransactionsController < ApplicationController
       # 1) Update correct wallet value
       wallet = Wallet.get_wallet(user_id, symbol)
       wallet.update_value(quantity)
-      debugger
-      
+      # debugger
+
       # decrease cash balance by total price
       current_user.cash_balance = current_user.cash_balance - total_price
       
@@ -36,6 +36,8 @@ class Api::WalletTransactionsController < ApplicationController
       @wallet_transaction.save
   
       render json: {
+        id: current_user.id,
+        email: current_user.email,
         cash_balance: current_user.cash_balance,            # float
         portfolio: current_user.get_portfolio               # object { 'BTC': 1, 'LTC': .5 } 
       }

@@ -3,6 +3,7 @@
 
 import { merge } from 'lodash';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_BUY_DATA } from '../actions/trading_actions';
 
 const usersReducers = (oldState={}, action) => {
     Object.freeze(oldState);
@@ -14,6 +15,11 @@ const usersReducers = (oldState={}, action) => {
             // debugger
             newState = merge({}, oldState, { [action.user.id]: action.user });    // add the action's user to the state and set the key to the id of the user.
             // debugger
+            return newState;
+
+        case RECEIVE_BUY_DATA:
+            // action.userData ==  { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
+            newState = merge({}, oldState, { [action.userData.id]: action.userData });
             return newState;
 
         default:
