@@ -28,6 +28,8 @@ class User < ApplicationRecord
 		foreign_key: :user_id,
 		class_name: :Wallet
 
+	has_many :wallet_transactions
+
 	def self.find_by_credentials(email, password)
 		user = User.find_by(email: email)
 		user && user.is_password?(password) ? user : nil
@@ -96,9 +98,22 @@ class User < ApplicationRecord
 	end
 
 
-	def get_wallet_transactions
-		# WalletTransaction.where()
-	end
+	# def get_transactions
+	# 	transactions = []
+
+	# 	# get all wallets for user
+	# 	wallets = self.wallets					# "array-like"
+
+	# 	i = 0
+	# 	while i < wallets.length				# go through each wallet
+	# 		wallet = wallets[i]
+	# 		wallet_id = wallet.id
+	# 		wallet_transactions = 
+	# 		# get all transactions for each wallet
+	# 	end
+		
+	# 	# WalletTransaction.where()
+	# end
 
 
 	def get_wallets 
@@ -130,3 +145,4 @@ class User < ApplicationRecord
 		self.session_token ||= self.class.generate_session_token
 	end
 end
+

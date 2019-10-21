@@ -28,6 +28,7 @@ class Api::WalletTransactionsController < ApplicationController
         # 2) Create new wallet transaction
         @wallet_transaction = WalletTransaction.new(
           wallet_id: wallet.id,
+          user_id: current_user.id,
           quantity: quantity,
           price: price,
           transaction_type: 'BUY'
@@ -65,6 +66,7 @@ class Api::WalletTransactionsController < ApplicationController
         # Create new wallet transaction
         @wallet_transaction = WalletTransaction.new(
           wallet_id: wallet.id,
+          user_id: current_user.id,
           quantity: quantity,                                 # negative
           price: price,
           transaction_type: 'SELL'
