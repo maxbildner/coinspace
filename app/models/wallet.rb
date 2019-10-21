@@ -36,12 +36,14 @@ class Wallet < ApplicationRecord
 
 	# Increment wallets total value
 	def update_value(quantity)															# quantity == crypto value NOT USD
+		# debugger
+
 		if quantity > 0																				# BUY 
 			self.total_value = self.total_value + quantity			# increment wallet value by quantity
 		else 																									# SELL
-			self.total_value = self.total_value - quantity			# decrement wallet value by quantity
+			self.total_value = self.total_value + quantity			# quantity is Negative!! so adding, will decrement
 		end
-		
+
 		save!
 	end
 end

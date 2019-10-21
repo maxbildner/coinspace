@@ -48,8 +48,11 @@ class Api::WalletTransactionsController < ApplicationController
       end
 
     else # QUANTITY <= 0 WHICH MEANS SELL
+      # debugger
+
       # Validate user has enough currency to sell
       if correct_user && current_user.has_enough_currency(symbol, quantity)
+        # debugger
 
         # Update correct wallet value
         wallet = Wallet.get_wallet(user_id, symbol)
@@ -69,7 +72,8 @@ class Api::WalletTransactionsController < ApplicationController
         
         # 3) Send back users new cash_balance, portfolio, (transactions but add this later)
         @wallet_transaction.save
-
+        # debugger
+        
         render json: {
           id: current_user.id,
           email: current_user.email,
@@ -81,14 +85,12 @@ class Api::WalletTransactionsController < ApplicationController
       end
     end
 
-
-
   end
 
 
   private
   def trade_params
-    # ex. params == {"purchaseInfo"=>{"user_id"=>"11", "symbol"=>"BTC", "quantity"=>"1"}
-    params.require(:purchaseInfo).permit(:user_id, :symbol, :quantity, :price)
+    # ex. params == {"tradeInfo"=>{"user_id"=>"11", "symbol"=>"BTC", "quantity"=>"1"}
+    params.require(:tradeInfo).permit(:user_id, :symbol, :quantity, :price)
   end
 end

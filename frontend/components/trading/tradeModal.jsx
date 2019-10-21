@@ -123,7 +123,7 @@ class TradeModal extends React.Component {
             placeholder={this.state.quantity}
             onChange={this.onChangeQuantity}/>
           <button id="trading-modal-buy" onClick={this.handleBuy}>BUY</button>
-          <button id="trading-modal-buy" onClick={this.handleSell}>SELL</button>
+          <button id="trading-modal-sell" onClick={this.handleSell}>SELL</button>
         {/* </form> */}
       </div>
     );
