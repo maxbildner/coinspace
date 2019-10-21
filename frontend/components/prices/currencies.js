@@ -39,6 +39,9 @@ export const NAMES = [
   'Dai'
 ];
 
+// # supported_currencies = [
+//   #     'BTC', 'ETH', 'XRP', 'BCH', 'LTC',
+//   #     'EOS', 'XLM']
 
 
 // NON TRADABLE COINS ON COINBASE

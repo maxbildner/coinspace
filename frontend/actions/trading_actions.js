@@ -27,7 +27,7 @@ export const sellCurrency = (saleInfo) => {
     return TradingAPIUtil.sellCurrency(saleInfo).then(
 
       (response) => {
-        debugger
+        // debugger
         return dispatch(receiveSellData(response))
       }
     );
@@ -47,7 +47,7 @@ const receieveBuyData = (userData) => {                     // ? userData == { i
 }
 
 const receiveSellData = (userData) => {
-  debugger
+  // debugger
 
   return({
     type: RECEIVE_SELL_DATA,

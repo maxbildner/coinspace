@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PricesRow from './prices_row';
 import { fetchCurrencyInfo } from '../../util/prices_util';
 import { SYMBOLS, NAMES } from './currencies';
-// import { fetchDescription } from '../../util/currency_api_util';    // For currency logos
+import TradeModal from '../trading/tradeModalContainer';
 
 // Before component is rendered, fetch 1) array of all currency tickers and 2) array of all currency names (from database or keep on front end like JS project)
 // Render matches function- returned from main component that displays input and search results
@@ -16,15 +16,20 @@ class PricesPage extends React.Component {
 
     // Matches array of string symbols
     this.state = {
-      // matches: []
       symbolSuggestions: [],
       nameSuggestions: [],
       userInput: "",
       rowData: {},               // ex. { BTC: { PRICE:10861, CHANGEPCT24HOUR:4%, MKTCAP:2.5B}, ETH: {...}... }
+      modalOn: false,
+      symbolClicked: 'test',
+      priceClicked: 'test'
     };
 
     this.onTextChange = this.onTextChange.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
+    this.renderModal = this.renderModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.triggerModal = this.triggerModal.bind(this);
   }
 
 
@@ -70,20 +75,6 @@ class PricesPage extends React.Component {
     }
   }
 
-  // FROM currency table item
-  // componentDidMount() {
-  //   this.props.fetchCurrentPrice(this.props.symbol);
-  //   fetchDescription(this.props.symbol).then(
-  //     (response) => {
-
-  //       return this.setState({
-  //         logoPath: response.imageurl
-  //       })
-  //     }
-  //   );
-  //   // debugger
-  // }
-
 
 
 
@@ -122,80 +113,6 @@ class PricesPage extends React.Component {
 
 
 
-  // renderMatches() {
-  // renderSuggestions() {
-  //   // Const { matches } = this.state;
-  //   const { symbolSuggestions, nameSuggestions, userInput, rowData } = this.state;
-  //   let whatToMap, nameToMap;
-
-  //   // This is so we don't repeat code below
-  //   if (userInput === "") {
-  //     whatToMap = SYMBOLS;
-  //     nameToMap = NAMES;
-  //   } else {
-  //     whatToMap = symbolSuggestions;
-  //     nameToMap = nameSuggestions;
-  //   }
-
-  //   // Return null if there are no search matches (suggestions) AND search input field is NOT empty
-  //   if (symbolSuggestions.length === 0 && userInput !== "") {
-  //     return null;  // No search results found
-  //   } else {    
-  //     return (
-  //       <ul className="search-ul">
-  //         <li className="search-li-header">
-  //           <div id="search-results-header">
-  //             <span className="search-logo-header"></span>
-  //             <span className="search-name-header">Name</span>
-  //             <span className="search-ticker-header">Symbol</span>
-  //             <span className="search-price-header">Price</span>
-  //             <span className="search-change24-header">Change 24HR</span>
-  //             <span className="search-marketCap-header">Market Cap</span>
-  //             <span className="search-trade-header">Trade</span>
-  //           </div>
-  //         </li>
-  //         {whatToMap.map( (symbol, i) => {
-  //           // let name = nameToMap[i].toLowerCase().split(' ').join('');    // remove space in string (if any)
-  //           let name = nameToMap[i].toLowerCase().split(' ').join('-');      // remove space in string (if any)
-  //           let price, percentChange, marketCap, logoPath;
-  //           // debugger
-
-  //           // On initial page load, local state will be empty, so return null
-  //           if (rowData[symbol] === undefined) {
-  //             price = null;
-  //             percentChange = null;
-  //             marketCap = null;
-  //             logoPath = null;
-  //           } else {
-  //             // Access local state and Set price, %change, and mktcap for each currency so we can pass as props to subcomponent row
-  //             price = rowData[symbol]['PRICE'];
-  //             percentChange = rowData[symbol]['CHANGEPCT24HOUR'];
-  //             marketCap = rowData[symbol]['MKTCAP'];
-  //             logoPath = rowData[symbol]['IMAGEURL'];
-  //           }
-  //           if (name == 'xrapid') name = 'xrp';
-
-  //           return (
-  //           <li key={i} className="search-li">
-  //               <Link to={`/price/${name}`} className="search-li-link">
-  //                 <PricesRow 
-  //                   key={i + 1} 
-  //                   price={price} 
-  //                   percentChange={percentChange}
-  //                   marketCap={marketCap}
-  //                   nameToMap={nameToMap[i]} 
-  //                   symbol={symbol}
-  //                   logoPath={logoPath}
-  //                 />
-  //               </Link>
-  //               <span className="search-trade"><button className="currency-trade-prices">TRADE</button></span>
-  //           </li>
-  //           );
-  //         })}
-  //       </ul>
-  //     );
-  //   }
-  // }
 
   renderSuggestions() {
     // Const { matches } = this.state;
@@ -262,7 +179,13 @@ class PricesPage extends React.Component {
                     logoPath={logoPath}
                   />
                 </Link>
-                <td className="search-trade"><button className="currency-trade-prices">TRADE</button></td>
+                <td className="search-trade">
+                  <button 
+                    className="currency-trade-prices" 
+                    onClick={()=> this.triggerModal(symbol, price)}>
+                    TRADE
+                  </button>
+                </td>
             </tr>
             );
           })}
@@ -272,11 +195,44 @@ class PricesPage extends React.Component {
   }
 
 
+
+  triggerModal(symbol, price) {
+    // Toggle local state of modal to true
+    // debugger
+
+    this.setState({
+      modalOn: true,
+      symbolClicked: symbol,
+      priceClicked: price
+    });
+  }
+
+  renderModal() {
+    const { symbolClicked, priceClicked } = this.state;
+
+    // If modal toggle true, display modal
+    if (this.state.modalOn) {
+      return <TradeModal symbol={symbolClicked} toggleModal={this.hideModal} price={priceClicked} />
+    } else {
+      return null;
+    }
+  }
+
+  hideModal() {
+    this.setState({
+      modalOn: false
+    });
+  }
+
+
+
+
   render() {
     return (
       <div id="search-container">
         <input onChange={this.onTextChange} type="text" id="search-bar" placeholder="Search all assets..."/>
         <h2>Availble on Coinspace</h2>
+        {this.renderModal()}
         {this.renderSuggestions()}
         {/* <h2>Not Availble on Coinspace</h2> */}
       </div>

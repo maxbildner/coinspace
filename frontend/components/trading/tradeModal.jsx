@@ -36,6 +36,7 @@ class TradeModal extends React.Component {
   handleBuy() {
     const { symbol, quantity } = this.state;
     const { userId, price } = this.props;
+    debugger
 
     const purchaseData = { 
       user_id: userId, 
@@ -58,11 +59,17 @@ class TradeModal extends React.Component {
 
 
   hasEnoughCash() {
-    const { symbol, price, cashBalance, portfolio, userId } = this.props;
+    let { symbol, price, cashBalance, portfolio, userId } = this.props;
     const quantity = Number(this.state.quantity);
     
+    if (isNaN(price)) {   // if price is a string ex. "$ 8,000.00", remove $ and ','
+      price = Number(price.slice(1).split(',').join(''));
+    }
+    debugger
+
     // Compute total purchase value = price * quantity
     const totalPurchaseValue = price * quantity;
+    debugger
 
     // Check if user has enough cash to cover totalPurchaseValue
     return (cashBalance >= totalPurchaseValue);
@@ -72,7 +79,11 @@ class TradeModal extends React.Component {
 
   handleSell() {
     const { symbol, quantity } = this.state;
-    const { userId, price } = this.props;
+    let { userId, price } = this.props;
+
+    if (isNaN(price)) {   // if price is a string ex. "$ 8,000.00", remove $ and ','
+      price = Number(price.slice(1).split(',').join(''));
+    }
 
     const saleData = {
       user_id: userId,
@@ -98,6 +109,7 @@ class TradeModal extends React.Component {
   hasEnoughQuantity() {
     const { symbol, portfolio } = this.props;
     const quantity = Number(this.state.quantity);
+    debugger
     
     // check if user has enough quantity to sell
     return Number(portfolio[symbol]) >= quantity;
@@ -108,6 +120,7 @@ class TradeModal extends React.Component {
   render() {
     // debugger
     const { toggleModal, price } = this.props || {};
+    
 
     return (
       <div id="modal-container">
