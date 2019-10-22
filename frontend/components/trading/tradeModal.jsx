@@ -55,7 +55,7 @@ class TradeModal extends React.Component {
     } else if (this.hasEnoughCash()) {                            // Validate that user cash balance is sufficient 
       this.props.buyCurrency(purchaseData);                       // Send POST (create new wallet transaction) to backend
       alert(`${quantity} ${symbol} was added to your account!`);
-
+      this.props.toggleModal();                                   // close modal
     } else {
       alert('You do not have enough buying power!');
     }
@@ -105,6 +105,7 @@ class TradeModal extends React.Component {
     } else if (this.hasEnoughQuantity()) {                            // Validate that user has enough crypto to sell
       this.props.sellCurrency(saleData);                              // Send POST (create new wallet transaction) to backend
       alert(`${quantity} ${symbol} was sold from your account!`);
+      this.props.toggleModal();                                       // close modal
     } else {
       alert('You do not have enough to sell!');
     }
@@ -131,7 +132,6 @@ class TradeModal extends React.Component {
     return (
       <div id="modal-container">
         <span id="trading-modal-close-button" onClick={toggleModal}>&times;</span>
-        {/* <form action=""> */}
           <input id="trading-input-symbol" 
             type="text" 
             placeholder={this.state.symbol}
@@ -143,7 +143,6 @@ class TradeModal extends React.Component {
             onChange={this.onChangeQuantity}/>
           <button id="trading-modal-buy" onClick={this.handleBuy}>BUY</button>
           <button id="trading-modal-sell" onClick={this.handleSell}>SELL</button>
-        {/* </form> */}
       </div>
     );
   }

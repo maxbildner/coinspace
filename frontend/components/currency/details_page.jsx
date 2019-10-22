@@ -12,6 +12,7 @@ import {
  } from '../../util/prices_util';
 import { fetchDescription } from '../../util/currency_api_util';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
+import TradeModal from '../trading/tradeModalContainer';
 
 const CURRENCYNAMES = {
 	bitcoin: { sym: 'BTC', high: 20089, site: 'https://bitcoin.org/en/', paper: 'https://bitcoin.org/bitcoin.pdf' },
@@ -115,6 +116,7 @@ class DetailsPage extends React.Component {
 			volume24HRS: '',
 			supply: '',
 			news: [],			// array of news objects (keep latest 4 only)
+			modalOn: false,
 		}
 		// debugger
 
@@ -126,6 +128,9 @@ class DetailsPage extends React.Component {
 		this.updateDescription = this.updateDescription.bind(this);
 		this.updateCurrencyInfo = this.updateCurrencyInfo.bind(this);
 		this.updateCurrencyNews = this.updateCurrencyNews.bind(this);
+		this.triggerModal = this.triggerModal.bind(this);
+		this.renderModal = this.renderModal.bind(this);
+		this.hideModal = this.hideModal.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -261,6 +266,36 @@ class DetailsPage extends React.Component {
 //     {} ]
 
 
+	triggerModal() {
+		// Toggle local state of modal to true
+		// debugger
+
+		this.setState({
+			modalOn: true,
+		});
+	}
+
+	renderModal() {
+		// const { symbolClicked, priceClicked } = this.state;
+		const symbol = this.props.symbol;
+		const price = this.state.currentPrice;
+
+		// If modal toggle true, display modal
+		if (this.state.modalOn) {
+			return <TradeModal symbol={symbol} toggleModal={this.hideModal} price={price} />
+		} else {
+			return null;
+		}
+	}
+
+	hideModal() {
+		this.setState({
+			modalOn: false
+		});
+	}
+
+
+
 
 
 	
@@ -394,6 +429,8 @@ class DetailsPage extends React.Component {
 						</div>
 					</div>
 
+					{this.renderModal()}
+
 					<div id="description-container">
 						<h2 id="title">About {this.props.currencyName}</h2>
 						<p id="description">
@@ -414,7 +451,11 @@ class DetailsPage extends React.Component {
 				</section>
 
 				<section id="right-detail">
-						<div id="detail-trade"><button className="detail-trade">TRADE</button></div>
+						<div id="detail-trade">
+							<button className="detail-trade" onClick={this.triggerModal}>
+								TRADE
+							</button>
+						</div>
 				</section>
 				
 			</div>
