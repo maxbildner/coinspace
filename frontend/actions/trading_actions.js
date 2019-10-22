@@ -40,6 +40,7 @@ export const sellCurrency = (saleInfo) => {
 
 // ACTION CREATORS - will hit users reducer!! 
 const receieveBuyData = (userData) => {                     // ? userData == { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
+  // debugger
   return ({
     type: RECEIVE_BUY_DATA,
     userData

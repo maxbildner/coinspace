@@ -21,7 +21,9 @@ const usersReducers = (oldState={}, action) => {
 		case RECEIVE_BUY_DATA:
 			// action.userData ==  { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
 			newState = merge({}, oldState, { [action.userData.id]: action.userData });
+			// debugger
 			newState[action.userData.id].portfolio = action.userData.portfolio;				// "overwrite" old state portfolio
+			// debugger
 			return newState;
 
 		case RECEIVE_SELL_DATA:

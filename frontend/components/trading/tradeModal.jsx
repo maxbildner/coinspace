@@ -35,8 +35,12 @@ class TradeModal extends React.Component {
 
   handleBuy() {
     const { symbol, quantity } = this.state;
-    const { userId, price } = this.props;
-    debugger
+    let { userId, price } = this.props;
+    // debugger
+    if (isNaN(price)) {   // if price is a string ex. "$ 8,000.00", remove $ and ','
+      price = Number(price.slice(1).split(',').join(''));
+    }
+    // debugger
 
     const purchaseData = { 
       user_id: userId, 
@@ -65,11 +69,11 @@ class TradeModal extends React.Component {
     if (isNaN(price)) {   // if price is a string ex. "$ 8,000.00", remove $ and ','
       price = Number(price.slice(1).split(',').join(''));
     }
-    debugger
+    // debugger
 
     // Compute total purchase value = price * quantity
     const totalPurchaseValue = price * quantity;
-    debugger
+    // debugger
 
     // Check if user has enough cash to cover totalPurchaseValue
     return (cashBalance >= totalPurchaseValue);
@@ -84,6 +88,7 @@ class TradeModal extends React.Component {
     if (isNaN(price)) {   // if price is a string ex. "$ 8,000.00", remove $ and ','
       price = Number(price.slice(1).split(',').join(''));
     }
+    // debugger
 
     const saleData = {
       user_id: userId,
@@ -91,11 +96,12 @@ class TradeModal extends React.Component {
       quantity: Number(quantity) * -1.0,
       price: price
     };
+    // debugger
 
     // Display error if quantity is not a number or negative
     if (isNaN(quantity) || Number(quantity) <= 0) {
       alert('Please enter a valid quantity');
-
+      // debugger
     } else if (this.hasEnoughQuantity()) {                            // Validate that user has enough crypto to sell
       this.props.sellCurrency(saleData);                              // Send POST (create new wallet transaction) to backend
       alert(`${quantity} ${symbol} was sold from your account!`);
@@ -109,8 +115,8 @@ class TradeModal extends React.Component {
   hasEnoughQuantity() {
     const { symbol, portfolio } = this.props;
     const quantity = Number(this.state.quantity);
-    debugger
-    
+    // debugger
+
     // check if user has enough quantity to sell
     return Number(portfolio[symbol]) >= quantity;
   }

@@ -4,7 +4,7 @@ class Api::WalletTransactionsController < ApplicationController
     quantity = trade_params[:quantity].to_f   # float   - will be negative if sell, positive for buy
     symbol = trade_params[:symbol]            # string
     price = trade_params[:price].to_f         # float
-    total_price = quantity * price            # float
+    total_price = quantity * price            # float   - wukk ve begatuve uf sell
     user_id = current_user.id                 # integer
 
     # Make sure correct user is logged in 
@@ -24,6 +24,7 @@ class Api::WalletTransactionsController < ApplicationController
         # decrease cash balance by total price
         current_user.cash_balance = current_user.cash_balance - total_price
         current_user.save
+        # debugger
   
         # 2) Create new wallet transaction
         @wallet_transaction = WalletTransaction.new(
@@ -36,6 +37,7 @@ class Api::WalletTransactionsController < ApplicationController
         
         # 3) Send back users new cash_balance, portfolio, (transactions but add this later)
         @wallet_transaction.save
+        # debugger
     
         render json: {
           id: current_user.id,
@@ -59,9 +61,11 @@ class Api::WalletTransactionsController < ApplicationController
         wallet = Wallet.get_wallet(user_id, symbol)
         wallet.update_value(quantity)                         # quantity is negative
 
+        # debugger
         # Increase cash balance by total price
         current_user.cash_balance = current_user.cash_balance + (total_price * -1)
         current_user.save
+        # debugger
 
         # Create new wallet transaction
         @wallet_transaction = WalletTransaction.new(
