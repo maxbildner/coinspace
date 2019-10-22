@@ -197,14 +197,21 @@ class PricesPage extends React.Component {
 
 
   triggerModal(symbol, price) {
-    // Toggle local state of modal to true
+    const state = getState();
     // debugger
 
-    this.setState({
-      modalOn: true,
-      symbolClicked: symbol,
-      priceClicked: price
-    });
+    // If user is NOT logged in, redirect to Sign Up Page
+    if (state.session.id == null) {
+      alert('You must be signed in to trade');
+      this.props.history.push('/signup');
+    } else {																						// If user IS logged in, 
+      // Toggle local state of modal to true
+      this.setState({
+        modalOn: true,
+        symbolClicked: symbol,
+        priceClicked: price
+      });
+    }
   }
 
   renderModal() {

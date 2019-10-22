@@ -6,8 +6,12 @@ import { buyCurrency, sellCurrency } from '../../actions/trading_actions';
 const mapStateToProps = (state, ownProps) => {
   // debugger
   const userId = state.session.id;
-  const cashBalance = state.entities.users[userId].cash_balance || {};
-  const portfolio = state.entities.users[userId].portfolio || {};
+  let cashBalance, portfolio;
+
+  if (userId) {   // if userId exists
+    cashBalance = state.entities.users[userId].cash_balance || {};
+    portfolio = state.entities.users[userId].portfolio || {};
+  } 
   
   return ({
     cashBalance,
