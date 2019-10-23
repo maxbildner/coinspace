@@ -16,7 +16,7 @@ class NavBarComponent extends React.Component {
 	renderLoggedInLinks() {
 		return (<>
 			<li>
-				<NavLink to="">Dashboard</NavLink>
+				<NavLink to="/dashboard">Dashboard</NavLink>
 			</li>
 			<li>
 				<NavLink to="">Settings</NavLink>
