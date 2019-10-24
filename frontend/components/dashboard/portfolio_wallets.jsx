@@ -13,9 +13,10 @@ class PortfolioWallets extends React.Component {
     //   currentPrices: null,
     // }
 
-    this.sortPortfolio = this.sortPortfolio.bind(this);
+    this.sortPortfolioByQuantity = this.sortPortfolioByQuantity.bind(this);
     this.renderSortedRows = this.renderSortedRows.bind(this);
     this.calculateAssetAllocation = this.calculateAssetAllocation.bind(this);
+    this.sortPortfolioByUSDValue = this.sortPortfolioByUSDValue.bind(this);
   }
 
 
@@ -93,7 +94,7 @@ class PortfolioWallets extends React.Component {
   }
 
 
-  sortPortfolio() {           // returns array of objects sorted by asset allocation % high to low
+  sortPortfolioByQuantity() {           // returns array of objects sorted by asset allocation % high to low, sort by quantity
     const portfolio = this.props.portfolio;
     // portfolio = { BTC: 1, LTC: .5, ETH: 30 }
   
@@ -113,10 +114,20 @@ class PortfolioWallets extends React.Component {
   }
 
 
+  sortPortfolioByUSDValue(portfolioArray) {
+    return portfolioArray.sort( (a,b) => b.USDValue - a.USDValue );
+  }
+
+
   renderSortedRows() {  // sort by asset allocation % high to low, default to coin mkt cap
-    let sortedPortfolio = this.sortPortfolio();
+    let sortedPortfolio = this.sortPortfolioByQuantity();
     // sortedPortfolio = [ { symbol: 'ETH', quantity: 30 }, { symbol: 'BTC', quantity: 1 }, { symbol: 'LTC', quantity: 0.5 } ]
+
     let portfolioAssetAllocation = this.calculateAssetAllocation(sortedPortfolio);
+    // portfolioAssetAllocation == [ { symbol: 'USD', quantity: 1871.57, USDValue: 1871.57, percentAllocation: 0.20 }, { symbol: 'BTC', quantity: 1, USDValue: 7472, percentAllocation: .799 } ]
+
+    // sort by USDVAlue
+    sortedPortfolio = this.sortPortfolioByUSDValue(sortedPortfolio);
     debugger
 
     return sortedPortfolio.map( currencyObj => {
