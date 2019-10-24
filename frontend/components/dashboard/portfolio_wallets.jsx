@@ -2,16 +2,13 @@ import React from 'react';
 import { fetchCurrentPrices } from '../../util/prices_util';
 
 const SUPPORTED_CURRENCIES = ['BTC', 'ETH', 'XRP', 'BCH', 'LTC', 'EOS', 'XLM'];
+var portfolioValue = null;
 
 class PortfolioWallets extends React.Component {
   constructor(props) {
     super(props);
     // props == { cashBalance, portfolio, currentPrices }
-    // currentPrices == {BTC: {USD: 7649.32, MKTCAP...}, ETH: {USD: 162.16, MKTCAP... }, ... }
-
-    // this.state = {
-    //   currentPrices: null,
-    // }
+    // currentPrices == ? wrong -> {BTC: {USD: 7649.32, MKTCAP...}, ETH: {USD: 162.16, MKTCAP... }, ... }
 
     this.sortPortfolioByQuantity = this.sortPortfolioByQuantity.bind(this);
     this.renderSortedRows = this.renderSortedRows.bind(this);
@@ -20,42 +17,21 @@ class PortfolioWallets extends React.Component {
   }
 
 
-  // componentDidMount() {
-  //   if (this.state.currentPrices == null) {
-  //     this.getCurrentPrices();
-  //   }
-  // }
-
-  // getCurrentPrices() {
-  //   fetchCurrentPrices(SUPPORTED_CURRENCIES).then(
-  //     (response) => {
-  //       debugger
-  //       // response == {BTC: {USD: 7649.32}, ETH: {USD: 162.16}, ... }
-  //       // return this.setState({
-  //       // });
-  //     }
-  //   );
-  // }
-
-
   calculateAssetAllocation(sortedPortfolio) {     // returns new portfolio array of objects by adding %Allocation for each currency
     // sortedPortfolio = [ { symbol: 'USD', quantity: 1 }, { symbol: 'USD', quantity: 1871 }, ... ]
     
     // let totalPortfolioValue = Number(this.props.cashBalance);
     let totalPortfolioValue = 0;
     let currentPrices = this.props.currentPrices;
-    // debugger
 
     // this.props.currentPrices will be empty {} on first render bec. asynch
     if (currentPrices['BTC'] != undefined) {
-      // debugger
 
       // calculate value of each currency in USD and add key/val pair to each currency object 
       sortedPortfolio = sortedPortfolio.map( (currencyObj) => {
         let symbol = currencyObj.symbol;
         let quantity = Number(currencyObj.quantity);
         let currentPrice;
-        // debugger
 
         // check if currencyObj is USD
         if (currencyObj.symbol === 'USD') {
@@ -67,21 +43,24 @@ class PortfolioWallets extends React.Component {
         let currentValue = quantity * currentPrice;
         currencyObj['USDValue'] = currentValue;
         totalPortfolioValue += currentValue;
-        // debugger
 
         return currencyObj;
       });
 
       // calculate % asset allocation of each currency and add key/val pair to to each currency object
       sortedPortfolio = sortedPortfolio.map( (currencyObj) => {
-        // let symbol = currencyObj.symbol;
-        // let quantity = Number(currencyObj.quantity);
-        // let currentPrice = this.props.currentPrices[symbol].USD;
         let currentValue = currencyObj.USDValue;
         let percentAllocation = currentValue/totalPortfolioValue;
+
+        // round to two decimal places
+        percentAllocation = Number(percentAllocation.toFixed(2));
         currencyObj['percentAllocation'] = percentAllocation;
         return currencyObj;
       })
+    }
+
+    if (portfolioValue == null && currentPrices['BTC'] != undefined) {
+      portfolioValue = totalPortfolioValue;
     }
 
     return sortedPortfolio;
@@ -121,22 +100,24 @@ class PortfolioWallets extends React.Component {
 
   renderSortedRows() {  // sort by asset allocation % high to low, default to coin mkt cap
     let sortedPortfolio = this.sortPortfolioByQuantity();
-    // sortedPortfolio = [ { symbol: 'ETH', quantity: 30 }, { symbol: 'BTC', quantity: 1 }, { symbol: 'LTC', quantity: 0.5 } ]
+    // sortedPortfolio == [ { symbol: 'ETH', quantity: 30 }, { symbol: 'BTC', quantity: 1 }, { symbol: 'LTC', quantity: 0.5 } ]
 
     let portfolioAssetAllocation = this.calculateAssetAllocation(sortedPortfolio);
     // portfolioAssetAllocation == [ { symbol: 'USD', quantity: 1871.57, USDValue: 1871.57, percentAllocation: 0.20 }, { symbol: 'BTC', quantity: 1, USDValue: 7472, percentAllocation: .799 } ]
 
-    // sort by USDVAlue
-    sortedPortfolio = this.sortPortfolioByUSDValue(sortedPortfolio);
-    debugger
+    // sort by USDValue
+    sortedPortfolio = this.sortPortfolioByUSDValue(portfolioAssetAllocation);
+    
 
-    return sortedPortfolio.map( currencyObj => {
-      <tr>
+    return sortedPortfolio.map( (currencyObj, i) => {
+      return (
+      <tr key={i}>
         <td>{currencyObj.symbol}</td>
-        <td>test</td>
-        <td>test</td>
-        <td>test</td>
+        <td>%{currencyObj.percentAllocation * 100}</td>
+        <td>{currencyObj.quantity}</td>
+        <td>${currencyObj.USDValue}</td>
       </tr>
+      );
     });
   }
 
@@ -145,34 +126,22 @@ class PortfolioWallets extends React.Component {
     // debugger
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Portfolio Wallets</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderSortedRows()}
-          {/* <tr>
-            <td>BTC</td>
-            <td>Allocation %</td>
-            <td>Quantity</td>
-            <td>Current Value $</td>
-          </tr>
-          <tr>
-            <td>ETH</td>
-            <td>Allocation %</td>
-            <td>Quantity</td>
-            <td>Current Value $</td>
-          </tr>
-          <tr>
-            <td>XRP</td>
-            <td>Allocation %</td>
-            <td>Quantity</td>
-            <td>Current Value $</td>
-          </tr> */}
-        </tbody>
-      </table>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Portfolio Wallets</th>
+              <th>Asset Allocation</th>
+              <th>Quantity</th>
+              <th>USD Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderSortedRows()}
+          </tbody>
+        </table>
+        <div>Total Portfolio Value ≈ {portfolioValue}</div>
+      </div>
     );
   }
 }
