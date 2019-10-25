@@ -6,7 +6,11 @@ class Transactions extends React.Component {
   }
 
   render() {
-    return null;
+    return (
+      <div id="transactions">
+        TRANSACTIONS
+      </div>
+    );
   }
 }
 

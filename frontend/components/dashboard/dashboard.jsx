@@ -46,15 +46,20 @@ class Dashboard extends React.Component {
 		const currentPrices = this.state.currentPrices || {};
 
 		return (
-			<div>
+			<div id="dashboard-container">
 				<h1>WELCOME!</h1>
 				<PortfolioChart/>
 				<Watchlist/>
-				<PortfolioWallets 
-					cashBalance={cash_balance} 
-					portfolio={portfolio} 
-					currentPrices={currentPrices}/>
-				<Transactions/>
+
+				<div id="wallets-transactions-container">
+					<PortfolioWallets 
+						cashBalance={cash_balance} 
+						portfolio={portfolio} 
+						currentPrices={currentPrices}
+					/>
+					<Transactions
+					/>
+				</div>
 			</div>
 		);
 	}

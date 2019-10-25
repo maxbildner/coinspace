@@ -107,11 +107,10 @@ class PortfolioWallets extends React.Component {
 
     // sort by USDValue
     sortedPortfolio = this.sortPortfolioByUSDValue(portfolioAssetAllocation);
-    
 
     return sortedPortfolio.map( (currencyObj, i) => {
       return (
-      <tr key={i}>
+      <tr key={i} className="wallets-tbody-tr">
         <td>{currencyObj.symbol}</td>
         <td>%{currencyObj.percentAllocation * 100}</td>
         <td>{currencyObj.quantity}</td>
@@ -126,21 +125,21 @@ class PortfolioWallets extends React.Component {
     // debugger
 
     return (
-      <div>
-        <table>
-          <thead>
-            <tr>
+      <div id="wallets">
+        <table className="wallets-table">
+          <thead className="wallets-thead">
+            <tr className="wallets-thead-tr">
               <th>Portfolio Wallets</th>
               <th>Asset Allocation</th>
               <th>Quantity</th>
               <th>USD Value</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="wallets-tbody">
             {this.renderSortedRows()}
           </tbody>
         </table>
-        <div>Total Portfolio Value ≈ {portfolioValue}</div>
+        <div className="wallets-portfolio-val">Total Portfolio Value ≈ {portfolioValue}</div>
       </div>
     );
   }
