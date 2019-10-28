@@ -13,7 +13,8 @@ class Api::SessionsController < ApplicationController
 				id: current_user.id, 
 				email: current_user.email,  
 				cash_balance: current_user.cash_balance,            								# float
-				portfolio: current_user.get_portfolio               								# object { 'BTC': 1, 'LTC': .5 } 
+				portfolio: current_user.get_portfolio,               								# object { 'BTC': 1, 'LTC': .5 } 
+				wallet_transactions: current_user.wallet_transactions								# array of objects [ {id: 30, wallet_id: 253, quantity, price, transaction_type, created_at }]
 			}                    
 		else
 			render json: ["Invalid email or password. Try clicking 'Forgot Password' if you're having trouble signing in."], status: 401       # ? could also be 422
