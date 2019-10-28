@@ -42,7 +42,13 @@ class Dashboard extends React.Component {
 
 	render() {
 		const userId = this.props.state.session.id;
-		const { cash_balance, portfolio } = this.props.state.entities.users[userId] || {};
+		const { 
+			cash_balance, 
+			portfolio,
+			transactions,
+		} = this.props.state.entities.users[userId] || {};
+		// debugger
+
 		const currentPrices = this.state.currentPrices || {};
 
 		return (
@@ -58,6 +64,7 @@ class Dashboard extends React.Component {
 						currentPrices={currentPrices}
 					/>
 					<Transactions
+						transactions={transactions}
 					/>
 				</div>
 			</div>
