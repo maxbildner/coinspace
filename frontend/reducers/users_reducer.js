@@ -15,7 +15,7 @@ const usersReducers = (oldState={}, action) => {
 		case RECEIVE_CURRENT_USER:
 			// debugger
 			newState = merge({}, oldState, { [action.user.id]: action.user });    		// add the action's user to the state and set the key to the id of the user.
-			// debugger
+			debugger
 			return newState;
 
 		case RECEIVE_BUY_DATA:
