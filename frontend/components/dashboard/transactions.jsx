@@ -23,6 +23,7 @@ class Transactions extends React.Component {
     } else {
       return (
         transactions.map( (transaction, i) => {                   // transaction == object, ordered left/right oldest transactions first
+          let currency = transaction.currency_symbol;
           let formattedDate = new Date(transaction.created_at);   // JS date object
           let quantity = Math.abs(Number(transaction.quantity)); 
           let price = Number(transaction.price);
@@ -40,7 +41,7 @@ class Transactions extends React.Component {
           return (
             <tr className="transactions-tbody-tr" key={i}>
               <td className="transactions-tbody-td-date">{year} {month} {day}</td>
-              <td className="transactions-tbody-td-type">{transactionType} {quantity} ??</td>
+              <td className="transactions-tbody-td-type">{transactionType} {quantity} {currency}</td>
               <td className="transactions-tbody-td-value">{plusOrMinus}${value}</td>
             </tr>
           );
