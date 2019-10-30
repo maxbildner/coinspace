@@ -59,6 +59,7 @@ class Dashboard extends React.Component {
 					cashBalance={cash_balance}
 					portfolio={portfolio}
 					currentPrices={currentPrices}
+					transactions={transactions}
 				/>
 				<Watchlist/>
 
