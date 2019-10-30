@@ -1,5 +1,11 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
+import { 
+  fetch1MonthPrices
+} from '../../util/prices_util';
+import {
+  calculatePortfolioValues
+} from './portfolio_chart_util';
 
 
 class PortfolioChart extends React.Component {
@@ -42,44 +48,39 @@ class PortfolioChart extends React.Component {
   }
 
   get1MonthPrices(portfolioSymbols) {                                 // ASYNCHRONOUS!
-    // portfolioSymbols == [ 'BTC', 'ETH' ]
+    // const { portfolio, cashBalance, transactions } = this.props;      
+    // // portfolioSymbols == [ 'BTC', 'ETH' ]
 
-    // 1- Loop through each string symbol,                               // each iteration will be an asych call
-    // Fetch 1M data for each time period (daily intervals)- store in array 
-    // currencyArray == [ {time:1569801600, close:8000 }, {}, ... ]   // for 1 currency!
+    // // 1- Loop through each string symbol,                            // each iteration will be an asych call
+    // // Fetch 1M data for each time period (daily intervals)- store in array 
+    // // currencyArray == [ {time:1569801600, close:8000 }, {}, ... ]   // for 1 currency!
+    // let priceData = {};
+    // // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
 
-    // 2- Store all data in object, with keys of symbols, values of arrays
-    // push key/val pair to priceData object
-    // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
+    // for (let i = 0; i < portfolioSymbols.length; i++) {
+    //   let symbol = portfolioSymbols[i];
 
-    // REUSABLE FUNCTION
-    // -- Different loop
-    // 3- Loop through each price in any of the price arrays (all should be same length)
-    // Determine portfolio @time = t use helper function 1
-    // Determine portfolio value @ time = t use helper function 2
+    //   fetch1MonthPrices(symbol).then(
+    //     (response) => {                           // response == currencyArray
+    //       priceData[symbol] = response.Data       // populate priceData object (outside of asynch func/loop) with currencyArray
+    //     }
+    //   );
+    // }
+    // // 2- Store all data in object, with keys of symbols, values of arrays
+    // // populate key/val pair to priceData object
+    // // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
 
-    // 4- HELPER FUNCTION 1) takes in TransactionHistory, and time        //=> returns object with keys of currencies, values of quantities @time = t
-    // (time, transactionHistory)                                         //=> { 'BTC':1, 'USD':1000 }
-
-    // 5- HELPER FUNCTION 2) Takes in price data at point in time, and quantities, and returns portfolio value at that point in time
-    // (time, price object, quantity object)                              // object with two key/val pairs
-    // (1569801600, {'BTC':8000, 'USD':1}, {'BTC':1, 'USD': 1000})        //=> { time:1569801600, portfolioValue: 9000 }
-
-    // Still inside loop, push each portfolio value object to outside array
-    //=> array of objects that is parseable by Recharts Library
-    //=> [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-
-    // 6- Using output of Reusable function above, setState at corresponding time interval to output of this function
-    
-    // ??? BELOW NOT NEEDED?
-    // Pass priceData obj, transactionHistory into function that returns an array of floats (portfolio values over that time period)
-    // priceData          == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
-    // transactionHistory == [ { time:1569801600 price: 8000, symbol: 'BTC', ... }, {}, ... ]
-    // (object, array of objects)                                         //=> 
-    // Loop through each price datapoint (array for each currency should all be same length)
-    // Determine quantity held of each currency for that point in time (use transaction history)- use helper function 1
-    // Determine portfolio value at that point in time (helper function 2)
-    // Push portfolio value object to array
+    // // Don't set state below until all priceData object is fully populated with data
+    // let flag = true;
+    // while (flag) {
+    //   if (Object.keys(priceData).length == portfolioSymbols.length) {
+    //     flag = false;
+    //     this.setState({
+    //       "1M": calculatePortfolioValues(priceData, portfolio, cashBalance, transactions),
+    //       timePeriodActive: "month"
+    //     });
+    //   } 
+    // }
   }
 
 

@@ -375,8 +375,6 @@ class DetailsPage extends React.Component {
 //     }
 
 
-		debugger
-
 		// debugger
 		return (
 			<>
