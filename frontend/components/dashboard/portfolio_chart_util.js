@@ -1,7 +1,14 @@
 export const calculatePortfolioValues = (priceData, portfolio, cashBalance, transactions) => {
+  debugger
+  // priceData    == { 'BTC': [ {time:1569888000, close: 8326.24,...}, {}, ... ] }
+  // portfolio    == { 'BTC': 1 }
+  // cashBalance  == 1871.57
+  // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol } ]
+
   // REUSABLE FUNCTION
   // -- Different loop
   // 3- Loop through each price in any of the price arrays (all should be same length)
+  
   // Determine portfolio @time = t use helper function 1
   // Determine portfolio value @ time = t use helper function 2
 
