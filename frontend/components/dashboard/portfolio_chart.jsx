@@ -9,7 +9,7 @@ import {
 
 
 class PortfolioChart extends React.Component {
-  constructor(props) {
+  constructor(props) {          // ONLY CALLED ONCE BEFORE THE FIRST RENDER
     super(props);
     // props == { portfolio, cashBalance, currentPrices, transactions }
     // cashBalance    == 1871.57
@@ -26,67 +26,84 @@ class PortfolioChart extends React.Component {
 
     this.state = {
       // assetAllocation: calculatePortfolioAllocation(portfolio, portfolio, ),      // array of objects with keys (symbols) and values (floats) that represent % portfolio allocation
-      "1D": [],                 // array of portfolio values (floats) for that time period
-      "1W": [],
-      "1M": [],
-      "1Y": [],
+      "1D-prices": [],                 // array of price data from ajax request
+      "1W-prices": [],
+      "1M-prices": [],
+      "1Y-prices": [],
+      "1D-values": [],                // array of portfolio values (floats) for that time period
+      "1M-values": [],                
+      portfolioSymbols: Object.keys(this.props.portfolio),      // portfolioSymbols == [ 'BTC', 'ETH ]
       timePeriodActive: '',     // will contain string representing which time period chart to render/bold for css
     }
 
     this.get1MonthPrices = this.get1MonthPrices.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount() {         // ONLY CALLED ONCE AFTER THE FIRST RENDER
     // grab keys only from portfolio object
-    const portfolioSymbols = Object.keys(this.props.portfolio);
-    // portfolioSymbols == [ 'BTC', 'ETH ]
+    // const portfolioSymbols = Object.keys(this.props.portfolio);
+    
+    debugger
+    let numSymbols = this.state.portfolioSymbols.length;      // 2
 
     // On initial page load, get all 1M data for each currency in portfolio
     if (this.state.timePeriodActive != "month") {
-      this.get1MonthPrices(portfolioSymbols);                         // ASYNCHRONOUS!
+      this.get1MonthPrices(numSymbols);                       // numSymbols in portfolio
     }
   }
 
-  get1MonthPrices(portfolioSymbols) {                                 // ASYNCHRONOUS!
+  componentDidUpdate() {                              
+    let currentNumSymbols = this.state.portfolioSymbols.length;           // ex. [ 'BTC' ].length
+    debugger
+    // on first componentDidUpdate, currentNumSymbols == 1
+
+    // If we haven't fetched the data for all currencies in the portfolio
+    if (currentNumSymbols > 0) {
+      debugger
+      this.get1MonthPrices();
+    }
+  }
+
+  get1MonthPrices() {                                 // ASYNCHRONOUS!
     // const { portfolio, cashBalance, transactions } = this.props;      
-    // // portfolioSymbols == [ 'BTC', 'ETH' ]
+    let portfolioSymbols = this.state.portfolioSymbols.slice(); // duplicate array
+    // portfolioSymbols == [ 'BTC', 'ETH' ]
 
-    // // 1- Loop through each string symbol,                            // each iteration will be an asych call
-    // // Fetch 1M data for each time period (daily intervals)- store in array 
-    // // currencyArray == [ {time:1569801600, close:8000 }, {}, ... ]   // for 1 currency!
-    // let priceData = {};
-    // // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
+    // 1- Loop through each string symbol,                            // each iteration will be an asych call
+    // Fetch 1M data for each time period (daily intervals)- store in array 
+    // currencyArray == [ {time:1569801600, close:8000 }, {}, ... ]   // for 1 currency!
+    let priceData = {};
+    // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
 
-    // for (let i = 0; i < portfolioSymbols.length; i++) {
-    //   let symbol = portfolioSymbols[i];
 
-    //   fetch1MonthPrices(symbol).then(
-    //     (response) => {                           // response == currencyArray
-    //       priceData[symbol] = response.Data       // populate priceData object (outside of asynch func/loop) with currencyArray
-    //     }
-    //   );
-    // }
-    // // 2- Store all data in object, with keys of symbols, values of arrays
-    // // populate key/val pair to priceData object
-    // // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
+    // portfolioSymbols will be 2 (on first call of this method)
+    if (portfolioSymbols.length > 0) {
+      let currSymbol = portfolioSymbols[0];
+      debugger
 
-    // // Don't set state below until all priceData object is fully populated with data
-    // let flag = true;
-    // while (flag) {
-    //   if (Object.keys(priceData).length == portfolioSymbols.length) {
-    //     flag = false;
-    //     this.setState({
-    //       "1M": calculatePortfolioValues(priceData, portfolio, cashBalance, transactions),
-    //       timePeriodActive: "month"
-    //     });
-    //   } 
-    // }
+      fetch1MonthPrices(currSymbol).then(
+        (response) => {                               // response == currencyArray
+          priceData[currSymbol] = response.Data       // populate priceData object (outside of asynch func/loop) with currencyArray
+          portfolioSymbols.shift();                   // destructively delete first ele in array
+          debugger
+          return (this.setState({
+            "1M-prices": priceData,                   // { 'BTC': [...] }
+            portfolioSymbols: portfolioSymbols        // after first call == [ 'ETH' ]
+          }));
+        }
+      );
+    }
+    
+    debugger
+    // 2- Store all data in object, with keys of symbols, values of arrays
+    // populate key/val pair to priceData object
+    // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
   }
 
 
 
   render() {
-    // debugger
+    debugger
 
     return (
       <div>
