@@ -35,18 +35,19 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
     // time == 1569888000
 
     // 1) GET ALL PRICES FOR EACH CURRENCY IN PORTFOLIO AT A PARTICULAR POINT IN TIME
+    // Helper function 1
     let pricesAtTimeT = getPricesAtTimeT(t, pricesData);
     // t = 0, pricesData = { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }
     // pricesAtTimeT == { BTC:8326.24, LTC:164 }
   
-    // Determine portfolio price/quantites quantities @time = t use helper function 1
-    // 2) HELPER FUNCTION 1 takes in TransactionHistory, and time         //=> returns object with keys of currencies, values of quantities @time = t
-    // (time, prices, transactionHistory)                                 //=> { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
-    let portfolioAtTimeT = getPortfolioAtTimeT(pricesAtTimeT, transactions);
+    // 2) Determine portfolio price/quantites quantities @time = t use helper function 2
+    // Helper function 2 takes in prices, transactionHistory, and time     //=> returns object with keys of currencies, values of quantities&prices @time = t
+    // (pricesAtTimeT, transactionHistory, time                            //=> { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+    let portfolioAtTimeT = getPortfolioAtTimeT(pricesAtTimeT, transactions, time);
     // portfolioAtTimeT == { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
 
-    // Determine portfolio value @ time = t use helper function 2
-    // 3) HELPER FUNCTION 2 Takes in prices data at point in time, and quantities, and returns portfolio value at that point in time
+    // 3) Determine portfolio value @ time = t use helper function 3
+    // Helper function 3 Takes in prices data at point in time, and quantities, and returns portfolio value at that point in time
     // (time, price/quantity object)                                      // object of quantities/prices at a time t
     // (1569801600, { 'BTC': { price:8000, quantity: 1 }, 'USD': { price:1, quantity: 1000 } })        
     //                                                                    //=> { time:1569801600, portfolioValue: 9000 }
@@ -104,9 +105,25 @@ function getPricesAtTimeT(t, pricesData) {
 
 
 
-function calculateQuantityAtTimeT(time, transactionHistory) {
+
+
+// 2) Determine portfolio price/quantites quantities @time = t use helper function 2
+// Helper function 2 takes in prices, transactionHistory, and time     //=> returns object with keys of currencies, values of quantities&prices @time = t
+// (pricesAtTimeT, transactionHistory, time)                           //=> { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+// returns => { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
+  // pricesAtTimeT == { BTC:8326.24, LTC:164 }
+  // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol } ]
+  // time == 1569888000
+  // NOTE* TIME is in SECONDS from Jan 1, 1970, but new Date expects time stamp in MILISECONDS from Jan 1, 1970
+  // so multiply by 1000:  https://stackoverflow.com/questions/49978130/format-crypto-api-date-to-datestring
+
+  // TO RETURN
+  let portfolio = {};
+
 
 }
+
 
 
 
