@@ -1,14 +1,30 @@
 export const calculatePortfolioValues = (priceData, portfolio, cashBalance, transactions) => {
+  // REUSABLE FUNCTION, priceData will always be populated!!! NOT EMPTY
   debugger
   // priceData    == { 'BTC': [ {time:1569888000, close: 8326.24,...}, {}, ... ] }
   // portfolio    == { 'BTC': 1 }
   // cashBalance  == 1871.57
   // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol } ]
 
-  // REUSABLE FUNCTION
-  // -- Different loop
+  // grab first currency array in priceData object
+  let currencySymbol = Object.keys(priceData)[0];
+  // currencySymbol = 'BTC'
+  let currency = priceData[currencySymbol];
+  // currency = [ {time:1569888000, close: 8326.24,...}, {}, ... ]
+
+  let portfolioValues = [];                                             // to return
   // 3- Loop through each price in any of the price arrays (all should be same length)
-  
+  for (let i = 0; i < currency.length; i++) {
+    let priceObject = currency[i];
+    // priceObject = { time:1569888000, close: 8326.24,... }
+
+    let portfolioValue = calculatePortfolioValue(priceObject);
+    
+    portfolioValues.push(portfolioValue);
+  }
+
+  return portfolioValues;
+
   // Determine portfolio @time = t use helper function 1
   // Determine portfolio value @ time = t use helper function 2
 
@@ -34,4 +50,13 @@ export const calculatePortfolioValues = (priceData, portfolio, cashBalance, tran
   // Determine quantity held of each currency for that point in time (use transaction history)- use helper function 1
   // Determine portfolio value at that point in time (helper function 2)
   // Push portfolio value object to array
+}
+
+
+function calculateQuantity(time, transactionHistory) {
+
+}
+
+function calculatePortfolioValue() {
+
 }
