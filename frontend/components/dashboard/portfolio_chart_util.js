@@ -24,19 +24,12 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
   // TO RETURN
   let portfolioValues = [];                                                     
   // => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-  
-
-  // 2) GET ALL PORTFOLIO QUANTITIES FOR EACH CURRENCY AT A PARTICULAR POINT IN TIME
-  // //=> { 'BTC':{price:8000, quantity 1}, 'USD':{price:1, quantity: 1000} }
-
-  // 3) CALCULATE PORTFOLIO VALUE AT A PARTICULAR POINT IN TIME
 
 
   // Loop through each price in any of the price arrays (all should be same length)
   // Calculate Portfolio Value at time t in this loop, and push to outside array (return this array later)
   for (let t = 0; t < numDataPoints; t++) {
-    let symbol, priceAtTimeT, priceDataArray;
-
+    
     let time = firstCurrency[t][time];
     // firstCurrency == [ {time:1569888000, close: 8326.24,...}, {}, ... ]
     // time == 1569888000
@@ -73,38 +66,40 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
 
 
 
-// 1) GET ALL PRICES FOR EACH CURRENCY IN PORTFOLIO AT A PARTICULAR POINT IN TIME
-let pricesAtTimeT = getPricesAtTimeT(t, pricesData);
-    // t = 0, pricesData = { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }
-    // pricesAtTimeT == { BTC:8326.24, LTC:164 }
 
 // HELPER FUNCTIONS
-// 1) GETS ALL PRICES FOR EACH CURRENCY IN PORTFOLIO AT A PARTICULAR POINT IN TIME
+// 1) GET ALL PRICES FOR EACH CURRENCY IN PORTFOLIO AT A PARTICULAR POINT IN TIME
 // takes in integer representing time point in time of time time period, and object of all prices over time for each currency
-// returns array of prices at time t
-// => [ {BTC:{time:1569888000, close: 8326.24,...}}, LTC:{time, close,...}, ... ]
+// returns object of all prices at time t
+// => { BTC:8326.24, LTC:164 }
 function getPricesAtTimeT(t, pricesData) {  
   // t == 0                              
   // pricesData   == { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }
 
+  // TO RETURN
+  let pricesObject = {};   
+  
+  // All currency keys in priceData
+  let currencySymbols = Object.keys(pricesData);
+  // currencySymbols = [ 'BTC', 'LTC' ]
 
-  // Grab price arrays for each currency in priceData
-  for (let j = 0; j < currencySymbols.length; j++) {
-    symbol = currencySymbols[j];
-    // i = 0, j = 0: symbol == 'BTC'
+  // Loop through each currency in currencySymbols array and grab closing price at time t
+  for (let i = 0; i < currencySymbols.length; i++) {
+    let symbol = currencySymbols[i];
+    // i = 0: symbol == 'BTC'
 
-    priceDataArray = pricesData[symbol];                                   // all price data for a single currency
-    // i = 0, j = 0: priceDataArray == [ {time:1569888000, close: 8326.24,...}, ... ]
+    // All price data for a single currency
+    let priceDataArray = pricesData[symbol];                                   
+    // i = 0: priceDataArray == [ {time:1569888000, close: 8326.24,...}, ... ]
 
-    priceAtTimeT = priceDataArray[i];
-    // i = 0, j = 0: priceAtTimeT == { time:1569888000, close: 8326.24,... }
+    let priceAtTimeT = priceDataArray[t].close;
+    // i = 0: priceAtTimeT == 8326.24
 
-    let priceObject = {};
-    priceObject[symbol] = priceDataArray;
-    // priceObject == { 'BTC':[{time:1569888000, close: 8326.24,...}, ... ] }
-
-    pricesAtTimeT.push({});
+    pricesObject[symbol] = priceAtTimeT;
+    // priceObject == { 'BTC':8326.24 }
   }
+
+  return pricesObject;
 }
 
 
