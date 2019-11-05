@@ -1,6 +1,6 @@
 export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, transactions) => {
   // REUSABLE FUNCTION, priceData will always be populated!!! NOT EMPTY
-  debugger
+  // debugger
   // pricesData   == { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }
   // portfolio    == { 'BTC': 1 }
   // cashBalance  == 1871.57
@@ -24,39 +24,46 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
   // TO RETURN
   let portfolioValues = [];                                                     
   // => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-
+  // debugger
 
   // Loop through each price in any of the price arrays (all should be same length)
   // Calculate Portfolio Value at time t in this loop, and push to outside array (return this array later)
   for (let t = 0; t < numDataPoints; t++) {
     
-    let time = firstCurrency[t][time];
+    // debugger
+    let time = firstCurrency[t].time;
     // firstCurrency == [ {time:1569888000, close: 8326.24,...}, {}, ... ]
     // time == 1569888000
+    // debugger
 
     // 1) GET ALL PRICES FOR EACH CURRENCY IN PORTFOLIO AT A PARTICULAR POINT IN TIME
     // Helper function 1
     let pricesAtTimeT = getPricesAtTimeT(t, pricesData);
     // t = 0, pricesData = { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }
     // pricesAtTimeT == { BTC:8326.24, LTC:164 }
+    // debugger
   
     // 2) Determine portfolio price/quantites quantities @time = t use helper function 2
-    // Helper function 2 takes in prices, transactionHistory, and time     //=> returns object with keys of currencies, values of quantities&prices @time = t
-    // (pricesAtTimeT, transactionHistory, time                            //=> { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+    // Helper function 2 takes in prices, transactionHistory, and time          //=> returns object with keys of currencies, values of quantities&prices @time = t
+    // (pricesAtTimeT, transactionHistory, time                                 //=> { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
     let portfolioAtTimeT = getPortfolioAtTimeT(pricesAtTimeT, transactions, time);
     // portfolioAtTimeT == { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+    // debugger
 
     // 3) Determine portfolio value @ time = t use helper function 3
     // Helper function 3 Takes in prices data at point in time, and quantities, and returns portfolio value at that point in time
-    // (time, price/quantity object)                                      // object of quantities/prices at a time t
+    // (time, price/quantity object)                                            // object of quantities/prices at a time t
     // (1569801600, { 'BTC': { price:8000, quantity: 1 }, 'USD': { price:1, quantity: 1000 } })        
-    //                                                                    //=> { time:1569801600, portfolioValue: 9000 }
+    //                                                                          //=> { time:1569801600, portfolioValue: 9000 }
     let portfolioValue = calculatePortfolioValueAtTimeT(time, portfolioAtTimeT);
     // portfolioValue == { time:1569801600, portfolioValue: 9000 }
+    debugger
 
     // push each portfolio value object to outside array (parseable by Recharts Library)
     portfolioValues.push(portfolioValue);
   }
+  
+  debugger
 
   return portfolioValues;
   // portfolioValues == [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
@@ -126,7 +133,8 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   // 8 == september because nums start at 0
 
   // TO RETURN
-  let portfolio = {};
+  let portfolio = { 'USD': { price:1, quantity:10000} };                        // all portfolio's start off with 10k
+  // => { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
 
   // If input time comes before the first transaction in the input array, return empty object
   let firstTransaction = new Date(transactions[0].created_at);
@@ -134,9 +142,13 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   // firstTransactionDayOfMonth = 22
   let firstTransactionMonth = firstTransaction.getMonth();
   // firstTransactionMonth = 9      (october)
+  
+  // debugger
   if (month < firstTransactionMonth) {
+    // debugger
     return {};
   } else if (month === firstTransactionMonth && dayOfMonth < firstTransactionDayOfMonth) {
+    // debugger
     return {};
   }
 
@@ -148,16 +160,34 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
     // i = 0: transactionDayOfMonth = 22
     let transactionMonth = transactionTime.getMonth();
     // i = 0: transactionMonth = 9    (october)
+    // debugger
 
+    // portfolio => { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
     // if user bought currency on this date, add currency to portfolio
     if (transaction.transaction_type === 'BUY') {
-      portfolio[transaction.currency_symbol] = transaction.quantity; 
+      
+      // debugger
+      // add price and  to portfolio
+      portfolio[transaction.currency_symbol] = { price: transaction.price, quantity: transaction.quantity }; 
+      // debugger
+
     } else {
+      
+      // debugger
       // Keep adding/removing currencies from portfolio at each point in time until we reach input time
-      delete portfolio[transaction.currency_symbol];
+      // delete portfolio[transaction.currency_symbol];
+      let oldQuantity = portfolio[transaction.currency_symbol].quantity;
+      
+      // Reduce oldQuantity by new quantity (+ add because quantity when selling is negative)
+      portfolio[transaction.currency_symbol] = { price: transaction.price, quantity: oldQuantity + transaction.quantity };
+      // debugger
     }
 
+    // ? if quantities of currencies in portfolio are ever 0, delete the key/value ? not sure if this is needed
+    
+    // If the transaction time matches the input time, exit loop (only get portfolio up to this point)
     if ((dayOfMonth === transactionDayOfMonth) && (month === transactionMonth)) {
+      // debugger
       break;
     }
   }
@@ -168,6 +198,33 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
 
 
 
-function calculatePortfolioValueAtTimeT() {
 
+// HELPER FUNCTION
+// 3) Determine portfolio value @ time = t use helper function 3
+// Helper function 3- Takes in prices data at point in time, and quantities, and returns portfolio value at that point in time
+// (time, price/quantity object)                                            // object of quantities/prices at a time t
+// (1569801600, { 'BTC': { price:8000, quantity: 1 }, 'USD': { price:1, quantity: 1000 } })        
+//                                                                          //=> { time:1569801600, portfolioValue: 9000 }
+// portfolioValue == { time:1569801600, portfolioValue: 9000 }
+function calculatePortfolioValueAtTimeT(time, portfolioAtTimeT) {
+  // time == 1569801600
+  // portfolioAtTimeT == { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
+  let portfolioValue = { time: time };
+
+  let runningTotalValue = 0;
+  // debugger
+
+  // loop through each currency in portfolioAtTimeT
+  for (let symbol in portfolioAtTimeT) {
+    // debugger
+    // calculate total value of each currency = price * quantity
+
+    // keep running total of value
+    runningTotalValue += portfolioAtTimeT[symbol].price * portfolioAtTimeT[symbol].quantity;
+  }
+
+  portfolioValue['portfolioValue'] = runningTotalValue;
+
+  return portfolioValue;
 }
+

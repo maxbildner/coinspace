@@ -40,7 +40,7 @@ class PortfolioChart extends React.Component {
 
   componentDidMount() {                                                   // ONLY CALLED ONCE AFTER THE FIRST RENDER
     let numSymbols = this.state.portfolioSymbols.length;                  // 2
-    debugger
+    // debugger
 
     // On initial page load, get all 1M data for each currency in portfolio
     if (this.state.timePeriodActive != "month") {
@@ -53,11 +53,11 @@ class PortfolioChart extends React.Component {
     const { portfolio, cashBalance, transactions } = this.props;
     const priceData = this.state["1M-prices"];
 
-    debugger
+    // debugger
     // If we haven't fetched the data for all currencies in the portfolio
     // n first componentDidUpdate, currentNumSymbols == 1
     if (currentNumSymbols > 0) {
-      debugger
+      // debugger
       this.get1MonthPrices();
     }
 
@@ -85,13 +85,13 @@ class PortfolioChart extends React.Component {
     // portfolioSymbols will be 2 (on first call of this method)
     if (portfolioSymbols.length > 0) {
       let currSymbol = portfolioSymbols[0];
-      debugger
+      // debugger
 
       fetch1MonthPrices(currSymbol).then(
         (response) => {                                       // response == currencyArray
           priceData[currSymbol] = response.Data               // populate priceData object (outside of asynch func/loop) with currencyArray
           portfolioSymbols.shift();                           // destructively delete first ele in array
-          debugger
+          // debugger
           return (this.setState({
             "1M-prices": priceData,                           // { 'BTC': [...] }
             portfolioSymbols: portfolioSymbols,               // after first call == [ 'ETH' ]
@@ -101,7 +101,7 @@ class PortfolioChart extends React.Component {
       );
     }
     
-    debugger
+    // debugger
     // 2- Store all data in object, with keys of symbols, values of arrays
     // populate key/val pair to priceData object
     // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
@@ -110,7 +110,7 @@ class PortfolioChart extends React.Component {
 
 
   render() {
-    debugger
+    // debugger
 
     return (
       <div>
