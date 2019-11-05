@@ -113,15 +113,56 @@ function getPricesAtTimeT(t, pricesData) {
 // returns => { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
 function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   // pricesAtTimeT == { BTC:8326.24, LTC:164 }
-  // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol } ]
+  // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol }, {}, ... ]
   // time == 1569888000
   // NOTE* TIME is in SECONDS from Jan 1, 1970, but new Date expects time stamp in MILISECONDS from Jan 1, 1970
   // so multiply by 1000:  https://stackoverflow.com/questions/49978130/format-crypto-api-date-to-datestring
+  // ? UNIX Timestamp?
+  let gmtTime = new Date(time * 1000);
+  // gmtTime = Mon Sep 30 2019 20:00:00 GMT-0400 (Eastern Daylight Time)    <- DATE OBJECT NOT STRING
+  let dayOfMonth = gmtTime.getDate();
+  // dayOfMonth = 30
+  let month = gmtTime.getMonth();
+  // 8 == september because nums start at 0
 
   // TO RETURN
   let portfolio = {};
 
+  // If input time comes before the first transaction in the input array, return empty object
+  let firstTransaction = new Date(transactions[0].created_at);
+  let firstTransactionDayOfMonth = firstTransaction.getDate();
+  // firstTransactionDayOfMonth = 22
+  let firstTransactionMonth = firstTransaction.getMonth();
+  // firstTransactionMonth = 9      (october)
+  if (month < firstTransactionMonth) {
+    return {};
+  } else if (month === firstTransactionMonth && dayOfMonth < firstTransactionDayOfMonth) {
+    return {};
+  }
 
+  // Starting from begining of all transactions, loop from start to end
+  for (let i = 0; i < transactions.length; i++) {
+    let transaction = transactions[i];
+    let transactionTime = new Date(transaction.created_at);
+    let transactionDayOfMonth = transactionTime.getDate();
+    // i = 0: transactionDayOfMonth = 22
+    let transactionMonth = transactionTime.getMonth();
+    // i = 0: transactionMonth = 9    (october)
+
+    // if user bought currency on this date, add currency to portfolio
+    if (transaction.transaction_type === 'BUY') {
+      portfolio[transaction.currency_symbol] = transaction.quantity; 
+    } else {
+      // Keep adding/removing currencies from portfolio at each point in time until we reach input time
+      delete portfolio[transaction.currency_symbol];
+    }
+
+    if ((dayOfMonth === transactionDayOfMonth) && (month === transactionMonth)) {
+      break;
+    }
+  }
+
+  return portfolio;
 }
 
 
