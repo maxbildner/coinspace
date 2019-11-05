@@ -113,8 +113,28 @@ class PortfolioChart extends React.Component {
     // debugger
 
     return (
-      <div>
+      <div id="portfoliochart-container">
         PORTFOLIO CHART
+        	<LineChart width={700} height={245} data={this.state["1M-values"]}>
+          {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
+          {/* <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} /> */}
+          {/* <Tooltip/>} */}
+          {/* <Tooltip labelFormatter={() => 'hello'}/>} */}
+          {/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
+          {/* <Tooltip separator="$"/> */}
+
+          <XAxis dataKey="time" />
+          {/* <YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} /> */}
+          <YAxis type="number" />
+          <Line
+            type="monotone"
+            dataKey="portfolioValue"
+            dot={false}
+            activeDot={{ r: 5 }}
+          // stroke="#8884d8" 
+          // strokeWidth={4}
+          />
+        </LineChart>
       </div>
     );
   }
