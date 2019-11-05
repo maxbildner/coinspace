@@ -209,7 +209,13 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
 function calculatePortfolioValueAtTimeT(time, portfolioAtTimeT) {
   // time == 1569801600
   // portfolioAtTimeT == { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
-  let portfolioValue = { time: time };
+  let gmtTime = new Date(time * 1000);
+  const months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+  const month = months[gmtTime.getMonth()];
+  const day = gmtTime.getDate();
+  let newTime = month + ' ' + day;
+
+  let portfolioValue = { time: newTime };
 
   let runningTotalValue = 0;
   // debugger
