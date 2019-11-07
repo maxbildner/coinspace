@@ -191,64 +191,73 @@ class PortfolioChart extends React.Component {
     
   
     this.state = {
-      "1D-prices": [],                                                    // array of price data from ajax request
-      "1W-prices": [],
-      "1M-prices": [],
-      "1Y-prices": [],
+      // "1D-prices": [],                                                    // array of price data from ajax request
+      // "1W-prices": [],
+      // "1M-prices": [],
+      // "1Y-prices": [],
       "1D-values": [],                                                    // array of portfolio values (floats) for that time period
+      "1W-values": [],
       "1M-values": [],                
+      "1Y-values": [],                
+      "AllTime-values": [],                
       portfolioSymbols: Object.keys(this.props.portfolio),                // portfolioSymbols == [ 'BTC', 'ETH ]
       timePeriodActive: '',                                               // will contain string representing which time period chart to render/bold for css
     }
 
-    this.get1MonthPrices = this.get1MonthPrices.bind(this);
+    this.getPortfolioData = this.getPortfolioData.bind(this);
   }
 
   componentDidMount() {                                                   // ONLY CALLED ONCE AFTER THE FIRST RENDER
-    let numSymbols = this.state.portfolioSymbols.length;                  // 2
+    // let numSymbols = this.state.portfolioSymbols.length;                  // 2
     // debugger
 
     // On initial page load, get all 1M data for each currency in portfolio
-    if (this.state.timePeriodActive != "month") {
-      this.get1MonthPrices(numSymbols);                                   // numSymbols in portfolio
-    }
+    this.getPortfolioData("1M");                                   
   }
 
-  componentDidUpdate() {                              
-    let currentNumSymbols = this.state.portfolioSymbols.length;           // ex. [ 'BTC' ].length
-    const { portfolio, cashBalance, transactions } = this.props;
-    const priceData = this.state["1M-prices"];
+  // componentDidUpdate() {                              
+  //   let currentNumSymbols = this.state.portfolioSymbols.length;           // ex. [ 'BTC' ].length
+  //   const { portfolio, cashBalance, transactions } = this.props;
+  //   const priceData = this.state["1M-prices"];
 
-    // debugger
-    // If we haven't fetched the data for all currencies in the portfolio
-    // n first componentDidUpdate, currentNumSymbols == 1
-    if (currentNumSymbols > 0) {
-      // debugger
-      this.get1MonthPrices();
-    }
+  //   // debugger
+  //   // If we haven't fetched the data for all currencies in the portfolio
+  //   // n first componentDidUpdate, currentNumSymbols == 1
+  //   if (currentNumSymbols > 0) {
+  //     // debugger
+  //     this.getPortfolioData();
+  //   }
 
-    // Once all data has been fetched, calculate the portfolio value, and update state again
-    if (this.state["1M-values"].length == 0) {
-      this.setState({
-        "1M-values": calculatePortfolioValues(priceData, portfolio, cashBalance, transactions)
-      });
-    }
-  }
+  //   // Once all data has been fetched, calculate the portfolio value, and update state again
+  //   if (this.state["1M-values"].length == 0) {
+  //     this.setState({
+  //       "1M-values": calculatePortfolioValues(priceData, portfolio, cashBalance, transactions)
+  //     });
+  //   }
+  // }
 
-  get1MonthPrices() {   
+
+  getPortfolioData(timeframe) {   
+    // On initial render, timeframe == '1M'
+    const { transactions } = this.props;
+    // portfolio    == { 'BTC': 1, 'LTC' }
+    // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
+
+    // This will be an array of objects, and in local state (used in recharts data input)
+    let portfolioValues = [];
+
+    let portfolio = Object.keys(this.props.portfolio);
+    // portfolio == ['BTC', 'LTC']
     
-    // let portfolio = ['BTC', 'LTC']
-    // //
-    // let historicalData = {}
-    // // { BTC: [ {time, price}, {}] }
 
-    // Promise.all(portfolio.map( (coin)=> {
-    //   //
-    // })
+    // Promise.all takes an array of call backs
+    Promise.all(portfolio.map( (symbol)=> {
+      return   
+    })
     
-    // ).then(
+    ).then(
 
-    // );
+    );
 
 
     // ASYNCHRONOUS!
