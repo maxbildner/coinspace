@@ -134,7 +134,7 @@ class PortfolioChart extends React.Component {
         	<LineChart width={700} height={245} data={this.state["1M-values"]}>
           {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
           {/* <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} /> */}
-          {/* <Tooltip/>} */}
+          <Tooltip/>}
           {/* <Tooltip labelFormatter={() => 'hello'}/>} */}
           {/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
           {/* <Tooltip separator="$"/> */}

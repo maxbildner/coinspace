@@ -17,7 +17,7 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
   // Grab array at key of firstCurrencySymbol
   let firstCurrency = pricesData[firstCurrencySymbol];
   // firstCurrency == [ {time:1569888000, close: 8326.24,...}, {}, ... ]
-  debugger
+  // debugger
 
   let numDataPoints = firstCurrency.length;
   // numDataPoints == 31    (monthly data)
@@ -58,13 +58,13 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
     //                                                                          //=> { time:1569801600, portfolioValue: 9000 }
     let portfolioValue = calculatePortfolioValueAtTimeT(time, portfolioAtTimeT);
     // portfolioValue == { time:1569801600, portfolioValue: 9000 }
-    debugger
+    // debugger
 
     // push each portfolio value object to outside array (parseable by Recharts Library)
     portfolioValues.push(portfolioValue);
   }
   
-  debugger
+  // debugger
 
   return portfolioValues;
   // portfolioValues == [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
@@ -168,45 +168,45 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
     // If user BUYS currency on this date, add currency to portfolio
     if (transaction.transaction_type === 'BUY') {
       
-      debugger
+      // debugger
       // Add price and to portfolio
       portfolio[transaction.currency_symbol] = { price: transaction.price, quantity: transaction.quantity }; 
       // portfolio = {USD: {price:1, quantity: 10000}, BTC: {price: 8143, quantity:1} }
-      debugger
+      // debugger
 
       // Decrease usd cash balance by purchase amount
       let purchaseAmount = transaction.price * transaction.quantity;
       portfolio.USD.quantity = portfolio.USD.quantity - purchaseAmount;
       // portfolio = {USD: {price:1, quantity: 1856.949}, BTC: {price: 8143, quantity:1} }
-      debugger
+      // debugger
 
     } else {  // If user SELLS currency on this date
       // Remove currency quantity from portfolio
       let oldQuantity = portfolio[transaction.currency_symbol].quantity;
       // oldQUantity = 1
-      debugger
+      // debugger
 
       // Reduce portoflio's oldQuantity by new quantity (+ add because quantity when selling is negative)
       portfolio[transaction.currency_symbol] = { price: transaction.price, quantity: oldQuantity + transaction.quantity };
-      debugger
+      // debugger
 
       // Increase cash balance by sale amount
       let saleAmount = transaction.price * transaction.quantity;                // Will be negative bec. quantity is negative
       portfolio.USD.quantity = portfolio.USD.quantity - saleAmount;             // minus because sale amount is negative
-      debugger
+      // debugger
     }
 
     // PORTFOLIO PRICES/VALUES ARE CALCULATED BASED ON CLOSING PRICE OF EXCHANGE NOT PURCHASE PRICE OF CURRENCY!!
     // Update prices in portfolio to current prices
     portfolio = updatePrices(portfolio, pricesAtTimeT);
-    debugger
+    // debugger
 
     // If the transaction time matches the input time + 1 Day, exit loop (only get portfolio up to this point)
     // Portfolio value is calculated at the end of the Day (last transaction of the day)
     // if ((dayOfMonth === transactionDayOfMonth) && (month === transactionMonth)) {
     if ((dayOfMonth > transactionDayOfMonth + 1) && (month === transactionMonth)) {
       // 23 > 22        
-      debugger
+      // debugger
       break;
     }
   }
