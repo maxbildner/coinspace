@@ -11,6 +11,9 @@ export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => 
 
   let portfolioValue = cashBalance;
 
+  // On first render, currentPrices will be empty {}, so return null;
+  if (Object.keys(currentPrices).length === 0) return null;
+
   // loop through each currency in portfolio
   for (let symbol in portfolio) {
     let quantity = portfolio[symbol];
@@ -23,10 +26,13 @@ export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => 
     portfolioValue += value;
   }
 
+  // debugger
   return portfolioValue;
 }
 
 
+
+// returns => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
 export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, transactions) => {
   // REUSABLE FUNCTION, priceData will always be populated!!! NOT EMPTY
   // debugger
@@ -46,7 +52,8 @@ export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, tra
   // Grab array at key of firstCurrencySymbol
   let firstCurrency = pricesData[firstCurrencySymbol];
   // firstCurrency == [ {time:1569888000, close: 8326.24,...}, {}, ... ]
-  // debugger
+
+  if (firstCurrency == undefined) return [];
 
   let numDataPoints = firstCurrency.length;
   // numDataPoints == 31    (monthly data)

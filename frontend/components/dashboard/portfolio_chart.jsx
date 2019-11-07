@@ -25,6 +25,7 @@ class PortfolioChart extends React.Component {
     //                    }
     // debugger
     const { portfolio, currentPrices, cashBalance } = props;
+    
 
     this.state = {
       "1D-prices": [],                                                    // array of price data from ajax request
@@ -35,7 +36,7 @@ class PortfolioChart extends React.Component {
       "1M-values": [],                
       portfolioSymbols: Object.keys(this.props.portfolio),                // portfolioSymbols == [ 'BTC', 'ETH ]
       timePeriodActive: '',                                               // will contain string representing which time period chart to render/bold for css
-      portfolioValue: currentPortfolioValue(portfolio, currentPrices, cashBalance),
+      portfolioValue: null,
     }
 
     this.get1MonthPrices = this.get1MonthPrices.bind(this);
@@ -130,10 +131,15 @@ class PortfolioChart extends React.Component {
 
   render() {
     // debugger
+    const { portfolio, currentPrices, cashBalance } = this.props;
 
     return (
       <div id="portfoliochart-container">
         PORTFOLIO CHART
+        <div id="portfoliochart-current-val">
+          Your Portfolio Value: {currentPortfolioValue(portfolio, currentPrices, cashBalance)}
+        </div>
+
         	<LineChart width={700} height={245} data={this.state["1M-values"]}>
           {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
           {/* <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} /> */}
