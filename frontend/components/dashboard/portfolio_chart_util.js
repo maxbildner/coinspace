@@ -33,7 +33,7 @@ export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => 
 
 
 // returns => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, transactions) => {
+export const calculatePortfolioValues = (pricesData, transactions) => {
   // REUSABLE FUNCTION, priceData will always be populated!!! NOT EMPTY
   // debugger
   // pricesData   == { 'BTC': [ {time:1569888000, close: 8326.24,...}, ... ], 'LTC':[], ... ] }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
 import { 
-  fetch1MonthPrices
+  fetch1MonthPrices,
+  fetchHistoricalPrices
 } from '../../util/prices_util';
 import {
   calculatePortfolioValues,
@@ -207,16 +208,16 @@ class PortfolioChart extends React.Component {
     this.getPortfolioData = this.getPortfolioData.bind(this);
   }
 
-  componentDidMount() {                                                   // ONLY CALLED ONCE AFTER THE FIRST RENDER
-    // let numSymbols = this.state.portfolioSymbols.length;                  // 2
+  componentDidMount() {                                                         // ONLY CALLED ONCE AFTER THE FIRST RENDER
+    // let numSymbols = this.state.portfolioSymbols.length;                     // 2
     // debugger
 
     // On initial page load, get all 1M data for each currency in portfolio
-    this.getPortfolioData("1M");                                   
+    this.getPortfolioData("30");                                                // timeframe in days                                  
   }
 
   // componentDidUpdate() {                              
-  //   let currentNumSymbols = this.state.portfolioSymbols.length;           // ex. [ 'BTC' ].length
+  //   let currentNumSymbols = this.state.portfolioSymbols.length;              // ex. [ 'BTC' ].length
   //   const { portfolio, cashBalance, transactions } = this.props;
   //   const priceData = this.state["1M-prices"];
 
@@ -237,27 +238,60 @@ class PortfolioChart extends React.Component {
   // }
 
 
-  getPortfolioData(timeframe) {   
-    // On initial render, timeframe == '1M'
-    const { transactions } = this.props;
-    // portfolio    == { 'BTC': 1, 'LTC' }
+  getPortfolioData(timeframe) {             // days
+    const { transactions, portfolio } = this.props;
+    // timeframe            == '30'        On initial render, refers to 30 days
+    // this.props.portfolio == { 'BTC': 1, 'LTC' }
     // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
 
     // This will be an array of objects, and in local state (used in recharts data input)
     let portfolioValues = [];
 
-    let portfolio = Object.keys(this.props.portfolio);
-    // portfolio == ['BTC', 'LTC']
+    let portfolioArray = Object.keys(this.props.portfolio);
+    // portfolioArray == ['BTC', 'LTC']
+
+    let interval, timeframeKey;
+    switch (timeframe) {
+      case ('360'):
+        interval = 'day';
+        timeframeKey = '1Y-values';
+        break;
+      case ('30'):
+        interval = 'day';
+        timeframeKey = '1M-values'
+        break;
+      case ('7'):
+        interval = 'hour';
+        timeframeKey = '1W-values'
+        break;
+      case ('1'):
+        interval = 'minute';
+        timeframeKey = '1D-values'
+    }
     
+    // raw data of historical prices { BTC: [], LTC: [], ... }
+    let priceData = {};     
 
     // Promise.all takes an array of call backs
-    Promise.all(portfolio.map( (symbol)=> {
-      return   
-    })
-    
-    ).then(
-
+    Promise.all(portfolioArray.map( (symbol)=> {
+      return fetchHistoricalPrices(symbol, timeframe, interval).then(
+        (response) => {                                                         // response == currencyArray of objects
+          priceData[symbol] = response.Data;                                    // populate priceData object (outside of asynch func/loop) with currencyArray
+        } 
+      )  
+    })).then(
+      () => {
+        return (
+          this.setState({
+            // [timeframeKey]: portfolioValues,
+            [timeframeKey]: calculatePortfolioValues(priceData, transactions),
+            timePeriodActive: timeframeKey
+          })
+        );
+      }
     );
+
+
 
 
     // ASYNCHRONOUS!
