@@ -296,35 +296,35 @@ class PortfolioChart extends React.Component {
 
     // ASYNCHRONOUS!
     // const { portfolio, cashBalance, transactions } = this.props;      
-    let portfolioSymbols = this.state.portfolioSymbols.slice();           // duplicate array
+    // let portfolioSymbols = this.state.portfolioSymbols.slice();           // duplicate array
     // portfolioSymbols == [ 'BTC', 'ETH' ]
 
     // 1- Loop through each string symbol,                                // each iteration will be an asych call
     // Fetch 1M data for each time period (daily intervals)- store in array 
     // currencyArray == [ {time:1569801600, close:8000 }, {}, ... ]       // for 1 currency!
-    let priceData = {};
+    // let priceData = {};
     // priceData == { 'BTC': [ {time:1569801600, close:8000 }, {}, ... ], 'ETH': [ {time:1569801600, close:160 }, {}, ... ] }
     // NOTE* TIME is in SECONDS from Jan 1, 1970, but new Date expects time stamp in MILISECONDS from Jan 1, 1970
     // so multiply by 1000:  https://stackoverflow.com/questions/49978130/format-crypto-api-date-to-datestring
 
     // portfolioSymbols will be 2 (on first call of this method)
-    if (portfolioSymbols.length > 0) {
-      let currSymbol = portfolioSymbols[0];
-      // debugger
+    // if (portfolioSymbols.length > 0) {
+    //   let currSymbol = portfolioSymbols[0];
+    //   // debugger
 
-      fetch1MonthPrices(currSymbol).then(
-        (response) => {                                       // response == currencyArray
-          priceData[currSymbol] = response.Data               // populate priceData object (outside of asynch func/loop) with currencyArray
-          portfolioSymbols.shift();                           // destructively delete first ele in array
-          // debugger
-          return (this.setState({
-            "1M-prices": priceData,                           // { 'BTC': [...] }
-            portfolioSymbols: portfolioSymbols,               // after first call == [ 'ETH' ]
-            timePeriodActive: "month",
-          }));
-        }
-      );
-    }
+    //   fetch1MonthPrices(currSymbol).then(
+    //     (response) => {                                       // response == currencyArray
+    //       priceData[currSymbol] = response.Data               // populate priceData object (outside of asynch func/loop) with currencyArray
+    //       portfolioSymbols.shift();                           // destructively delete first ele in array
+    //       // debugger
+    //       return (this.setState({
+    //         "1M-prices": priceData,                           // { 'BTC': [...] }
+    //         portfolioSymbols: portfolioSymbols,               // after first call == [ 'ETH' ]
+    //         timePeriodActive: "month",
+    //       }));
+    //     }
+    //   );
+    // }
     
     // debugger
     // 2- Store all data in object, with keys of symbols, values of arrays
