@@ -4,7 +4,8 @@ import {
   fetch1MonthPrices
 } from '../../util/prices_util';
 import {
-  calculatePortfolioValues
+  calculatePortfolioValues,
+  currentPortfolioValue
 } from './portfolio_chart_util';
 
 
@@ -23,6 +24,7 @@ class PortfolioChart extends React.Component {
     //                    ... 
     //                    }
     // debugger
+    const { portfolio, currentPrices, cashBalance } = props;
 
     this.state = {
       "1D-prices": [],                                                    // array of price data from ajax request
@@ -33,6 +35,7 @@ class PortfolioChart extends React.Component {
       "1M-values": [],                
       portfolioSymbols: Object.keys(this.props.portfolio),                // portfolioSymbols == [ 'BTC', 'ETH ]
       timePeriodActive: '',                                               // will contain string representing which time period chart to render/bold for css
+      portfolioValue: currentPortfolioValue(portfolio, currentPrices, cashBalance),
     }
 
     this.get1MonthPrices = this.get1MonthPrices.bind(this);

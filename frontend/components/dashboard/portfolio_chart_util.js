@@ -1,3 +1,32 @@
+// returns => 11095.47
+export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => {
+  // cashBalance    == 1871
+  // portfolio      == { 'BTC': 1, 'LTC' }
+  // currentPrices object contains 7 keys (currency symbols) ? currentPrices data doesn't hit constructor on 2nd render of this component why? (does hit render method below 2nd time)
+  // currentPrices  == {  
+  //                    'BTC': { 'USD': { 'PRICE': 9000 } }, 
+  //                    'ETH': { 'USD': { 'PRICE': 160 } }, 
+  //                    ... 
+  //                    }
+
+  let portfolioValue = cashBalance;
+
+  // loop through each currency in portfolio
+  for (let symbol in portfolio) {
+    let quantity = portfolio[symbol];
+    let price = currentPrices[symbol].USD.PRICE;
+
+    // get value = quantity * price
+    let value = quantity * price;
+
+    // keep running total of value
+    portfolioValue += value;
+  }
+
+  return portfolioValue;
+}
+
+
 export const calculatePortfolioValues = (pricesData, portfolio, cashBalance, transactions) => {
   // REUSABLE FUNCTION, priceData will always be populated!!! NOT EMPTY
   // debugger
