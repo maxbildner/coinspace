@@ -13,7 +13,7 @@ class PortfolioChart extends React.Component {
     super(props);
     // props == { portfolio, cashBalance, currentPrices, transactions }
     // cashBalance    == 1871.57
-    // portfolio      == { 'BTC': 1 }
+    // portfolio      == { 'BTC': 1, 'LTC' }
     // transactions   == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
     
     // currentPrices object contains 7 keys (currency symbols) ? currentPrices data doesn't hit constructor on 2nd render of this component why? (does hit render method below 2nd time)
@@ -69,7 +69,23 @@ class PortfolioChart extends React.Component {
     }
   }
 
-  get1MonthPrices() {                                                     // ASYNCHRONOUS!
+  get1MonthPrices() {   
+    
+    // let portfolio = ['BTC', 'LTC']
+    // //
+    // let historicalData = {}
+    // // { BTC: [ {time, price}, {}] }
+
+    // Promise.all(portfolio.map( (coin)=> {
+    //   //
+    // })
+    
+    // ).then(
+
+    // );
+
+
+    // ASYNCHRONOUS!
     // const { portfolio, cashBalance, transactions } = this.props;      
     let portfolioSymbols = this.state.portfolioSymbols.slice();           // duplicate array
     // portfolioSymbols == [ 'BTC', 'ETH' ]
