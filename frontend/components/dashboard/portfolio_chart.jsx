@@ -9,6 +9,44 @@ import {
 } from './portfolio_chart_util';
 
 
+class CustomTooltip extends React.Component {
+
+  render() {
+    // debugger
+    // this.props == { offset:-65, animationDuration:100, active:true, label:"Oct 25", payload:[{}] ...}
+    // payload == [{time:"Oct 25", portfolioValue:11115.93}]
+
+    const { active, label } = this.props || {};
+    // debugger
+
+    if (active) {
+      const { payload } = this.props || [{}];
+      // debugger
+
+      let value = payload[0].value;
+
+      // let date = this.props.payload[0].payload.time;		//=> 1564358400 <- works ~9/10 times?
+      // let date = payload[0].payload.time;						//=> 1564358400
+      // let day = new Date(date * 1000);						//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
+      // // debugger
+      // let time = day.toLocaleTimeString();					//=> '8:00:00 PM'
+      // let amOrPm = time.slice(-2);							//=> 'PM'
+      // // time = time.slice(0, 4) + amOrPm + ' EST';			//=> '8:00 PM EST'
+      // time = time.slice(0, 4) + ' ' + amOrPm;					//=> '8:00 PM'
+      // day = day.toString().slice(4, 10);						//=> 'Jul 28'
+
+      return (
+        <div className="custom-tooltip">
+          <p className="tooltip-label">{value}</p>
+          <p className="tooltip-time">{label}</p>
+        </div>
+      );
+    }
+    return null;
+  }
+}
+
+
 class PortfolioChart extends React.Component {
   constructor(props) {          // ONLY CALLED ONCE BEFORE THE FIRST RENDER
     super(props);
@@ -128,8 +166,8 @@ class PortfolioChart extends React.Component {
         <section id="bottom-container">
           <LineChart width={700} height={245} data={this.state[timePeriodActive]}>
             {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
-            {/* <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} /> */}
-            <Tooltip/>}
+            <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} />
+            {/* <Tooltip/>} */}
             {/* <Tooltip labelFormatter={() => 'hello'}/>} */}
             {/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
             {/* <Tooltip separator="$"/> */}
