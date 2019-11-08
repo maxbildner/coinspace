@@ -88,19 +88,23 @@ class PortfolioChart extends React.Component {
     const { timePeriodActive } = this.state;
 
     // Dynamically set css attribute name so active <li> is highlighted on appropriate chart
-    let dayActive, weekActive, monthActive, yearActive;
+    let dayActive, weekActive, monthActive, yearActive, xAxisTickCount;
     switch (timePeriodActive) {
       case "1D-values":
         dayActive = 'day-active';
+        xAxisTickCount = 120;                                                    // every 120 minutes, make a tick on x axis
         break;
       case "1W-values":
         weekActive = 'week-active';
+        xAxisTickCount = 24;                                                    // every 24 hours, make a tick on x axis
         break;
       case "1M-values":
         monthActive = 'month-active';
+        xAxisTickCount = 5;                                                     // every 5 days, make a tick on x axis
         break;
       case "1Y-values":
         yearActive = 'year-active';
+        xAxisTickCount = 30;                                                    // very 30 days, make a tick on x axis
     }
 
 
@@ -114,7 +118,7 @@ class PortfolioChart extends React.Component {
           <div id="portfolio-timeframe">
             <ul id="time-periods">
               <li className={dayActive} onClick={() => this.getPortfolioData("1440", "minute", "1D-values")}>1D</li>
-              <li className={weekActive} onClick={() => this.getPortfolioData("168", "hour", "1W-values")}>1W</li>
+              <li className={weekActive} onClick={() => this.getPortfolioData("168", "hour", "1W-values")}>1W</li>    {/* ? 168 refers to #hours */}
               <li className={monthActive} onClick={() => this.getPortfolioData("30", "day", "1M-values")}>1M</li>
               <li className={yearActive} onClick={() => this.getPortfolioData("360", "day", "1Y-values")}>1Y</li>
             </ul>
@@ -130,7 +134,7 @@ class PortfolioChart extends React.Component {
             {/* <Tooltip formatter={(a, b, c) => { console.log(a, b, c) } } /> */}
             {/* <Tooltip separator="$"/> */}
 
-            <XAxis dataKey="time" />
+            <XAxis dataKey="time" interval={xAxisTickCount}/>
             {/* <YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} /> */}
             <YAxis type="number" />
             <Line
