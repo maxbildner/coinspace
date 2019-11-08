@@ -54,7 +54,6 @@ class PortfolioChart extends React.Component {
     // this.props.portfolio == { 'BTC': 1, 'LTC' }
     // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
 
-
     let portfolioArray = Object.keys(this.props.portfolio);
     // portfolioArray == ['BTC', 'LTC']
     
@@ -88,6 +87,23 @@ class PortfolioChart extends React.Component {
     const { portfolio, currentPrices, cashBalance } = this.props;
     const { timePeriodActive } = this.state;
 
+    // Dynamically set css attribute name so active <li> is highlighted on appropriate chart
+    let dayActive, weekActive, monthActive, yearActive;
+    switch (timePeriodActive) {
+      case "1D-values":
+        dayActive = 'day-active';
+        break;
+      case "1W-values":
+        weekActive = 'week-active';
+        break;
+      case "1M-values":
+        monthActive = 'month-active';
+        break;
+      case "1Y-values":
+        yearActive = 'year-active';
+    }
+
+
     return (
       <div id="portfoliochart-container">
         PORTFOLIO CHART
@@ -97,14 +113,10 @@ class PortfolioChart extends React.Component {
           </div>
           <div id="portfolio-timeframe">
             <ul id="time-periods">
-              {/* <li className={dayActive} onClick={() => this.get1DayPrices(symbol)}>1D</li>
-              <li className={weekActive} onClick={() => this.get1WeekPrices(symbol)}>1W</li>
-              <li className={monthActive} onClick={() => this.get1MonthPrices(symbol)}>1M</li>
-              <li className={yearActive} onClick={() => this.get1YearPrices(symbol)}>1Y</li> */}
-              <li onClick={() => this.getPortfolioData("1440", "minute", "1D-values")}>1D</li>
-              <li onClick={() => this.getPortfolioData("168", "hour", "1W-values")}>1W</li>
-              <li onClick={() => this.getPortfolioData("30", "day", "1M-values")}>1M</li>
-              <li onClick={() => this.getPortfolioData("360", "day", "1Y-values")}>1Y</li>
+              <li className={dayActive} onClick={() => this.getPortfolioData("1440", "minute", "1D-values")}>1D</li>
+              <li className={weekActive} onClick={() => this.getPortfolioData("168", "hour", "1W-values")}>1W</li>
+              <li className={monthActive} onClick={() => this.getPortfolioData("30", "day", "1M-values")}>1M</li>
+              <li className={yearActive} onClick={() => this.getPortfolioData("360", "day", "1Y-values")}>1Y</li>
             </ul>
           </div>
         </section>
