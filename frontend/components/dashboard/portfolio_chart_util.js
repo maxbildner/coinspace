@@ -169,6 +169,7 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   // dayOfMonth = 30
   let month = gmtTime.getMonth();
   // 8 == september because nums start at 0
+  let year = gmtTime.getFullYear();
 
   // TO RETURN
   let portfolio = { 'USD': { price:1, quantity:10000} };                        // all portfolio's start off with 10k
@@ -179,6 +180,7 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   // firstTransactionDayOfMonth = 22
   let firstTransactionMonth = firstTransaction.getMonth();
   // firstTransactionMonth = 9      (october)
+  let firstTransactionYear = firstTransaction.getFullYear();
   
   // If input time comes before the first transaction in the input array, return empty object
   if (month < firstTransactionMonth) {
@@ -186,6 +188,8 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
     return {};
   } else if (month === firstTransactionMonth && dayOfMonth < firstTransactionDayOfMonth) {
     // debugger
+    return {};
+  } else if (year < firstTransactionYear) {
     return {};
   }
 
