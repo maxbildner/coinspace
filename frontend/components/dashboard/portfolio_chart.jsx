@@ -86,6 +86,7 @@ class PortfolioChart extends React.Component {
   render() {
     // debugger
     const { portfolio, currentPrices, cashBalance } = this.props;
+    const { timePeriodActive } = this.state;
 
     return (
       <div id="portfoliochart-container">
@@ -109,7 +110,7 @@ class PortfolioChart extends React.Component {
         </section>
 
         <section id="bottom-container">
-        	<LineChart width={700} height={245} data={this.state["1M-values"]}>
+          <LineChart width={700} height={245} data={this.state[timePeriodActive]}>
             {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
             {/* <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} /> */}
             <Tooltip/>}
