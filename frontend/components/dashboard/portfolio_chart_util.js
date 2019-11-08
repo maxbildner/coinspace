@@ -27,7 +27,7 @@ export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => 
   }
 
   // debugger
-  return portfolioValue;
+  return portfolioValue.toFixed(2);
 }
 
 
@@ -285,7 +285,7 @@ function updatePrices(portfolio, pricesAtTimeT) {
 // (time, price/quantity object)                                            // object of quantities/prices at a time t
 // (1569801600, { 'BTC': { price:8000, quantity: 1 }, 'USD': { price:1, quantity: 1000 } })        
 //                                                                          //=> { time:1569801600, portfolioValue: 9000 }
-// portfolioValue == { time:1569801600, portfolioValue: 9000 }
+// returns => { time:1569801600, portfolioValue: 9000 }
 function calculatePortfolioValueAtTimeT(time, portfolioAtTimeT) {
   // time == 1569801600
   // portfolioAtTimeT == { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
@@ -309,7 +309,7 @@ function calculatePortfolioValueAtTimeT(time, portfolioAtTimeT) {
     runningTotalValue += portfolioAtTimeT[symbol].price * portfolioAtTimeT[symbol].quantity;
   }
 
-  portfolioValue['portfolioValue'] = runningTotalValue;
+  portfolioValue['portfolioValue'] = Number(runningTotalValue.toFixed(2));
 
   return portfolioValue;
 }
