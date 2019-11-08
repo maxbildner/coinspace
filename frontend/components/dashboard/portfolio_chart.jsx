@@ -136,7 +136,7 @@ class PortfolioChart extends React.Component {
 
             <XAxis dataKey="time" interval={xAxisTickCount}/>
             {/* <YAxis type="number" domain={['dataMin - 5', 'dataMax + 5']} /> */}
-            <YAxis type="number" />
+            <YAxis type="number" domain={['dataMin', 'dataMax']}/>
             <Line
               type="monotone"
               dataKey="portfolioValue"
