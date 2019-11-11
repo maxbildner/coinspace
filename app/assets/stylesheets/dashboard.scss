@@ -11,8 +11,13 @@
 
     #top-container {
       // background: aliceblue;
+      #your-portfolio-value {
+        font-weight: bold;
+        color: gray;
+      }
       .current-val {
         font-weight: bold;
+        font-size: 1.3rem;
       }
       text-align: center;
     }
