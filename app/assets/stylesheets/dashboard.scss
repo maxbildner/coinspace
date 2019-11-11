@@ -5,17 +5,23 @@
     min-width: 750px;
     width: 750px;
     margin: 0 auto;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+    margin-bottom: 3rem;
 
     #top-container {
-      background: aliceblue;
+      // background: aliceblue;
+      .current-val {
+        font-weight: bold;
+      }
       text-align: center;
     }
 
     #bottom-container {
-      background: lightgray;
+      // background: lightgray;
       
       .recharts-wrapper {
-        background: pink;
+        // background: pink;
       }
     }
   }

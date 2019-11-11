@@ -27,7 +27,12 @@ export const currentPortfolioValue = (portfolio, currentPrices, cashBalance) => 
   }
 
   // debugger
-  return portfolioValue.toFixed(2);
+  // return portfolioValue.toFixed(2);
+  portfolioValue = Number(portfolioValue.toFixed(2));
+  // 10595.30
+  
+  return portfolioValue.toLocaleString();
+  // "10,595.30"
 }
 
 

@@ -137,7 +137,7 @@ class PortfolioChart extends React.Component {
       <div id="portfoliochart-container">
         <section id="top-container">
           <div id="portfoliochart-current-val">
-            Your Portfolio Value: {currentPortfolioValue(portfolio, currentPrices, cashBalance)}
+            Your Portfolio Value: <span className="current-val">{currentPortfolioValue(portfolio, currentPrices, cashBalance)}</span>
           </div>
           <div id="portfolio-timeframe">
             <ul id="time-periods">
