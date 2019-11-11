@@ -10,7 +10,6 @@ import {
 
 
 class CustomTooltip extends React.Component {
-
   render() {
     // debugger
     // this.props == { offset:-65, animationDuration:100, active:true, label:"Oct 25", payload:[{}] ...}
@@ -21,19 +20,7 @@ class CustomTooltip extends React.Component {
 
     if (active) {
       const { payload } = this.props || [{}];
-      // debugger
-
       let value = payload[0].value;
-
-      // let date = this.props.payload[0].payload.time;		//=> 1564358400 <- works ~9/10 times?
-      // let date = payload[0].payload.time;						//=> 1564358400
-      // let day = new Date(date * 1000);						//=> Sun Jul 28 2019 20:00:00 GMT-0400 (Eastern Daylight Time)		DATE OBJECT! NOT STRING
-      // // debugger
-      // let time = day.toLocaleTimeString();					//=> '8:00:00 PM'
-      // let amOrPm = time.slice(-2);							//=> 'PM'
-      // // time = time.slice(0, 4) + amOrPm + ' EST';			//=> '8:00 PM EST'
-      // time = time.slice(0, 4) + ' ' + amOrPm;					//=> '8:00 PM'
-      // day = day.toString().slice(4, 10);						//=> 'Jul 28'
 
       return (
         <div className="custom-tooltip">
@@ -148,7 +135,6 @@ class PortfolioChart extends React.Component {
 
     return (
       <div id="portfoliochart-container">
-        PORTFOLIO CHART
         <section id="top-container">
           <div id="portfoliochart-current-val">
             Your Portfolio Value: {currentPortfolioValue(portfolio, currentPrices, cashBalance)}
@@ -164,7 +150,7 @@ class PortfolioChart extends React.Component {
         </section>
 
         <section id="bottom-container">
-          <LineChart width={700} height={245} data={this.state[timePeriodActive]}>
+          <LineChart width={750} height={245} data={this.state[timePeriodActive]}>
             {/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
             <Tooltip content={<CustomTooltip />} offset={-65} animationDuration={100} />
             {/* <Tooltip/>} */}

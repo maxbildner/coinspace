@@ -1,6 +1,25 @@
 #dashboard-container {
   width: 100%;
 
+  #portfoliochart-container {
+    min-width: 750px;
+    width: 750px;
+    margin: 0 auto;
+
+    #top-container {
+      background: aliceblue;
+      text-align: center;
+    }
+
+    #bottom-container {
+      background: lightgray;
+      
+      .recharts-wrapper {
+        background: pink;
+      }
+    }
+  }
+
   #wallets-transactions-container {
     width: 50%;
     min-width: 750px;
