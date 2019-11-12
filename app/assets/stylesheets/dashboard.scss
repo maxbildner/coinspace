@@ -43,6 +43,7 @@
     min-width: 750px;
     margin: 0 auto;
     background: lightblue;
+    display: flex;
     
 
     // COMPONENTS 2 (bottom left)
@@ -55,9 +56,17 @@
       vertical-align: top;
       padding: 5px;
       width: 340px;
+      position: relative;
 
       .wallets-table {
         width: 100%;
+      }
+
+      .wallets-portfolio-val {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        text-align: center;
       }
     }
   
