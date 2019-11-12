@@ -129,7 +129,7 @@ class PortfolioWallets extends React.Component {
         <table className="wallets-table">
           <thead className="wallets-thead">
             <tr className="wallets-thead-tr">
-              <th>Portfolio Wallets</th>
+              <th>Wallets</th>
               <th>Asset Allocation</th>
               <th>Quantity</th>
               <th>USD Value</th>
