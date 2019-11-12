@@ -142,7 +142,7 @@ class PortfolioChart extends React.Component {
             <span className="current-val">${currentPortfolioValue(portfolio, currentPrices, cashBalance)}</span>
           </div>
           <div id="portfolio-timeframe">
-            <ul id="time-periods">
+            <ul id="time-periods-dashboard">
               <li className={dayActive} onClick={() => this.getPortfolioData("1440", "minute", "1D-values")}>1D</li>
               <li className={weekActive} onClick={() => this.getPortfolioData("168", "hour", "1W-values")}>1W</li>    {/* ? 168 refers to #hours */}
               <li className={monthActive} onClick={() => this.getPortfolioData("30", "day", "1M-values")}>1M</li>
