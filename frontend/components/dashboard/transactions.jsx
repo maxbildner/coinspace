@@ -42,7 +42,7 @@ class Transactions extends React.Component {
             <tr className="transactions-tbody-tr" key={i}>
               <td className="transactions-tbody-td-date">{year} {month} {day}</td>
               <td className="transactions-tbody-td-type">{transactionType} {quantity} {currency}</td>
-              <td className="transactions-tbody-td-value">{plusOrMinus}${value}</td>
+              <td className="transactions-tbody-td-value">{plusOrMinus}${formatValue(value)}</td>
             </tr>
           );
         })
@@ -74,3 +74,11 @@ class Transactions extends React.Component {
 }
 
 export default Transactions;
+
+// => returns string "10,526.94"
+function formatValue(portfolioValue) {
+  // portfolioValue == 10527.94333333
+  if (portfolioValue) {
+    return Number(portfolioValue.toFixed(2)).toLocaleString();
+  }
+}

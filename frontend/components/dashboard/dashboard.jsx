@@ -54,7 +54,7 @@ class Dashboard extends React.Component {
 
 		return (
 			<div id="dashboard-container">
-				<h1>WELCOME!</h1>
+				{/* <h1>WELCOME!</h1> */}
 				<PortfolioChart
 					cashBalance={cash_balance}
 					portfolio={portfolio}

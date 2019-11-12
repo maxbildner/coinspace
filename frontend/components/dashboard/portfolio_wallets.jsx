@@ -113,8 +113,8 @@ class PortfolioWallets extends React.Component {
       <tr key={i} className="wallets-tbody-tr">
         <td>{currencyObj.symbol}</td>
         <td>%{currencyObj.percentAllocation * 100}</td>
-        <td>{currencyObj.quantity}</td>
-        <td>${currencyObj.USDValue}</td>
+        <td>{formatValue(currencyObj.quantity)}</td>
+        <td>${formatValue(currencyObj.USDValue)}</td>
       </tr>
       );
     });
@@ -139,10 +139,18 @@ class PortfolioWallets extends React.Component {
             {this.renderSortedRows()}
           </tbody>
         </table>
-        <div className="wallets-portfolio-val">Total Portfolio Value ≈ {portfolioValue}</div>
+        <div className="wallets-portfolio-val">Total Portfolio Value ≈ ${formatValue(portfolioValue)}</div>
       </div>
     );
   }
 }
 
 export default PortfolioWallets;
+
+// => returns string "10,526.94"
+function formatValue(portfolioValue) {
+  // portfolioValue == 10527.94333333
+  if (portfolioValue) {
+    return Number(portfolioValue.toFixed(2)).toLocaleString();
+  }
+}

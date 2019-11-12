@@ -42,13 +42,14 @@
     width: 50%;
     min-width: 750px;
     margin: 0 auto;
-    background: lightblue;
+    // background: lightblue;   // For Testing
     display: flex;
+    color: white;
     
 
     // COMPONENTS 2 (bottom left)
     #wallets {
-      background: grey;
+      // background: grey;    // For Testing
       display: inline-block;
       margin-right: 3rem;
       border: 1px solid grey;
@@ -72,12 +73,16 @@
   
     // COMPONENTS 3 (bottom right)
     #transactions {
-      background: pink;
+      // background: pink;    // For Testing
       display: inline-block;
       padding: 5px;
+      padding-bottom: 20px;
       border: 1px solid grey;
       border-radius: 10px;
       width: 340px;
+      position: relative;
+      margin-left: auto;
+      margin-right: 0;
 
       .transactions-table {
         width: 100%;
@@ -86,6 +91,13 @@
         .transactions-thead {
           text-align: left;
         }
+      }
+
+      .transactions-bottom {
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        position: absolute;
       }
     }
   }
