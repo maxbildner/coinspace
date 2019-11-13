@@ -16,8 +16,14 @@ class Transactions extends React.Component {
 
 
   renderTransactions() {
-    const { transactions } = this.props                           // transactions == array of objects
+    const { transactions } = this.props || {}                     // transactions == array of objects
     
+    // on first render, transactions will be undefined, so return null so we don't error out
+    if (transactions == undefined) {
+      return null;
+    }
+
+
     if (transactions.length === 0) {                              // if there are no transactions
       return null;
     } else {

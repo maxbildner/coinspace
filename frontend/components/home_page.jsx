@@ -103,6 +103,15 @@ class HomePage extends React.Component {
 
 	render() {
 		
+		
+		let signup;
+		// if user signed in, render signup button
+		let reduxState = getState();
+		if (reduxState.session.id == null) {
+			signup = <NavLink to='/signup' className="sign-up-home">Sign Up</NavLink>
+		}
+		
+
 		return (
 			<>
 				<div className="carousel" ref={this.carousel}> 
@@ -115,7 +124,7 @@ class HomePage extends React.Component {
 							<div className="carousel-slide-labels">
 							</div>
 							<div className="carousel-bottom-action">
-								<NavLink to='/signup' className="sign-up-home">Sign Up</NavLink>
+								{signup}
 							</div>
 						</div>
 

@@ -20,6 +20,7 @@ class CustomTooltip extends React.Component {
 
     if (active) {
       const { payload } = this.props || [{}];
+      // debugger
       let value = payload[0].value;
 
       return (
