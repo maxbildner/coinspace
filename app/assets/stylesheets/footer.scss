@@ -1,6 +1,6 @@
 div#footer-wrapper {
     width: 100%;
-    height: 60px;
+    height: 70px;
     position: absolute;
     bottom: 0;
 }
@@ -8,7 +8,26 @@ div#footer-wrapper {
 div#footer {
     height: 100%;
     width: 100%;
-    background: #001428;
+    // background: #001428;
+    background: #00458a;
     color: white;
     text-align: center;
+}
+
+#footer-padding-top {
+    width: 100%;
+    height: 24px;
+}
+
+#footer-name {
+    margin-right: 5px;
+}
+
+#footer-portfolio {
+    color: white;
+    margin-left: 10px;
+}
+
+#footer-portfolio:hover {
+    color: black;
 }
