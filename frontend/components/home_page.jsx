@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
 import TradeModal from './trading/tradeModalContainer';
+import Footer from './footer';
 
 const CURRENCIES = [
 		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 
@@ -141,9 +142,7 @@ class HomePage extends React.Component {
 					<CurrencyTable currencies={CURRENCIES} triggerModal={(symbol, price) => this.triggerModal(symbol, price)}/>
 				</div>
 
-				<div id="footer-wrapper">
-					<div id="footer"></div>
-				</div>
+				<Footer/>
 			</>
 		)
 	}		// these CurrencyTableItemContainer components are passed to the grid component as props.children
