@@ -38,13 +38,28 @@ html[data-location="/prices"] {
     // background-color: #0066cc;   // baby blue
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 :root {                              // root == html
     font-size: 14px;
+    // margin: 0;
+    // padding: 0;
+    // height: 100%;
+}
+
+#root {
+    min-height: 100%;
+    position: relative;
+    // height: 100%;                // For IE 6 and 5.5 only
 }
 
 body {
     font-family: proxima-nova, helvetica neue, Helvetica;
-    line-height: 20px;
+    line-height: 20px;    
 }
 
 h2 {

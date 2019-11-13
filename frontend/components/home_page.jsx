@@ -142,7 +142,7 @@ class HomePage extends React.Component {
 					<CurrencyTable currencies={CURRENCIES} triggerModal={(symbol, price) => this.triggerModal(symbol, price)}/>
 				</div>
 
-				<Footer/>
+				
 			</>
 		)
 	}		// these CurrencyTableItemContainer components are passed to the grid component as props.children

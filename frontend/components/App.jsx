@@ -11,6 +11,7 @@ import HomePage from './home_page';
 import DashboardContainer from './dashboard/dashboard_container';
 import DetailsPage from './currency/details_page';
 import PricesPage from './prices/prices_page';
+import Footer from './footer';
 
 // ? functional component that will wrap all other components (but app will be wrapped in root component?)
 const App = () => {
@@ -27,6 +28,8 @@ const App = () => {
 				<Route exact path="/price/:currencyName" component={DetailsPage}/>
 				<Route exact path="/" component={HomePage} />
 			</Switch>
+
+			 <Footer />
 		</>
    );
 };
