@@ -19,7 +19,7 @@ class NavBarComponent extends React.Component {
 				<NavLink to="/dashboard">Dashboard</NavLink>
 			</li>
 			<li>
-				<NavLink to="">Settings</NavLink>
+				<NavLink to="/">Home</NavLink>
 			</li>
 			<li >
 				<Link onClick={this.props.logoutUser} to="/" >Sign Out</Link>
@@ -61,18 +61,25 @@ class NavBarComponent extends React.Component {
 						<div className="nav-section" id="nav-left">
 								<ul>
 									<li>
-										<NavLink activeClassName="nav-selected" to="">About</NavLink>
+									<a  
+										href="https://github.com/maxbildner/coinspace"
+										target="_blank">Github</a>
 									</li>
 									<li>
-										<NavLink activeClassName="nav-selected" to="">Products</NavLink>
+										<a  
+											href="https://www.linkedin.com/in/maxbildner/"
+											target="_blank"
+											>LinkedIn</a>
 									</li>
 									<li>
-										<NavLink activeClassName="nav-selected" to="">Help</NavLink>
+										<a  
+											href="https://angel.co/maxbildner"
+											target="_blank"
+											>AngelList</a>
 									</li>
 									<li>
 										<NavLink activeClassName="nav-selected" to="/prices">Prices</NavLink>
 									</li>
-										
 								</ul>
 						</div>
 
