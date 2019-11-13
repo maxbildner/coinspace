@@ -18,9 +18,9 @@ class NavBarComponent extends React.Component {
 			<li>
 				<NavLink to="/dashboard">Dashboard</NavLink>
 			</li>
-			<li>
+			{/* <li>
 				<NavLink to="/">Home</NavLink>
-			</li>
+			</li> */}
 			<li >
 				<Link onClick={this.props.logoutUser} to="/" >Sign Out</Link>
 			</li>
