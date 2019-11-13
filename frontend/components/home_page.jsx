@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencyTable from './currency_table/currency_table';
 import TradeModal from './trading/tradeModalContainer';
-import Footer from './footer';
+
 
 const CURRENCIES = [
 		{ name: "Bitcoin", symbol: "BTC", key: "BTC"}, 
