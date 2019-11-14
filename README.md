@@ -1,8 +1,18 @@
 # README
 
+[Live Site](https://www.google.com)
+
+## About
+
+## Technologies
+
+## Features
+
+## Future Features
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
 Things you may want to cover:
 
 * Ruby version
