@@ -100,6 +100,7 @@ getPortfolioData(timeframe, interval, timeframeKey) {
 ```
 
 ### News
+Users can view the latest news (from the cryptocompare API) related to any currency they are viewing. Updated news is fetched on every page refresh.
 
 
 ## Future Features
@@ -108,24 +109,12 @@ getPortfolioData(timeframe, interval, timeframeKey) {
 ### BTC Currency Deposits/Transfers
 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-Things you may want to cover:
-
+## MISC
 * Ruby version
-
 * System dependencies
-
 * Configuration
-
 * Database creation
-
 * Database initialization
-
 * How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
-
-* ...
