@@ -45,6 +45,7 @@ export const calculatePortfolioValues = (pricesData, transactions) => {
   // portfolio    == { 'BTC': 1 }
   // cashBalance  == 1871.57
   // transactions == [ { quantity, price, transaction_type, created_at, currency_symbol } ]
+  // debugger
 
   // All currency keys in priceData
   let currencySymbols = Object.keys(pricesData);
@@ -66,7 +67,7 @@ export const calculatePortfolioValues = (pricesData, transactions) => {
   // TO RETURN
   let portfolioValues = [];                                                     
   // => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-  // debugger
+  debugger
 
   // Loop through each price in any of the price arrays (all should be same length)
   // Calculate Portfolio Value at time t in this loop, and push to outside array (return this array later)
@@ -180,6 +181,7 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   let portfolio = { 'USD': { price:1, quantity:10000} };                        // all portfolio's start off with 10k
   // => { 'BTC':{price:8000, quantity:1}, 'USD':{price:1, quantity:1000} }
 
+  // debugger
   let firstTransaction = new Date(transactions[0].created_at);
   let firstTransactionDayOfMonth = firstTransaction.getDate();
   // firstTransactionDayOfMonth = 22

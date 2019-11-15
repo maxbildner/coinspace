@@ -46,6 +46,7 @@ class Dashboard extends React.Component {
 			cash_balance, 
 			portfolio,
 			transactions,
+			// wallet_transactions,
 		} = this.props.state.entities.users[userId] || {};
 		// debugger
 
@@ -60,6 +61,7 @@ class Dashboard extends React.Component {
 					portfolio={portfolio}
 					currentPrices={currentPrices}
 					transactions={transactions}
+					// transactions={wallet_transactions}
 				/>
 				<Watchlist/>
 
@@ -71,6 +73,7 @@ class Dashboard extends React.Component {
 					/>
 					<Transactions
 						transactions={transactions}
+						// transactions={wallet_transactions}
 					/>
 				</div>
 			</div>

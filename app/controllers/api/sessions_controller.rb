@@ -1,25 +1,28 @@
 class Api::SessionsController < ApplicationController
 	def create                                                                # login
-		user = User.find_by_credentials(
+		@user = User.find_by_credentials(
 			session_params[:email],
 			session_params[:password]
 		)
 
-		if user                                                                 # if user exists
-			login!(user)
+		if @user                                                                 # if user exists
+			login!(@user)
 
-			# render 'api/users/show'
-			render json:  { 
-				id: current_user.id, 
-				email: current_user.email,  
-				cash_balance: current_user.cash_balance,            								# float
-				portfolio: current_user.get_portfolio,               								# object { 'BTC': 1, 'LTC': .5 } 
-				wallet_transactions: current_user.wallet_transactions								# array of objects [ {id: 30, wallet_id: 253, quantity, price, transaction_type, created_at }]
-			}                    
+			render 'api/users/show'																								 # delegates to api/users/show jbuilder doc
+
+			# OLD: (wallet_transactions doesn't have currency_symbol)
+			# render json:  { 
+			# 	id: current_user.id, 
+			# 	email: current_user.email,  
+			# 	cash_balance: current_user.cash_balance,            								# float
+			# 	portfolio: current_user.get_portfolio,               								# object { 'BTC': 1, 'LTC': .5 } 
+			# 	wallet_transactions: current_user.wallet_transactions								# array of objects [ {id: 30, wallet_id: 253, quantity, price, transaction_type, created_at }]
+			# }                    
 		else
 			render json: ["Invalid email or password. Try clicking 'Forgot Password' if you're having trouble signing in."], status: 401       # ? could also be 422
 		end
 	end
+
     
     
 	def destroy                                                                 # logout
