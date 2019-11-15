@@ -11,9 +11,42 @@ Coinspace is inspired by Coinbase, a digital currency brokerage exchange that al
 * Backend: Ruby on Rails, PostgreSQL
 * Data Visualization: Recharts
 * Financial Data: Cryptocompare API
+* Misc: WebPack, BCrypt Ruby gem
 
 ## Features
 ### Custom User Authentication
+A custom Ruby on Rails back-end user authentication pattern with a BCrypt ruby gem was used. Bcrypt internally uses Blowfish encryption.
+The following is part of the auth pattern from the user model:
+```
+def self.find_by_credentials(email, password)
+  user = User.find_by(email: email)
+	user && user.is_password?(password) ? user : nil
+end
+
+def password=(password)
+  @password = password
+  self.password_digest = BCrypt::Password.create(password)
+end
+
+def is_password?(password)
+  BCrypt::Password.new(password_digest).is_password?(password)
+end
+
+def reset_session_token!
+  self.session_token = self.class.generate_session_token
+  save!
+  session_token
+end
+
+def self.generate_session_token
+  SecureRandom.urlsafe_base64
+end
+
+def ensure_session_token
+  self.session_token ||= self.class.generate_session_token
+end
+```
+
 ### Cryptocurrency Search Bar
 ### Portfolio and Currency Price Data Visualization
 ### News
