@@ -3,8 +3,7 @@
 [Live Site](https://coin-space.herokuapp.com/)
 
 ## About
-Coinspace is inspired by Coinbase, a digital currency brokerage exchange that allows users to buy, sell, and research various digital assets such as Bitcoin, Ethereum, or Lite coin. 
-
+Coinspace is inspired by Coinbase, a digital currency brokerage exchange that allows users to buy, sell, and research various digital assets such as Bitcoin, Ethereum, or Lite coin. Currently, coinspace transactions are simulated and do not actually create liquidity or change any blockchains. However further support of an order book matching engine is in progress. Coinspace users can execute buy or sell market orders, track currency news and prices over multiple timeframes. 
 
 ## Technologies
 * Frontend: JavaScript, React, Redux, CSS, HTML5
@@ -15,7 +14,7 @@ Coinspace is inspired by Coinbase, a digital currency brokerage exchange that al
 
 ## Features
 ### Custom User Authentication
-A custom Ruby on Rails back-end user authentication pattern with a BCrypt ruby gem was used. Bcrypt internally uses Blowfish encryption.
+I used a custom Rails back-end user authentication pattern with a BCrypt ruby gem. Bcrypt internally uses Blowfish encryption.
 The following is part of the auth pattern from the user model:
 ```
 def self.find_by_credentials(email, password)
@@ -48,9 +47,11 @@ end
 ```
 
 ### Cryptocurrency Search Bar
-Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoin). Since less than 100 currencies are stored, no database is quered. All search is done on the front end. The search algorithm is in O(N) time, where N is the number of currencies to search. 
+Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoin). Since less than 100 currencies are stored, no database is queried. All search is done on the front end. The search algorithm is in O(N) time, where N is the number of currencies to search. 
 
 ### Portfolio and Currency Price Data Visualization
+Coinspace has support for viewing price data in multiple timeframes (daily, weekly, monthly, yearly) for 17 different cryptocurrencies. 
+I used [Cryptocompare](https://www.cryptocompare.com/coins/guides/how-to-use-our-api/) all of the currency price, volume, and market cap data. Recharts (Javascript Library) was used to render the charts which can be seen below:
 
 ### News
 
