@@ -53,7 +53,54 @@ Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoi
 Coinspace has support for viewing price data in multiple timeframes (daily, weekly, monthly, yearly) for 17 different cryptocurrencies. 
 I used [Cryptocompare](https://www.cryptocompare.com/coins/guides/how-to-use-our-api/) all of the currency price, volume, and market cap data. Recharts (Javascript Library) was used to render the charts which can be seen below:
 
+
+A large problem I encoutered with the data visualization rendering was aggregating the price data. Since the cryptocompare API did not support a single AJAX call to fetch historical data for multiple currencies at a time, and the coinspace user could have an unknown number of currencies in their portfolio, I could not hard code the data fetches and needed a dynamic way of fetching data. To solve this issue, I a Promise.all, with a mapping function that produced a variable number of callback functions.  Only after all the data has been fetched that the promise is resolved and local react state is updated with all the relevant price data. 
+A snippet of the function (in portfolio_chart.jsx) used to aggregate the JSON api data is below:
+```
+// ONLY CALLED ONCE AFTER THE FIRST RENDER
+componentDidMount() {                                                         
+	// On initial page load, get all 1M data for each currency in portfolio
+	// inputs = timeframe in days/min/or hours, interval, key to set state                                  
+    	this.getPortfolioData("30", "day", "1M-values");                            
+}
+
+// timeframe in days, minutes, or hours
+getPortfolioData(timeframe, interval, timeframeKey) {                         
+    const { transactions, portfolio } = this.props;
+    // timeframe            == '30'        On initial render, refers to 30 days
+    // interval             == 'day', 'hour', or 'minute'
+    // this.props.portfolio == { 'BTC': 1, 'LTC' }
+    // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
+
+    let portfolioArray = Object.keys(this.props.portfolio);
+    // portfolioArray == ['BTC', 'LTC']
+    
+    // raw data of historical prices { BTC: [], LTC: [], ... }
+    let priceData = {};     
+
+    // Promise.all takes an array of call backs
+    Promise.all(portfolioArray.map( (symbol)=> {
+      return fetchHistoricalPrices(symbol, timeframe, interval).then(
+        (response) => {                                                         // response == currencyArray of objects
+          // response.Data == [ {time:1569801600, close:8000 }, {}, ... ]       // for 1 currency!
+          priceData[symbol] = response.Data;                                    // populate priceData object (outside of asynch func/loop) with currencyArray
+        } 
+      )  
+    })).then(
+      () => {
+        return (
+          this.setState({
+            [timeframeKey]: calculatePortfolioValues(priceData, transactions),
+            timePeriodActive: timeframeKey
+          })
+        );
+      }
+    );
+  }
+```
+
 ### News
+
 
 ## Future Features
 ### Watchlist
