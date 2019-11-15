@@ -48,7 +48,10 @@ end
 ```
 
 ### Cryptocurrency Search Bar
+Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoin). Since less than 100 currencies are stored, no database is quered. All search is done on the front end. The search algorithm is in O(N) time, where N is the number of currencies to search. 
+
 ### Portfolio and Currency Price Data Visualization
+
 ### News
 
 ## Future Features
