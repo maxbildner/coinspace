@@ -49,7 +49,7 @@ class PortfolioChart extends React.Component {
     //                    'ETH': { 'USD': { 'PRICE': 160 } }, 
     //                    ... 
     //                    }
-    debugger
+    // debugger
     
   
     this.state = {
@@ -79,7 +79,7 @@ class PortfolioChart extends React.Component {
     // interval             == 'day', 'hour', or 'minute'
     // this.props.portfolio == { 'BTC': 1, 'LTC' }
     // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
-    debugger
+    // debugger
 
     let portfolioArray = Object.keys(this.props.portfolio);
     // portfolioArray == ['BTC', 'LTC']
