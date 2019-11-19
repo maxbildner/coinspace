@@ -50,6 +50,7 @@ end
 
 ### Cryptocurrency Search Bar
 Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoin). Since less than 100 currencies are stored, no database is queried. All search is done on the front end. The search algorithm is in O(N) time, where N is the number of currencies to search. 
+![Searchbar Prices GIF](https://github.com/maxbildner/coinspace/blob/master/app/assets/images/searchbar.gif)
 
 ### Portfolio and Currency Price Data Visualization
 Coinspace has support for viewing price data in multiple timeframes (daily, weekly, monthly, yearly) for 17 different cryptocurrencies. 
