@@ -5,6 +5,8 @@
 ## About
 Coinspace is inspired by Coinbase, a digital currency brokerage exchange that allows users to buy, sell, and research various digital assets such as Bitcoin, Ethereum, or Lite coin. Currently, coinspace transactions are simulated and do not actually create liquidity or change any blockchains. However further support of an order book matching engine is in progress. Coinspace users can execute buy or sell market orders, track currency news and prices over multiple timeframes. 
 
+![Home Page GIF](https://github.com/maxbildner/coinspace/blob/master/app/assets/images/homepage.gif)
+
 ## Technologies
 * Frontend: JavaScript, React, Redux, CSS, HTML5
 * Backend: Ruby on Rails, PostgreSQL
