@@ -55,9 +55,9 @@ Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoi
 ### Portfolio and Currency Price Data Visualization
 Coinspace has support for viewing price data in multiple timeframes (daily, weekly, monthly, yearly) for 17 different cryptocurrencies. 
 I used [Cryptocompare](https://www.cryptocompare.com/coins/guides/how-to-use-our-api/) all of the currency price, volume, and market cap data. Recharts (Javascript Library) was used to render the charts which can be seen below:
+![Prices Visualization GIF](https://github.com/maxbildner/coinspace/blob/master/app/assets/images/charts.gif)
 
-
-A large problem I encoutered with the data visualization rendering was aggregating the price data. Since the cryptocompare API did not support a single AJAX call to fetch historical data for multiple currencies at a time, and the coinspace user could have an unknown number of currencies in their portfolio, I could not hard code the data fetches and needed a dynamic way of fetching data. To solve this issue, I a Promise.all, with a mapping function that produced a variable number of callback functions.  Only after all the data has been fetched that the promise is resolved and local react state is updated with all the relevant price data. 
+A large problem I encoutered with the data visualization rendering was aggregating the price data. Since the cryptocompare API did not support a single AJAX call to fetch historical data for multiple currencies at a time, and the coinspace user could have an unknown number of currencies in their portfolio, I could not hard code the data fetches and needed a dynamic way of fetching data. To solve this issue, I used a Promise.all with a mapping function that produced a variable number of callback functions.  Only after all the data has been fetched that the promise is resolved and local react state is updated with all the relevant price data. 
 A snippet of the function (in portfolio_chart.jsx) used to aggregate the JSON api data is below:
 ```
 // ONLY CALLED ONCE AFTER THE FIRST RENDER
@@ -81,7 +81,7 @@ getPortfolioData(timeframe, interval, timeframeKey) {
     // raw data of historical prices { BTC: [], LTC: [], ... }
     let priceData = {};     
 
-    // Promise.all takes an array of call backs
+    // Promise.all takes an array of callbacks
     Promise.all(portfolioArray.map( (symbol)=> {
       return fetchHistoricalPrices(symbol, timeframe, interval).then(
         (response) => {                                                         // response == currencyArray of objects
@@ -90,6 +90,7 @@ getPortfolioData(timeframe, interval, timeframeKey) {
         } 
       )  
     })).then(
+      // This callback below will be executed only after all callbacks in promise.all array are finished
       () => {
         return (
           this.setState({
@@ -104,6 +105,8 @@ getPortfolioData(timeframe, interval, timeframeKey) {
 
 ### News
 Users can view the latest news (from the cryptocompare API) related to any currency they are viewing. Updated news is fetched on every page refresh.
+
+![News PNG](https://raw.githubusercontent.com/maxbildner/coinspace/master/app/assets/images/news.png)
 
 
 ## Future Features
