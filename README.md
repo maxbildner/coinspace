@@ -8,11 +8,11 @@ Coinspace is inspired by Coinbase, a digital currency brokerage exchange that al
 ![Home Page GIF](https://github.com/maxbildner/coinspace/blob/master/app/assets/images/homepage.gif)
 
 ## Technologies
-* Frontend: JavaScript, React, Redux, CSS, HTML5
+* Frontend: JavaScript, React, Redux, CSS, SASS, HTML5
 * Backend: Ruby on Rails, PostgreSQL
-* Data Visualization: Recharts
+* Data Visualization: Recharts (JS Library)
 * Financial Data: Cryptocompare API
-* Misc: WebPack, BCrypt Ruby gem
+* Misc: WebPack, JBuilder, BCrypt Ruby gem, Heroku
 
 ## Features
 ### Custom User Authentication
@@ -116,11 +116,6 @@ Users can view the latest news (from the cryptocompare API) related to any curre
 
 
 ## MISC
-* Ruby version
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
+* Ruby version: ruby-2.6.3
+* Node Package Manager (NPM) version: 6.4.1
+* Dependencies: Clone this repo to your desktop and run `npm install` to install all the dependencies. Note the package.json file for a list of all the dependencies.
