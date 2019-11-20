@@ -67,7 +67,7 @@ export const calculatePortfolioValues = (pricesData, transactions) => {
   // TO RETURN
   let portfolioValues = [];                                                     
   // => [ { time:1569801600, portfolioValue: 9000 }, { time:1569888000, portfolioValue: 9200 }, ... ]
-  debugger
+  // debugger
 
   // Loop through each price in any of the price arrays (all should be same length)
   // Calculate Portfolio Value at time t in this loop, and push to outside array (return this array later)

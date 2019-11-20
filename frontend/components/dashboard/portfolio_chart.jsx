@@ -18,7 +18,7 @@ class CustomTooltip extends React.Component {
     const { active, label } = this.props || {};
     // debugger
 
-    if (active) {
+    if (active && this.props.payload != null) {
       const { payload } = this.props || [{}];
       // debugger
       let value = payload[0].value;
