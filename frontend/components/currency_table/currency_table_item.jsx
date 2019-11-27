@@ -64,11 +64,13 @@ class CurrencyTableItem extends React.Component {
 
 
 		// const { price, changePct24HR, symbol } = this.props;         // WORKS
-		let { price, changePct24HR, symbol, name } = this.props;    
+		let { price, changePct24HR, symbol, name } = this.props || {};    
 		const changePctRounded = roundTo(Number.parseFloat(changePct24HR), 2);
 		// const logoPath = `/assets/${symbol.toLowerCase()}.png`;
 		// if (name == 'XRapid') name = 'xrp';
 		// name = name.toLowerCase();
+
+		price = (Number(price)).toLocaleString();
 
 		return (            
 			<> 

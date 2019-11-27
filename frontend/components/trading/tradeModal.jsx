@@ -128,7 +128,8 @@ class TradeModal extends React.Component {
     // debugger
     const { toggleModal } = this.props || {};
     
-    let price = (Number(this.props.price.toFixed(2))).toLocaleString();
+    // let price = (Number(this.props.price.toFixed(2))).toLocaleString();
+    let price = (this.props.price).toLocaleString();
 
     return (
       <div id="modal-container">

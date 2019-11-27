@@ -21,7 +21,8 @@ class CustomTooltip extends React.Component {
     if (active && this.props.payload != null) {
       const { payload } = this.props || [{}];
       // debugger
-      let value = payload[0].value;
+      // let value = payload[0].value;
+      let value = payload[0].value.toLocaleString();
 
       return (
         <div className="custom-tooltip">
