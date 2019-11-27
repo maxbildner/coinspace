@@ -16,6 +16,9 @@ class NavBarComponent extends React.Component {
 	renderLoggedInLinks() {
 		return (<>
 			<li>
+				<NavLink activeClassName="nav-selected" to="/prices">Prices</NavLink>
+			</li>
+			<li>
 				<NavLink to="/dashboard">Dashboard</NavLink>
 			</li>
 			{/* <li>
@@ -30,6 +33,9 @@ class NavBarComponent extends React.Component {
 
 	renderLoggedOutLinks() {
 		return (<>
+			<li>
+				<NavLink activeClassName="nav-selected" to="/prices">Prices</NavLink>
+			</li>
 			<li>
 				<NavLink to='/login' activeClassName="nav-selected">Sign In</NavLink>
 			</li>
@@ -77,9 +83,9 @@ class NavBarComponent extends React.Component {
 											target="_blank"
 											>AngelList</a>
 									</li>
-									<li>
+									{/* <li>
 										<NavLink activeClassName="nav-selected" to="/prices">Prices</NavLink>
-									</li>
+									</li> */}
 								</ul>
 						</div>
 
