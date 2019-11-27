@@ -7,7 +7,6 @@
 
 
 
-
 #modal-container {
  position:fixed;
   background: white;
@@ -29,3 +28,8 @@
 #trading-modal-close-button:hover {
   cursor: pointer;
 }
+
+#trading-input-symbol, .trading-modal-price {
+  font-weight: 450;
+}
+

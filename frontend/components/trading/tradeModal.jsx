@@ -126,23 +126,26 @@ class TradeModal extends React.Component {
 
   render() {
     // debugger
-    const { toggleModal, price } = this.props || {};
+    const { toggleModal } = this.props || {};
     
+    let price = (Number(this.props.price.toFixed(2))).toLocaleString();
 
     return (
       <div id="modal-container">
-        <span id="trading-modal-close-button" onClick={toggleModal}>&times;</span>
-          <input id="trading-input-symbol" 
+        <div id="trading-modal-close-button" onClick={toggleModal}>&times;</div>
+          {/* <input id="trading-input-symbol" 
             type="text" 
             placeholder={this.state.symbol}
-            onChange={this.onChangeSymbol}/>
-          <span>Current Price: <span>{price}</span> </span>
-          <input id="trading-input-quantity" 
-            type="text" 
-            placeholder={this.state.quantity}
-            onChange={this.onChangeQuantity}/>
-          <button id="trading-modal-buy" onClick={this.handleBuy}>BUY</button>
-          <button id="trading-modal-sell" onClick={this.handleSell}>SELL</button>
+            onChange={this.onChangeSymbol}/> */}
+          <span id="trading-input-symbol">Currency Symbol: </span> <span className="trading-modal-value">{this.state.symbol}</span>
+          <br/>
+        <span className="trading-modal-price">Current Price: </span> <span className="trading-modal-value">{price}</span>
+        <input id="trading-input-quantity" 
+          type="text" 
+          placeholder={this.state.quantity}
+          onChange={this.onChangeQuantity}/>
+        <button id="trading-modal-buy" onClick={this.handleBuy}>BUY</button>
+        <button id="trading-modal-sell" onClick={this.handleSell}>SELL</button>
       </div>
     );
   }
