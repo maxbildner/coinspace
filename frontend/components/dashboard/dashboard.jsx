@@ -46,22 +46,22 @@ class Dashboard extends React.Component {
 			cash_balance, 
 			portfolio,
 			transactions,
-			// wallet_transactions,
 		} = this.props.state.entities.users[userId] || {};
-		// debugger
 
 		const currentPrices = this.state.currentPrices || {};
-		// debugger
 
 		return (
 			<div id="dashboard-container">
 				{/* <h1>WELCOME!</h1> */}
+				<div id="portfolio-cash-balance-container">
+					<span id="portfolio-cash-balance">Cash Balance: </span> 
+					<span id="portfolio-cash-balance-num">${(Number(cash_balance.toFixed(2))).toLocaleString()}</span>
+				</div>
 				<PortfolioChart
 					cashBalance={cash_balance}
 					portfolio={portfolio}
 					currentPrices={currentPrices}
 					transactions={transactions}
-					// transactions={wallet_transactions}
 				/>
 				<Watchlist/>
 
@@ -73,7 +73,6 @@ class Dashboard extends React.Component {
 					/>
 					<Transactions
 						transactions={transactions}
-						// transactions={wallet_transactions}
 					/>
 				</div>
 			</div>
