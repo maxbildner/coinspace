@@ -150,9 +150,9 @@ class SignupForm extends React.Component {
 
 			return (
 				<>
-					<div>
+					<div id="signup-form-container">
 						{headerTitle}
-						<form onSubmit={this.handleSubmit}>
+						<form onSubmit={this.handleSubmit} id="signup-form">
 							<div className="center">
 								{this.renderErrors()}
 								{this.renderSignup()}

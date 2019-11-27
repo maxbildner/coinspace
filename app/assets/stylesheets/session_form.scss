@@ -33,6 +33,7 @@ input[type="submit"], input[type="button"], button {
     color: white;
     &:hover {
         background-color: #004488;                // slightly darker blue
+        cursor: pointer;
     }
 }
 
@@ -100,3 +101,6 @@ a.close {
     }
 }
 
+div#signup-form-container {
+    padding-bottom: 125px;
+}
