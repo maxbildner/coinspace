@@ -56,7 +56,10 @@ class User < ApplicationRecord
 	def generate_wallets
 		supported_currencies = [
 			'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
-			'EOS', 'XLM']
+			'EOS', 'XLM', 'LINK', 'XTZ', 'DASH', 
+			'ETC', 'USDC', 'ZEC', 'BAT', 'ZRX',
+			'REP', 'DAI'
+		]
 
 		supported_currencies.each do |symbol|
 			Wallet.create(
