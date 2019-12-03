@@ -88,6 +88,8 @@ class PortfolioChart extends React.Component {
     // raw data of historical prices { BTC: [], LTC: [], ... }
     let priceData = {};     
 
+    // debugger
+
     // Promise.all takes an array of call backs
     Promise.all(portfolioArray.map( (symbol)=> {
       return fetchHistoricalPrices(symbol, timeframe, interval).then(
@@ -135,6 +137,7 @@ class PortfolioChart extends React.Component {
         xAxisTickCount = 30;                                                    // very 30 days, make a tick on x axis
     }
 
+    // debugger
 
     return (
       <div id="portfoliochart-container">
