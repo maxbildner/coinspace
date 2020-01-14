@@ -54,7 +54,7 @@ Users can search for cryptocurrencies by either symbol (ex. BTC) or name (Bitcoi
 
 ### Portfolio and Currency Price Data Visualization
 Coinspace has support for viewing price data in multiple timeframes (daily, weekly, monthly, yearly) for 17 different cryptocurrencies. 
-I used [Cryptocompare](https://www.cryptocompare.com/coins/guides/how-to-use-our-api/) all of the currency price, volume, and market cap data. Recharts (Javascript Library) was used to render the charts which can be seen below:
+I used [Cryptocompare](https://www.cryptocompare.com/coins/guides/how-to-use-our-api/) for all of the currency price, volume, and market cap data. Recharts (Javascript Library) was used to render the charts which can be seen below:
 ![Prices Visualization GIF](https://github.com/maxbildner/coinspace/blob/master/app/assets/images/charts.gif)
 
 A large problem I encoutered with the data visualization rendering was aggregating the price data. Since the cryptocompare API did not support a single AJAX call to fetch historical data for multiple currencies at a time, and the coinspace user could have an unknown number of currencies in their portfolio, I could not hard code the data fetches and needed a dynamic way of fetching data. To solve this issue, I used a Promise.all with a mapping function that produced a variable number of callback functions.  Only after all the data has been fetched that the promise is resolved and local react state is updated with all the relevant price data. 
