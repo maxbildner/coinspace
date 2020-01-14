@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		// props == entire redux store
-		debugger
+		// debugger
 
 		this.state = {
 			currentPrices: null,		// { BTC: 8000, ETH: 162... }

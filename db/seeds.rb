@@ -99,9 +99,12 @@ transaction3.created_at = time3
 transaction3.updated_at = time3
 transaction3.save
 
-#Update wallet so that there's 1 BTC in the demo user's wallet
+# Update bitcoin wallet so that there's 1 BTC in the demo user's wallet
 btc_wallet.update_value(1)
 
+# Decrease User Model's cash balance by appropriate amount
+demo_user.cash_balance = 10000 - 8128.43
+demo_user.save
 
 # @wallet_transaction = WalletTransaction.new(
 #           wallet_id: wallet.id,
