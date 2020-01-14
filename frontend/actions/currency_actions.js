@@ -18,7 +18,7 @@ export const fetchCurrentPrice = (symbol) => {                      // symbol ex
                 return resp;
             },
             (error) => {
-                debugger
+                // debugger
                 return dispatch(receiveErrors(error.responseJSON))  // ? responseJSON
             }
         );
