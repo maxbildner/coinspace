@@ -3,6 +3,7 @@ import * as CurrencyAPIUtil from '../util/currency_api_util';
 
 export const RECEIVE_PRICE = 'RECEIVE_PRICE';                       // 24HR price data
 export const RECEIVE_24HR_PRICES = 'RECEIVE_24HR_PRICES';
+export const RECEIVE_CURRENCY_ERRORS = 'RECEIVE_CURRENCY_ERRORS';
 
 // THUNK ACTION CREATORS
 export const fetchCurrentPrice = (symbol) => {                      // symbol ex. 'BTC'
@@ -17,6 +18,7 @@ export const fetchCurrentPrice = (symbol) => {                      // symbol ex
                 return resp;
             },
             (error) => {
+                debugger
                 return dispatch(receiveErrors(error.responseJSON))  // ? responseJSON
             }
         );
@@ -86,7 +88,12 @@ const receiveHourly1DayPrices = (payload) => {
     })
 }
 
-
+const receiveErrors = (errors) => {     // takes in array
+    return ({
+        type: RECEIVE_CURRENCY_ERRORS,
+        errors
+    });
+};
 
 
 

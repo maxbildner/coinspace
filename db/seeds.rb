@@ -99,6 +99,9 @@ transaction3.created_at = time3
 transaction3.updated_at = time3
 transaction3.save
 
+#Update wallet so that there's 1 BTC in the demo user's wallet
+btc_wallet.update_value(1)
+
 
 # @wallet_transaction = WalletTransaction.new(
 #           wallet_id: wallet.id,

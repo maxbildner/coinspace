@@ -41,7 +41,7 @@ export const fetchCurrentPrice = (symbol) => {
 export const fetchCurrentPriceWithExtraInfo = (symbol) => {
     return $.ajax({
         method: "GET",
-        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key={23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8}`        // API key DELETED for push to heroku
+        url: `https://min-api.cryptocompare.com/data/generateAvg?fsym=${symbol}&tsym=USD&e=Coinbase,Bitfinex&api_key=23654bbaa50192c8cbeb3ef309179f9283d3c445bd6053c80c374e6fc25876d8`        // API key DELETED for push to heroku
     });
 }
 // response = fetchCurrentPrice('BTC');

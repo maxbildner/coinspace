@@ -87,8 +87,8 @@ class User < ApplicationRecord
 			# debugger
 
 			if wallet.total_value > 0                  		# only populate portfolio if user owns that currency
-					portfolio[symbol] = wallet.total_value
-					# debugger
+				portfolio[symbol] = wallet.total_value
+				# debugger
 			end
 
 			i = i + 1
@@ -97,6 +97,7 @@ class User < ApplicationRecord
 		#     symbol = wallet.currency_symbol
 		#     debugger
 		# end
+
 		# debugger
 
 		portfolio                                       # ex. # { 'BTC': 1, 'LTC': .5 } 
