@@ -94,6 +94,7 @@ class PortfolioChart extends React.Component {
     Promise.all(portfolioArray.map( (symbol)=> {
       return fetchHistoricalPrices(symbol, timeframe, interval).then(
         (response) => {                                                         // response == currencyArray of objects
+          // debugger
           // response.Data == [ {time:1569801600, close:8000 }, {}, ... ]       // for 1 currency!
           priceData[symbol] = response.Data;                                    // populate priceData object (outside of asynch func/loop) with currencyArray
         } 

@@ -188,15 +188,17 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
   let firstTransactionMonth = firstTransaction.getMonth();
   // firstTransactionMonth = 9      (october)
   let firstTransactionYear = firstTransaction.getFullYear();
-  
+  debugger
+
   // If input time comes before the first transaction in the input array, return empty object
-  if (month < firstTransactionMonth) {
-    // debugger
+  if (month < firstTransactionMonth && firstTransactionYear > year) {
+    debugger
     return {};
   } else if (month === firstTransactionMonth && dayOfMonth < firstTransactionDayOfMonth) {
-    // debugger
+    debugger
     return {};
   } else if (year < firstTransactionYear) {
+    debugger
     return {};
   }
 
