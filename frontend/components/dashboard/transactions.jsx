@@ -4,17 +4,8 @@ class Transactions extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      transactions: this.props
-    }
-
     this.renderTransactions = this.renderTransactions.bind(this);
     this.formatMonth = this.formatMonth.bind(this);
-  }
-
-  
-  componentDidUpdate() {
-    
   }
 
 
@@ -64,7 +55,6 @@ class Transactions extends React.Component {
       );
     }
   }
-
 
 
   render() {
