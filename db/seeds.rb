@@ -148,8 +148,8 @@ demo_user.save
 
 
 
-
-# SUPPORTED CURRENCIES
+# 25 CURRENCIES TOTAL
+# SUPPORTED CURRENCIES (17)
 bitcoin = Currency.create({
 	symbol: 'BTC',
 	name: 'Bitcoin',
@@ -273,7 +273,7 @@ dai = Currency.create({
 
 
 
-# NOT SUPPORTED CURRENCIES
+# NOT SUPPORTED CURRENCIES (8)
 tether = Currency.create({
 	symbol: 'USDT',
 	name: 'Tether',

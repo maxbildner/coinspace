@@ -43,7 +43,8 @@ class Api::WalletTransactionsController < ApplicationController
           id: current_user.id,
           email: current_user.email,
           cash_balance: current_user.cash_balance,            # float
-          portfolio: current_user.get_portfolio               # object { 'BTC': 1, 'LTC': .5 } 
+          portfolio: current_user.get_portfolio,              # object { 'BTC': 1, 'LTC': .5 } 
+          transactions: current_user.wallet_transactions      # [ {quantity:1, price:8143, currency_symbol:'BTC', created_at:... }, {}, ...]
         }
       else
         # Send back error
@@ -84,7 +85,8 @@ class Api::WalletTransactionsController < ApplicationController
           id: current_user.id,
           email: current_user.email,
           cash_balance: current_user.cash_balance,            # float
-          portfolio: current_user.get_portfolio               # object { 'BTC': 1, 'LTC': .5 } 
+          portfolio: current_user.get_portfolio,              # object { 'BTC': 1, 'LTC': .5 } 
+          transactions: current_user.wallet_transactions      # [ {quantity:1, price:8143, currency_symbol:'BTC', created_at:... }, {}, ...]
         }
       else  # user does not have enough to sell
         render json: ['Not enough currency to sell, and/or invalid params'], status: 422

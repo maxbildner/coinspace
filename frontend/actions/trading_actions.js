@@ -11,6 +11,7 @@ export const buyCurrency = (purchaseInfo) => {              // called in Trading
     return TradingAPIUtil.buyCurrency(purchaseInfo).then(
 
       (response) => {
+        debugger
         return dispatch(receieveBuyData(response))          // ? response == { id: 17, email: 'demo@gmail.com', cash_balance: 3000, portfolio: {'BTC': 1} }
       }
     );

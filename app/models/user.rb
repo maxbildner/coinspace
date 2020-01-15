@@ -54,6 +54,7 @@ class User < ApplicationRecord
 
 	
 	def generate_wallets
+		# 17 Supported Currencies
 		supported_currencies = [
 			'BTC', 'ETH', 'XRP', 'BCH', 'LTC', 
 			'EOS', 'XLM', 'LINK', 'XTZ', 'DASH', 

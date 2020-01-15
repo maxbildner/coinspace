@@ -23,7 +23,7 @@ const usersReducers = (oldState={}, action) => {
 			newState = merge({}, oldState, { [action.userData.id]: action.userData });
 			// debugger
 			newState[action.userData.id].portfolio = action.userData.portfolio;				// "overwrite" old state portfolio
-			// debugger
+			debugger
 			return newState;
 
 		case RECEIVE_SELL_DATA:
