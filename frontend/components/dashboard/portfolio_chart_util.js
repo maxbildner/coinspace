@@ -100,7 +100,7 @@ export const calculatePortfolioValues = (pricesData, transactions) => {
     //                                                                          //=> { time:1569801600, portfolioValue: 9000 }
     let portfolioValue = calculatePortfolioValueAtTimeT(time, portfolioAtTimeT);
     // portfolioValue == { time:1569801600, portfolioValue: 9000 }
-    // debugger
+    debugger
 
     // push each portfolio value object to outside array (parseable by Recharts Library)
     portfolioValues.push(portfolioValue);
@@ -148,6 +148,7 @@ function getPricesAtTimeT(t, pricesData) {
 
     pricesObject[symbol] = priceAtTimeT;
     // priceObject == { 'BTC':8326.24 }
+    debugger
   }
 
   return pricesObject;
@@ -231,6 +232,7 @@ function getPortfolioAtTimeT(pricesAtTimeT, transactions, time) {
 
     } else {  // If user SELLS currency on this date
       // Remove currency quantity from portfolio
+      // debugger
       let oldQuantity = portfolio[transaction.currency_symbol].quantity;
       // oldQUantity = 1
       // debugger
@@ -307,18 +309,21 @@ function calculatePortfolioValueAtTimeT(time, portfolioAtTimeT) {
   let portfolioValue = { time: newTime };
 
   let runningTotalValue = 0;
-  // debugger
+  debugger
 
   // loop through each currency in portfolioAtTimeT
   for (let symbol in portfolioAtTimeT) {
-    // debugger
     // calculate total value of each currency = price * quantity
 
     // keep running total of value
-    runningTotalValue += portfolioAtTimeT[symbol].price * portfolioAtTimeT[symbol].quantity;
+    if (portfolioAtTimeT[symbol].price != undefined) {
+      runningTotalValue += portfolioAtTimeT[symbol].price * portfolioAtTimeT[symbol].quantity;
+    } 
+    debugger
   }
 
   portfolioValue['portfolioValue'] = Number(runningTotalValue.toFixed(2));
+  debugger
 
   return portfolioValue;
 }

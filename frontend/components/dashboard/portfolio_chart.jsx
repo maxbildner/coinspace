@@ -82,6 +82,7 @@ class PortfolioChart extends React.Component {
     // transactions == { quantity: 1, price: 8143.05, transaction_type: "BUY", created_at: "2019-10-22T21:13:03.849Z", currency_symbol: 'BTC' }
     // debugger
 
+    // current portfolio
     let portfolioArray = Object.keys(this.props.portfolio);
     // portfolioArray == ['BTC', 'LTC']
     
@@ -94,7 +95,6 @@ class PortfolioChart extends React.Component {
     Promise.all(portfolioArray.map( (symbol)=> {
       return fetchHistoricalPrices(symbol, timeframe, interval).then(
         (response) => {                                                         // response == currencyArray of objects
-          // debugger
           // response.Data == [ {time:1569801600, close:8000 }, {}, ... ]       // for 1 currency!
           priceData[symbol] = response.Data;                                    // populate priceData object (outside of asynch func/loop) with currencyArray
         } 
