@@ -158,7 +158,7 @@ class DetailsPage extends React.Component {
 			this.getCurrentPrice(symbol);
 			
 			// Get new price every 10 seconds
-			setInterval(() => this.getCurrentPrice(symbol), 10000)
+			setInterval(() => this.getCurrentPrice(symbol), 10000);
 		}
 	}
 
