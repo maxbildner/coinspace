@@ -14,13 +14,31 @@ h1.chart-title {
 }
 
 h3.current-price {
-    margin-top: 0;
-    padding-top: 0;
-    font-size: 1.8rem;
+	margin-top: 0;
+	padding-top: 0;
+	font-size: 1.8rem;
 	font-weight: 500;
 	// color: black;								// LIGHT MODE
 	color: white;			// DARK MODE
 }
+
+.fade-out-in {
+	animation: fadeOutIn 2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeOutIn {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 
 // div#timeframe {
 //     // background: #ff9e9e;														// FOR TESTING

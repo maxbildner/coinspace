@@ -116,6 +116,7 @@ class DetailsPage extends React.Component {
 			supply: '',
 			news: [],			// array of news objects (keep latest 4 only)
 			modalOn: false,
+			fading: false,
 		}
 		// debugger
 
@@ -167,9 +168,12 @@ class DetailsPage extends React.Component {
 			(response) => {
 				// debugger
 				// console.log('Fetched Current Price: ' + `${response.USD}`)						// for testing
+				setTimeout( () => this.setState({fading: false}), 500);
+
 				return this.setState({
 					// currentPrice: response.RAW.PRICE			// old for API that gets average price from multiple exchanges
-					currentPrice: response.USD					
+					currentPrice: response.USD,
+					fading: true,					
 				});
 			}
 		);
@@ -183,6 +187,7 @@ class DetailsPage extends React.Component {
 				return this.setState({
 					["1D"]: response.Data,
 					"timePeriodActive": "day",
+					fading: !this.state.fading
 				});
 			}
 		);
@@ -314,7 +319,14 @@ class DetailsPage extends React.Component {
 	
 	render() {
 		const { symbol, high, site, paper } = this.props;
-		const { currentPrice, timePeriodActive, marketCap, volume24HRS, news } = this.state;
+		const { 
+			currentPrice, 
+			timePeriodActive, 
+			marketCap, 
+			volume24HRS, 
+			news,
+			fading,
+		} = this.state;
 		let dataPeriod, dayActive, weekActive, monthActive, yearActive;
 		let supply = this.state.supply.slice(1);
 		// debugger
@@ -387,7 +399,11 @@ class DetailsPage extends React.Component {
 					<div className="chart-container">
 							<h1 className="chart-title">{this.props.currencyName} <p className="sym-title">({symbol})</p></h1>
 						<div id="chart">
-								<h3 className="current-price">${currentPrice}</h3>
+								<h3 className="current-price">
+									<span className={`${fading ? 'fade-out-in' : ''}`}>
+										${currentPrice}
+									</span>
+								</h3>
 							{/* <LineChart width={500} height={500} data={this.state["1M"]}> */}
 							<LineChart width={570} height={245} data={this.state[dataPeriod]}>
 								{/* <Tooltip content={<CustomTooltip/>} coordinate={{x: -1000, y: 0}}/> */}
