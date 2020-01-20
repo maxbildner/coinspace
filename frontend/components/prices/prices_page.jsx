@@ -41,6 +41,7 @@ class PricesPage extends React.Component {
       // Get batch data (price, %change, marketcap) for all currencies
       fetchCurrencyInfo(SYMBOLS).then(
         response => {
+          // debugger
           let newRowData = {};
 
           // Loop through all symbols array, and populate newRowData object with price, %change, marketcap for each currency
@@ -177,6 +178,7 @@ class PricesPage extends React.Component {
                     nameToMap={nameToMap[i]} 
                     symbol={symbol}
                     logoPath={logoPath}
+                    onTradeClick={this.triggerModal}
                   />
                 </Link>
                 <td className="search-trade">

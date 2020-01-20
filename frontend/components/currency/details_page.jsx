@@ -120,6 +120,8 @@ class DetailsPage extends React.Component {
 		}
 		// debugger
 
+		this.interval = false;
+
 		this.getCurrentPrice = this.getCurrentPrice.bind(this);
 		this.get1YearPrices = this.get1YearPrices.bind(this);
 		this.get1MonthPrices = this.get1MonthPrices.bind(this);
@@ -133,6 +135,7 @@ class DetailsPage extends React.Component {
 		this.hideModal = this.hideModal.bind(this);
 	}
 
+
 	componentDidUpdate(prevProps) {
 		const { symbol } = this.props;
 		// debugger
@@ -144,6 +147,7 @@ class DetailsPage extends React.Component {
 			this.getCurrentPrice(symbol);
 		}
 	}
+
 
 	componentDidMount() {
 		// debugger
@@ -158,9 +162,16 @@ class DetailsPage extends React.Component {
 			this.getCurrentPrice(symbol);
 			
 			// Get new price every 10 seconds
-			setInterval(() => this.getCurrentPrice(symbol), 10000);
+			this.interval = window.setInterval(() => this.getCurrentPrice(symbol), 10000);
 		}
 	}
+
+
+	// remove ajax fetches when we click out of prices page, so we dont' max API calls
+	componentWillUnmount() {
+		if (this.interval) window.clearInterval(this.interval);
+	}
+
 
 	getCurrentPrice(symbol) {
 		// debugger

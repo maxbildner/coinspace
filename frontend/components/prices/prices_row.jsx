@@ -1,22 +1,33 @@
 import React from 'react';
 import { fetchCurrentPrice } from '../../util/prices_util';
 
+
 class PricesRow extends React.Component {
   constructor(props) {
     super(props);
     // debugger
+
+    this.interval = false;
 
     this.state = {
       currentPrice: props.price,
     };
   }
 
+
   componentDidMount() {
     const { symbol } = this.props;
 
     // Get new price every 10 seconds
-    setInterval(() => this.getCurrentPrice(symbol), 10000);
+    this.interval = window.setInterval(() => this.getCurrentPrice(symbol), 10000);
   }
+
+
+  componentWillUnmount() {
+    // remove ajax fetches when we click out of prices page, so we dont' max API calls
+    if (this.interval) window.clearInterval(this.interval);
+  }
+
 
   getCurrentPrice(symbol) {
     // debugger
@@ -73,9 +84,15 @@ class PricesRow extends React.Component {
         <td className="search-name">{nameToMap}</td>
         <td className="search-ticker">{symbol}</td>
         <td className="search-price">{actualPrice}</td>
-        {/* <td className="search-price">{price}</td> */}
         <td className={isNegative}>{percentChange}</td>
         <td className="search-marketCap">{marketCap}</td>
+        {/* <td className="search-trade">
+          <button
+            className="currency-trade-prices"
+            onClick={() => this.props.onTradeClick(symbol, price)}>
+            TRADE
+          </button>
+        </td> */}
       </>
     );
   }

@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
     const sessionId = state.session.id;
     // debugger
 
-    // debugger
     return ({
         price,
         changePct24HR,

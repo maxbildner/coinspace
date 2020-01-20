@@ -9,6 +9,8 @@ class CurrencyTableItem extends React.Component {
 	constructor(props) {
 		super(props); 
 
+		this.interval = false;
+
 		this.state = {
 			logoPath: ''
 		}
@@ -20,7 +22,8 @@ class CurrencyTableItem extends React.Component {
 	componentDidMount() {
 		// Get new price every 10 seconds
 		// setInterval(() => this.props.fetchCurrentPrice(this.props.symbol), 10000);
-		this.props.fetchCurrentPrice(this.props.symbol);
+		this.interval = window.setInterval(() => this.props.fetchCurrentPrice(this.props.symbol), 10000);
+		// this.props.fetchCurrentPrice(this.props.symbol);				// OLD
 
 		fetchDescription(this.props.symbol).then(
 			(response) => {
@@ -31,6 +34,12 @@ class CurrencyTableItem extends React.Component {
 			}
 		);
 		// debugger
+	}
+
+
+	componentWillUnmount() {
+		// remove ajax fetches when we click out of home page, so we dont' max API calls
+		if (this.interval) window.clearInterval(this.interval);
 	}
 
 
