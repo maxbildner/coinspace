@@ -20,10 +20,11 @@ class CurrencyTableItem extends React.Component {
 
 
 	componentDidMount() {
-		// Get new price every 10 seconds
-		// setInterval(() => this.props.fetchCurrentPrice(this.props.symbol), 10000);
+		// Fetch price now
+		this.props.fetchCurrentPrice(this.props.symbol);				// OLD
+
+		// Get new price every 10 seconds (starting 10 sec from now)
 		this.interval = window.setInterval(() => this.props.fetchCurrentPrice(this.props.symbol), 10000);
-		// this.props.fetchCurrentPrice(this.props.symbol);				// OLD
 
 		fetchDescription(this.props.symbol).then(
 			(response) => {
